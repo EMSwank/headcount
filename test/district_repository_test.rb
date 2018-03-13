@@ -18,12 +18,13 @@ class DistrictRepositoryTest < Minitest::Test
     assert_instance_of CSV, expected
   end
 
-#   def test_it_finds_by_name
-#     dr = DistrictRepository.new
-#     dr.load_data({ :enrollment => {
-#             :kindergarten => "./data/Kindergartners in full-day program.csv"
-#   }
-# })
-#     district = dr.find_by_name("ACADEMY 20")
-#   end
+  def test_it_finds_by_name
+    dr = DistrictRepository.new
+    dr.load_data({ :enrollment => {
+            :kindergarten => "./data/Kindergartners in full-day program.csv"}
+          })
+    district = dr.find_by_name("ACADEMY 20")
+
+    assert_equal District, district 
+  end
 end
