@@ -9,7 +9,10 @@ class Enrollment
   end
 
   def kindergarten_participation_by_year
-    @kindergarten_participation
+    new_hash = {}
+    @kindergarten_participation.each_value { |value| "%.2f" % value }
+
+    # end
   end
 
 end
