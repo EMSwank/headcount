@@ -23,6 +23,7 @@ class Enrollment
   end
 
   def kindergarten_participation_in_year(year)
-    
+    value = @kindergarten_participation[year]
+    truncate_to_three_decimals(value)
   end
 end
