@@ -22,6 +22,14 @@ class EnrollmentTest < Minitest::Test
     expected = {2010 => 0.391, 2011 => 0.353, 2012 => 0.267}
     actual = e.kindergarten_participation_by_year
 
-    assert_equal expected, actual 
+    assert_equal expected, actual
+  end
+
+  def test_it_truncates_decimals_to_three_points
+    e = Enrollment.new({:name => "ACADEMY 20", :kindergarten_participation => {2010 => 0.3915, 2011 => 0.35356, 2012 => 0.2677}})
+    actual = e.truncate_to_three_decimals(0.35356)
+    expected = 0.353
+
+    assert_equal expected, actual
   end
 end
