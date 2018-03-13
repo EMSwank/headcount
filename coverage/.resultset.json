@@ -1,12 +1,17 @@
 {
   "Unit Tests": {
     "coverage": {
-      "/Users/eliotswank/turing/interim/headcount/lib/districtrepository.rb": [
+      "/Users/eliotswank/turing/interim/headcount/lib/district.rb": [
         1,
+        null,
+        1,
+        null,
+        1,
+        2,
         null,
         null
       ]
     },
-    "timestamp": 1520966649
+    "timestamp": 1520970408
   }
 }
