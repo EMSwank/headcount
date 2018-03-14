@@ -8,5 +8,14 @@ class EnrollmentRepositoryTest < Minitest::Test
 
     assert_instance_of EnrollmentRepository, er
   end
-  
+
+  def test_it_takes_a_file
+    er = EnrollmentRepository.new
+
+    assert_instance_of CSV, er.load_data({
+    :enrollment => {
+    :kindergarten => "./data/Kindergartners in full-day program.csv"
+      }
+    })
+  end
 end
