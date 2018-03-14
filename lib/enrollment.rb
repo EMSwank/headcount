@@ -17,8 +17,8 @@ class Enrollment
   end
 
   def truncate_to_three_decimals(decimal)
-    converted_value = decimal.to_s.split(".")[1][0..2]
-    new_value = '0.' + converted_value
+    converted_value = decimal.to_s.split(".")
+    new_value = converted_value[0] + "." + converted_value[1][0..2]
     new_value.to_f
   end
 
