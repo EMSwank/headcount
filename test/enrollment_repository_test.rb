@@ -18,4 +18,13 @@ class EnrollmentRepositoryTest < Minitest::Test
       }
     })
   end
+
+  def test_it_finds_by_name
+    er = EnrollmentRepository.new
+    er.load_data({ :enrollment => {
+      :kindergarten => "./data/Kindergartners in full-day program.csv"
+        }
+      })
+    assert_instance_of Enrollment, er.find_by_name("Academy 20")
+  end
 end

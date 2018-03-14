@@ -8,12 +8,12 @@ class DistrictRepository
   def load_data(symbols)
       enrollment = symbols[:enrollment]
       data = enrollment[:kindergarten]
-      contents = CSV.open(data, {headers: true, header_converters: :symbol})
-      @districts = contents.map do |row|
+      source = CSV.open(data, {headers: true, header_converters: :symbol})
+      @districts = source.map do |row|
         row[:name] = row[:location]
         District.new(row)
       end
-      return contents
+      return source
   end
 
   def find_by_name(name)
