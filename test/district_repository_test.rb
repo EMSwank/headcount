@@ -27,4 +27,15 @@ class DistrictRepositoryTest < Minitest::Test
 
     assert_instance_of District, district
   end
+
+  def test_it_finds_matching
+    dr = DistrictRepository.new
+    dr.load_data({ :enrollment => {
+            :kindergarten => "./data/Kindergartners in full-day program.csv"}
+          })
+
+    assert_instance_of Array, dr.find_all_matching("ACADEMY 20")
+    assert_equal 2, dr.find_all_matching("brig").length
+    assert_equal 6, dr.find_all_matching("ca").length
+  end
 end
