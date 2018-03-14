@@ -3,6 +3,6 @@ class District
   attr_reader :name
 
   def initialize(data)
-    @name = data[:name]
+    @name = data[:location]
   end
 end

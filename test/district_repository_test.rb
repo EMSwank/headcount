@@ -11,22 +11,21 @@ class DistrictRepositoryTest < Minitest::Test
 
   def test_load_data
     dr = DistrictRepository.new
-    file = './data/Kindergartners in full-day program.csv'
+    file = './test/fixtures/kinder_full_day.csv'
 
     expected = dr.load_data(file)
 
-    assert_instance_of CSV, expected
+    assert_instance_of Array, expected
   end
 
   def test_it_finds_by_name
     dr = DistrictRepository.new
-    # file = './data/Kindergartners in full-day program.csv'
-
+    binding.pry
     dr.load_data({ :enrollment => {
             :kindergarten => "./data/Kindergartners in full-day program.csv"}
           })
     district = dr.find_by_name("ACADEMY 20")
 
-    assert_equal District, district
+    assert_equal "A 20", district
   end
 end

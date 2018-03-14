@@ -8,7 +8,10 @@ class DistrictRepository
   end
 
   def load_data(file)
-    CSV.open(file, headers: true, header_converters: :symbol)
+    CSV.foreach(file, headers: true, header_converters: :symbol) do |data|
+      # puts data
+      @districts << District.new(data)
+    end
   end
 
   def find_by_name(district)
