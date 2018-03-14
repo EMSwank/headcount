@@ -40,5 +40,4 @@ class EnrollmentTest < Minitest::Test
 
     assert_equal expected, actual
   end
-  # assert_nil e.kindergarten_participation_in_year(2005)
 end
