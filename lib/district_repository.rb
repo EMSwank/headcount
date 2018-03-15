@@ -12,15 +12,34 @@ class DistrictRepository
       er = EnrollmentRepository.new
       er.load_data(symbols)
       @enrollments = er.load_data(symbols)
+      binding.pry
     end
-    enrollment = symbols[:enrollment]
-    data = enrollment[:kindergarten]
+    data = symbols[:enrollment][:kindergarten]
+    data_parser(data)
+
+    # source = CSV.open(data, {headers: true, header_converters: :symbol})
+    # @districts = source.map do |row|
+    #   row[:name] = row[:location]
+    #   District.new(row)
+    # end
+    # return source
+  end
+
+  def data_parser(data)
     source = CSV.open(data, {headers: true, header_converters: :symbol})
     @districts = source.map do |row|
-      row[:name] = row[:location]
+      row[:name] = row[:location].upcase
       District.new(row)
     end
-    return source
+    @districts.uniq! {|district| district.name}
+    add_enrollment
+  end
+
+  def add_enrollment
+    @districts.each_with_index do |district, index|
+      # binding.pry
+      district.enrollment = @enrollments[index]
+    end
   end
 
   def find_by_name(name)

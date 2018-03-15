@@ -6,8 +6,7 @@ class EnrollmentRepository
   attr_reader :enrollments
 
   def load_data(symbols)
-      enrollment = symbols[:enrollment]
-      data = enrollment[:kindergarten]
+      data = symbols[:enrollment][:kindergarten]
       source = CSV.open(data, {headers: true, header_converters: :symbol})
       @enrollments = source.map do |row|
         row[:name] = row[:location]
