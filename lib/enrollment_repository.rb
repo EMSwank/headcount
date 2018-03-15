@@ -15,6 +15,13 @@ class EnrollmentRepository
       return source
   end
 
+  def get_enrollments(source)
+    source.map do |row|
+      row[:name] = row[:location].upcase
+      Enrollment.new(:name => row[:name])
+    end
+  end
+
   def find_by_name(name)
     @enrollments.find do |enrollment|
       enrollment.name.upcase == name.upcase
