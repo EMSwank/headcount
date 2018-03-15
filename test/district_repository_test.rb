@@ -26,7 +26,7 @@ class DistrictRepositoryTest < Minitest::Test
     district = dr.find_by_name("ACADEMY 20")
 
     assert_instance_of District, district
-    assert_equal "ACADEMY 20", district.name 
+    assert_equal "ACADEMY 20", district.name
   end
 
   def test_it_finds_matching
@@ -41,7 +41,7 @@ class DistrictRepositoryTest < Minitest::Test
   end
 
   def test_it_instantiates_enrollment
-    skip
+    
     dr = DistrictRepository.new
     dr.load_data({ :enrollment => {
             :kindergarten => "./data/Kindergartners in full-day program.csv"}

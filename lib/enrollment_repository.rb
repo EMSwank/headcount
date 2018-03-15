@@ -8,11 +8,7 @@ class EnrollmentRepository
   def load_data(symbols)
       data = symbols[:enrollment][:kindergarten]
       source = CSV.open(data, {headers: true, header_converters: :symbol})
-      @enrollments = source.map do |row|
-        row[:name] = row[:location]
-        Enrollment.new(row)
-      end
-      return source
+      @enrollments = get_enrollments(source)
   end
 
   def get_enrollments(source)
