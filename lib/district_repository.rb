@@ -10,7 +10,6 @@ class DistrictRepository
   def load_data(symbols)
     if symbols[:enrollment]
       er = EnrollmentRepository.new
-      er.load_data(symbols)
       @enrollments = er.load_data(symbols)
     end
     data = symbols[:enrollment][:kindergarten]
@@ -36,6 +35,7 @@ class DistrictRepository
   def find_by_name(name)
     @districts.find do |district|
       district.name == name
+      binding.pry
     end
   end
 

@@ -6,7 +6,7 @@ class District
   attr_accessor :enrollment
 
   def initialize(data)
-    @name = data[:location]
+    @name = data[:name]
     @enrollment = nil
   end
 

@@ -11,7 +11,7 @@ class DistrictTest < Minitest::Test
 
   def test_it_has_attributes
     district = District.new({:name => "ACADEMY 20"})
-
+    
     assert_equal "ACADEMY 20", district.name
   end
 end
