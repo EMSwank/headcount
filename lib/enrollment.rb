@@ -26,4 +26,5 @@ class Enrollment
     value = @kindergarten_participation[year]
     truncate_to_three_decimals(value)
   end
+
 end

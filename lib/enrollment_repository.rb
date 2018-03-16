@@ -14,7 +14,12 @@ class EnrollmentRepository
   def get_enrollments(source)
     source.map do |row|
       row[:name] = row[:location].upcase
-      Enrollment.new(:name => row[:name])
+      row[:timeframe] = row[:timeframe].to_i
+      row[:data] = row[:data]
+      Enrollment.new(:name => row[:name],
+                     :kindergarten_participation =>
+                      {row[:timeframe] => row[:data]}
+                    )
     end
   end
 

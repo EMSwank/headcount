@@ -26,5 +26,19 @@ class EnrollmentRepositoryTest < Minitest::Test
         }
       })
     assert_instance_of Enrollment, er.find_by_name("Academy 20")
+    assert_equal "ACADEMY 20", er.find_by_name('ACADEMY 20').name
+  end
+
+  def test_it_loads_enrollment
+    er = EnrollmentRepository.new
+    er.load_data({ :enrollment => {
+      :kindergarten => "./data/Kindergartners in full-day program.csv"
+        }
+      })
+    district = "COLORADO SPRINGS 11"
+    enrollment = er.find_by_name(district)
+
+    assert_equal district, enrollment.name
+    assert_equal 0.994, enrollment.kindergarten_participation_in_year(2007)
   end
 end
