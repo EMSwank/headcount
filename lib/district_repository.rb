@@ -34,13 +34,23 @@ class DistrictRepository
 
   def find_by_name(name)
     @districts.find do |district|
-      district.name == name
-      binding.pry
+      district.name == name.upcase
     end
   end
 
   def find_all_matching(text)
-    district_match = @districts.map {|district| district.name.upcase}
-    district_match.uniq.grep(/#{text.upcase}/)
+    matches = []
+    # x = text.length
+    # @districts.find_all do |district|
+    #   district.name == text
+    # end
+    # district_match =
+    @districts.map do |district|
+      if district.name.include?(text)
+      matches << district
+      end
+      binding.pry
+     end
+    # district_match.uniq.grep(/#{text.upcase}/)
   end
 end
