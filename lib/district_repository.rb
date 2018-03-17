@@ -10,13 +10,14 @@ class DistrictRepository
   def load_data(symbols)
     if symbols[:enrollment]
       er = EnrollmentRepository.new
+      er.load_data(symbols)
       @enrollments = er.load_data(symbols)
     end
     data = symbols[:enrollment][:kindergarten]
-    parse_district_data(data)
+    parse_data(data)
   end
 
-  def parse_district_data(data)
+  def parse_data(data)
     source = CSV.open(data, {headers: true, header_converters: :symbol})
     @districts = source.map do |row|
       row[:name] = row[:location].upcase
@@ -39,18 +40,7 @@ class DistrictRepository
   end
 
   def find_all_matching(text)
-    matches = []
-    # x = text.length
-    # @districts.find_all do |district|
-    #   district.name == text
-    # end
-    # district_match =
-    @districts.map do |district|
-      if district.name.include?(text)
-      matches << district
-      end
-      binding.pry
-     end
-    # district_match.uniq.grep(/#{text.upcase}/)
+    district_match = @districts.map {|district| district.name.upcase}
+    district_match.uniq.grep(/#{text.upcase}/)
   end
 end

@@ -41,7 +41,7 @@ class DistrictRepositoryTest < Minitest::Test
   end
 
   def test_it_instantiates_enrollment
-    
+
     dr = DistrictRepository.new
     dr.load_data({ :enrollment => {
             :kindergarten => "./data/Kindergartners in full-day program.csv"}

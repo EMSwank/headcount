@@ -9,6 +9,7 @@ class EnrollmentRepository
       data = symbols[:enrollment][:kindergarten]
       source = CSV.open(data, {headers: true, header_converters: :symbol})
       @enrollments = get_enrollments(source)
+      collate_years
   end
 
   def get_enrollments(source)
@@ -26,6 +27,20 @@ class EnrollmentRepository
   def find_by_name(name)
     @enrollments.find do |enrollment|
       enrollment.name.upcase == name.upcase
+    end
+  end
+
+  def get_uniq_districts
+    @enrollments.uniq {|enrollment| enrollment.name}
+  end
+
+  def add_years
+    @enrollments.map do |enrollment|
+      binding.pry
+      get_uniq_districts.map do |enroll|
+      if enrollment.name == enroll.name
+        end
+      end
     end
   end
 

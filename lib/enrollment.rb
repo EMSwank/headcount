@@ -1,7 +1,8 @@
 class Enrollment
 
   attr_reader :name,
-              :kindergarten_participation
+              :kindergarten_participation,
+              :year
 
   def initialize(data)
     @name = data[:name]
@@ -12,8 +13,9 @@ class Enrollment
     truncated = {}
     @kindergarten_participation.each_pair do |year, value|
       truncated[year] = truncate_to_three_decimals(value)
+      # binding.pry
     end
-    truncated
+    return truncated
   end
 
   def truncate_to_three_decimals(decimal)

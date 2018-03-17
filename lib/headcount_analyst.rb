@@ -10,11 +10,11 @@ class HeadcountAnalyst
 
   def district_average(district_name)
     district = @dr.find_by_name(district_name)
-    # binding.pry
     total =
       district.enrollment.kindergarten_participation_by_year
                          .reduce(0) do |sum, pct|
                            sum + pct[1]
+                           # binding.pry
                          end
     total / district.enrollment.kindergarten_participation_by_year.length
   end
