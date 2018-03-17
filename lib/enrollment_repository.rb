@@ -6,11 +6,11 @@ class EnrollmentRepository
   attr_reader :enrollments
 
   def load_data(symbols)
-      data = symbols[:enrollment][:kindergarten]
-      source = CSV.open(data, {headers: true, header_converters: :symbol})
+      @data = symbols[:enrollment][:kindergarten]
+      source = CSV.open(@data, {headers: true, header_converters: :symbol})
       @enrollments = get_enrollments(source)
       uniq_enrollments
-      # add_enrollments(source)
+      participation_data
   end
 
   def get_enrollments(source)
@@ -29,14 +29,15 @@ class EnrollmentRepository
     row[:data] = row[:data]
   end
 
-  def add_enrollments(source)
-    data = CSV.open(source, {headers: true, header_converters: :symbol})
-    data.each do |row|
+  def participation_data
+    source = CSV.open(@data, {headers: true, header_converters: :symbol})
+    source.each do |row|
       parse_rows(row)
-      match_names(row)
-      @enrollments[match_names].kindergarten_participation[row[:timeframe]] =
+      key = match_names(row)
+      @enrollments[key].kindergarten_participation[row[:timeframe]] =
                                                            row[:data]
       end
+      binding.pry
     @enrollments
   end
 
