@@ -13,7 +13,6 @@ class Enrollment
     truncated = {}
     @kindergarten_participation.each_pair do |year, value|
       truncated[year] = truncate_to_three_decimals(value)
-      # binding.pry
     end
     return truncated
   end
