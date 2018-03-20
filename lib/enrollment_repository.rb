@@ -31,13 +31,13 @@ class EnrollmentRepository
 
   def participation_data
     source = CSV.open(@data, {headers: true, header_converters: :symbol})
-    source.each do |row|
+    source.map do |row|
       parse_rows(row)
       key = match_names(row)
       @enrollments[key].kindergarten_participation[row[:timeframe]] =
                                                            row[:data]
       end
-      binding.pry
+      # binding.pry
     @enrollments
   end
 
