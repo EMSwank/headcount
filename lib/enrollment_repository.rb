@@ -5,21 +5,19 @@ class EnrollmentRepository
 
   attr_reader :enrollments
 
-  def load_data(symbols)
-      @data = symbols[:enrollment][:kindergarten]
-      source = CSV.open(@data, {headers: true, header_converters: :symbol})
-      @enrollments = get_enrollments(source)
+  def load_data(categories)
+      @kinder_data = categories[:enrollment][:kindergarten]
+      @hs_data = categories[:enrollment][:high_school_graduation]
+      kinder_source = CSV.open(@kinder_data, {headers: true, header_converters: :symbol})
+      @enrollments = get_enrollments(kinder_source)
       uniq_enrollments
-      participation_data
+      kinder_participation_data
   end
 
   def get_enrollments(source)
     source.map do |row|
       parse_rows(row)
-      Enrollment.new(:name => row[:name],
-                     :kindergarten_participation =>
-                      {row[:timeframe] => row[:data]}
-                    )
+      Enrollment.new(:name => row[:name])
     end
   end
 
@@ -29,15 +27,25 @@ class EnrollmentRepository
     row[:data] = row[:data]
   end
 
-  def participation_data
-    source = CSV.open(@data, {headers: true, header_converters: :symbol})
-    source.map do |row|
+  def kinder_participation_data
+    source = CSV.open(@kinder_data, {headers: true, header_converters: :symbol})
+    source.each do |row|
       parse_rows(row)
       key = match_names(row)
       @enrollments[key].kindergarten_participation[row[:timeframe]] =
-                                                           row[:data]
+                                                   row[:data]
       end
-      # binding.pry
+    @enrollments
+  end
+
+  def hs_participation_data
+    source = CSV.open(@hs_data, {headers: true, header_converters: :symbol})
+    source.each do |row|
+      parse_rows(row)
+      key = match_names(row)
+      @enrollments[key].high_school_graduation_rates[row[:timeframe]] =
+                                                     row[:data]
+      end
     @enrollments
   end
 
@@ -49,7 +57,7 @@ class EnrollmentRepository
 
   def find_by_name(name)
     @enrollments.find do |enrollment|
-      enrollment.name.upcase == name.upcase
+      enrollment.name == name
     end
   end
 

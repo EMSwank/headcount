@@ -7,8 +7,8 @@ class DistrictTest < Minitest::Test
     data = {:enrollment => {:kindergarten =>
                             './data/Kindergartners in full-day program.csv'}}
     dr = DistrictRepository.new
-    dr.load_data(data)
-    ha = HeadcountAnalyst.new(dr)
+    instance = dr.load_data(data)
+    ha = HeadcountAnalyst.new(instance)
 
     assert_instance_of HeadcountAnalyst, ha
     assert_instance_of DistrictRepository, dr
@@ -18,8 +18,8 @@ class DistrictTest < Minitest::Test
     data = {:enrollment => {:kindergarten =>
                             './data/Kindergartners in full-day program.csv'}}
     dr = DistrictRepository.new
-    dr.load_data(data)
-    ha = HeadcountAnalyst.new(dr)
+    instance = dr.load_data(data)
+    ha = HeadcountAnalyst.new(instance)
     actual = ha.district_average("ACADEMY 20")
 
     assert_equal 0.406, actual
