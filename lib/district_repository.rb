@@ -41,7 +41,7 @@ class DistrictRepository
 
   def find_all_matching(text)
     index = text.length - 1
-    districts.find_all do |district|
+    @districts.find_all do |district|
       district.name[0..index] == name[0..index]
     end
     # district_match = @districts.map {|district| district.name.upcase}

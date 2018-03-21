@@ -12,6 +12,10 @@ class EnrollmentRepository
       @enrollments = get_enrollments(kinder_source)
       uniq_enrollments
       kinder_participation_data
+      if !@hs_data_set.nil?
+        add_high_school_data_to_enrollments
+      end
+      enrollments
   end
 
   def get_enrollments(source)
@@ -24,7 +28,7 @@ class EnrollmentRepository
   def parse_rows(row)
     row[:name] = row[:location].upcase
     row[:timeframe] = row[:timeframe].to_i
-    row[:data] = row[:data]
+    row[:data] = row[:data].to_f
   end
 
   def kinder_participation_data

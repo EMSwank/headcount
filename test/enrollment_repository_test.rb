@@ -56,5 +56,5 @@ class EnrollmentRepositoryTest < Minitest::Test
                 enrollment.kindergarten_participation_in_year(2004)
     assert_equal 0.889,
                 enrollment.graduation_rate_in_year(2012)
-  end 
+  end
 end
