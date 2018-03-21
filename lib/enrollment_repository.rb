@@ -8,12 +8,13 @@ class EnrollmentRepository
   def load_data(categories)
       @kinder_data = categories[:enrollment][:kindergarten]
       @hs_data = categories[:enrollment][:high_school_graduation]
-      kinder_source = CSV.open(@kinder_data, {headers: true, header_converters: :symbol})
+      kinder_source = CSV.open(@kinder_data, {headers: true,
+                                              header_converters: :symbol})
       @enrollments = get_enrollments(kinder_source)
       uniq_enrollments
       kinder_participation_data
-      if !@hs_data_set.nil?
-        add_high_school_data_to_enrollments
+      if !@hs_data.nil?
+        hs_participation_data
       end
       enrollments
   end
@@ -36,10 +37,10 @@ class EnrollmentRepository
     source.each do |row|
       parse_rows(row)
       key = match_names(row)
-      @enrollments[key].kindergarten_participation[row[:timeframe]] =
-                                                   row[:data]
+      enrollments[key].kindergarten_participation[row[:timeframe]] =
+                                                  row[:data]
       end
-    @enrollments
+    enrollments
   end
 
   def hs_participation_data
@@ -47,10 +48,10 @@ class EnrollmentRepository
     source.each do |row|
       parse_rows(row)
       key = match_names(row)
-      @enrollments[key].high_school_graduation_rates[row[:timeframe]] =
-                                                     row[:data]
+      enrollments[key].high_school_graduation_rates[row[:timeframe]] =
+                                                    row[:data]
       end
-    @enrollments
+    enrollments
   end
 
   def match_names(row)
@@ -66,7 +67,7 @@ class EnrollmentRepository
   end
 
   def uniq_enrollments
-    @enrollments.uniq {|enrollment| enrollment.name}
+    @enrollments.uniq! {|enrollment| enrollment.name}
   end
 
 end

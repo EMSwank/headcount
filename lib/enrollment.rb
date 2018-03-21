@@ -31,7 +31,7 @@ class Enrollment
 
   def graduation_rate_by_year
     @high_school_graduation_rates.reduce({}) do |year, value|
-      binding.pry
+      # binding.pry
       year.merge(value.first => truncate_to_three_decimals(value.last))
     end
   end

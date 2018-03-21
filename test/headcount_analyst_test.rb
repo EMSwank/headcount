@@ -5,7 +5,8 @@ class DistrictTest < Minitest::Test
 
   def test_it_exists
     data = {:enrollment => {:kindergarten =>
-                            './data/Kindergartners in full-day program.csv'}}
+                            './data/Kindergartners in full-day program.csv',
+                            :high_school_graduation => "./data/High school graduation rates.csv"}}
     dr = DistrictRepository.new
     instance = dr.load_data(data)
     ha = HeadcountAnalyst.new(instance)
@@ -16,7 +17,8 @@ class DistrictTest < Minitest::Test
 
   def test_it_finds_district_average
     data = {:enrollment => {:kindergarten =>
-                            './data/Kindergartners in full-day program.csv'}}
+                            './data/Kindergartners in full-day program.csv',
+                            :high_school_graduation => "./data/High school graduation rates.csv"}}
     dr = DistrictRepository.new
     instance = dr.load_data(data)
     ha = HeadcountAnalyst.new(instance)
