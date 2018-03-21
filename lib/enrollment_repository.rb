@@ -60,9 +60,9 @@ class EnrollmentRepository
     end
   end
 
-  def find_by_name(name)
+  def find_by_name(district_name)
     @enrollments.find do |enrollment|
-      enrollment.name == name
+      enrollment.name == district_name
     end
   end
 

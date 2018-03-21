@@ -11,12 +11,11 @@ class EnrollmentRepositoryTest < Minitest::Test
 
   def test_it_takes_a_file
     er = EnrollmentRepository.new
-
-    assert_instance_of Array, er.load_data({
-    :enrollment => {
-    :kindergarten => "./data/Kindergartners in full-day program.csv"
+    actual = er.load_data({:enrollment => {
+                :kindergarten => "./data/Kindergartners in full-day program.csv"
       }
     })
+    assert_instance_of Array, actual
   end
 
   def test_it_finds_by_name
@@ -25,7 +24,7 @@ class EnrollmentRepositoryTest < Minitest::Test
       :kindergarten => "./data/Kindergartners in full-day program.csv"
         }
       })
-    assert_instance_of Enrollment, er.find_by_name("Academy 20")
+    assert_instance_of Enrollment, er.find_by_name("ACADEMY 20")
     assert_equal "ACADEMY 20", er.find_by_name('ACADEMY 20').name
   end
 
