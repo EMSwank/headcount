@@ -20,7 +20,6 @@ class HeadcountAnalyst
   end
 
   def kindergarten_participation_rate_variation(name, symbol)
-    # binding.pry
     dist_1 = district_average(name)
     dist_2 = district_average(symbol[:against])
     rate_variation = dist_1 / dist_2
