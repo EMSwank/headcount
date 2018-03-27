@@ -27,10 +27,14 @@ class HeadcountAnalyst
   end
 
   def kindergarten_participation_rate_variation_trend(name, symbol)
-    dist_name_1 = @dr.find_by_name(name)
+    # binding.pry
+    dist_name_1 = @dr.find {|district| district.name == name}
     year_set_1 = dist_name_1.enrollment.kindergarten_participation_by_year
-    dist_name_2 = @dr.find_by_name(symbol[:against])
+    dist_name_2 = @dr.find {|district| district.name == symbol[:against]}
     year_set_2 = dist_name_2.enrollment.kindergarten_participation_by_year
-    
+    trends = year_set_1.merge(year_set_2) do |key, oldval, newval|
+      result = oldval / newval
+      (result.to_f * 1000).floor/1000.0
+    end
   end
 end

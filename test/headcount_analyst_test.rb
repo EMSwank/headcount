@@ -39,7 +39,7 @@ class DistrictTest < Minitest::Test
     ex_2 = ha.kindergarten_participation_rate_variation('ACADEMY 20',
                                           :against => 'YUMA SCHOOL DISTRICT 1')
     assert_equal 0.766, ex_1
-    assert_equal 0.447, ex_2
+    assert_equal 0.446, ex_2
   end
 
   def test_kindergarten_participation_rate_variation_trend
@@ -52,7 +52,7 @@ class DistrictTest < Minitest::Test
     actual = ha.kindergarten_participation_rate_variation_trend('ACADEMY 20',
                                                         :against => 'COLORADO')
 
-    expected = {2004 => 1.257, 2005 => 0.96, 2006 => 1.05, 2007 => 0.992, 2008 => 0.717, 2009 => 0.652, 2010 => 0.681, 2011 => 0.727, 2012 => 0.688, 2013 => 0.694, 2014 => 0.661 }
+    expected = {2004 => 1.258, 2005 => 0.96, 2006 => 1.05, 2007 => 0.992, 2008 => 0.717, 2009 => 0.652, 2010 => 0.681, 2011 => 0.727, 2012 => 0.687, 2013 => 0.693, 2014 => 0.661 }
 
     assert_equal expected, actual
   end
