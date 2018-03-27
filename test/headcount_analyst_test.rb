@@ -56,4 +56,8 @@ class DistrictTest < Minitest::Test
 
     assert_equal expected, actual
   end
+
+  def test_district_graduation_rate
+
+  end
 end
