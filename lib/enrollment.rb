@@ -1,29 +1,44 @@
 class Enrollment
 
-  attr_reader :name,
-              :kindergarten_participation
+  attr_reader :name
+  attr_accessor :kindergarten_participation, :high_school_graduation_rates
+
 
   def initialize(data)
     @name = data[:name]
     @kindergarten_participation = data[:kindergarten_participation]
+    if @kindergarten_participation.nil?
+      @kindergarten_participation = Hash.new
+    end
+    @high_school_graduation_rates = data[:high_school_graduation]
+    if @high_school_graduation_rates.nil?
+      @high_school_graduation_rates = Hash.new
+    end
   end
 
   def kindergarten_participation_by_year
-    truncated = {}
-    @kindergarten_participation.each_pair do |year, value|
-      truncated[year] = truncate_to_three_decimals(value)
+    @kindergarten_participation.reduce({}) do |year, value|
+      year.merge(value.first => truncate_to_three_decimals(value.last))
     end
-    truncated
   end
 
   def truncate_to_three_decimals(decimal)
-    converted_value = decimal.to_s.split(".")
-    new_value = converted_value[0] + "." + converted_value[1][0..2]
-    new_value.to_f
+    (decimal.to_f*1000).floor/1000.0
   end
 
   def kindergarten_participation_in_year(year)
-    value = @kindergarten_participation[year]
-    truncate_to_three_decimals(value)
+    kindergarten_participation_by_year[year]
+  end
+
+  def graduation_rate_by_year
+    @high_school_graduation_rates.reduce({}) do |year, value|
+      # binding.pry
+      year.merge(value.first => truncate_to_three_decimals(value.last))
+    end
+  end
+
+  def graduation_rate_in_year(year)
+    graduation_rate_by_year[year]
+
   end
 end
