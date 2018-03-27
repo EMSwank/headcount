@@ -1,6 +1,7 @@
 {
   "Unit Tests": {
     "coverage": {
+
       "/Users/eliotswank/turing/interim/headcount/lib/district_repository.rb": [
         1,
         1,
@@ -68,6 +69,7 @@
         1,
         null,
         1,
+
         1,
         null,
         1,
@@ -408,10 +410,13 @@
         11,
         11,
         null,
+
         null,
         null
       ]
     },
+
     "timestamp": 1522182072
+
   }
 }
