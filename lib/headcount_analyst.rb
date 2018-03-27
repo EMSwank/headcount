@@ -27,7 +27,6 @@ class HeadcountAnalyst
   end
 
   def kindergarten_participation_rate_variation_trend(name, symbol)
-    # binding.pry
     dist_name_1 = @dr.find {|district| district.name == name}
     year_set_1 = dist_name_1.enrollment.kindergarten_participation_by_year
     dist_name_2 = @dr.find {|district| district.name == symbol[:against]}
