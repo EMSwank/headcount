@@ -8,20 +8,20 @@ class HeadcountAnalyst
     @dr = dr
   end
 
-  def district_average(district_name)
+  def average_kindergarten_participation(district_name)
     district = @dr.find {|district| district.name == district_name}
     total =
       district.enrollment.kindergarten_participation_by_year
-                         .reduce(0) do |sum, pct|
-                           sum + pct[1]
+                         .reduce(0) do |sum, percent|
+                           sum + percent[1]
                          end
     avg = total / district.enrollment.kindergarten_participation_by_year.length
     (avg.to_f*1000).floor/1000.0
   end
 
   def kindergarten_participation_rate_variation(name, symbol)
-    dist_1 = district_average(name)
-    dist_2 = district_average(symbol[:against])
+    dist_1 = average_kindergarten_participation(name)
+    dist_2 = average_kindergarten_participation(symbol[:against])
     rate_variation = dist_1 / dist_2
     (rate_variation.to_f * 1000).floor/1000.0
   end
@@ -37,4 +37,21 @@ class HeadcountAnalyst
     end
   end
 
+  def average_district_graduation_rate(district_name)
+    district = @dr.find {|district| district.name == district_name}
+    total =
+      district.enrollment.graduation_rate_by_year
+                         .reduce(0) do |sum, percent|
+                           sum + percent[1]
+                         end
+    avg = total / district.enrollment.graduation_rate_by_year.length
+    (avg.to_f*1000).floor/1000.0
+  end
+
+  def graduation_rate_variation(name, symbol)
+    dist_1 = average_district_graduation_rate(name)
+    dist_2 = average_district_graduation_rate(symbol[:against])
+    rate_variation = dist_1 / dist_2
+    (rate_variation.to_f * 1000).floor/1000.0
+  end
 end
