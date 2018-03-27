@@ -26,4 +26,11 @@ class HeadcountAnalyst
     (rate_variation.to_f * 1000).floor/1000.0
   end
 
+  def kindergarten_participation_rate_variation_trend(name, symbol)
+    dist_name_1 = @dr.find_by_name(name)
+    year_set_1 = dist_name_1.enrollment.kindergarten_participation_by_year
+    dist_name_2 = @dr.find_by_name(symbol[:against])
+    year_set_2 = dist_name_2.enrollment.kindergarten_participation_by_year
+    
+  end
 end
