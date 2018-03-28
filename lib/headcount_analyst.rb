@@ -56,10 +56,17 @@ class HeadcountAnalyst
   end
 
   def kindergarten_participation_against_high_school_graduation(district)
-    # binding.pry
     num = kindergarten_participation_rate_variation(district,
-                                                    :against => 'COLORADO') /
+                                                    :against => 'COLORADO')/
           graduation_rate_variation(district, :against => 'COLORADO')
     num.round(3)
+  end
+
+  def correlation?(variation)
+    if variation > 0.6 && variation < 1.5
+      return true
+    else
+      return false
+    end 
   end
 end
