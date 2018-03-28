@@ -109,4 +109,15 @@ class DistrictTest < Minitest::Test
     refute  ha.correlation?(1.7)
     refute  ha.correlation?(0.554)
   end
+
+  def test_district_correlation
+    data = {:enrollment => {:kindergarten =>
+                            './data/Kindergartners in full-day program.csv',
+                            :high_school_graduation => "./data/High school graduation rates.csv"}}
+    dr = DistrictRepository.new
+    instance = dr.load_data(data)
+    ha = HeadcountAnalyst.new(instance)
+
+    assert ha.district_correlation?('ACADEMY 20')
+  end
 end

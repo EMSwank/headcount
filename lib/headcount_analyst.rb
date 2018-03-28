@@ -67,6 +67,11 @@ class HeadcountAnalyst
       return true
     else
       return false
-    end 
+    end
+  end
+
+  def district_correlation?(district)
+    value = kindergarten_participation_against_high_school_graduation(district)
+    correlation?(value)
   end
 end
