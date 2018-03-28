@@ -54,4 +54,12 @@ class HeadcountAnalyst
     rate_variation = dist_1 / dist_2
     (rate_variation.to_f * 1000).floor/1000.0
   end
+
+  def kindergarten_participation_against_high_school_graduation(district)
+    # binding.pry
+    num = kindergarten_participation_rate_variation(district,
+                                                    :against => 'COLORADO') /
+          graduation_rate_variation(district, :against => 'COLORADO')
+    num.round(3)
+  end
 end

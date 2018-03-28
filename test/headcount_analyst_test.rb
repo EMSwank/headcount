@@ -83,4 +83,16 @@ class DistrictTest < Minitest::Test
       assert_equal 1.206, ex_2
 
   end
+
+  def test_kindergarten_participation_against_high_school_graduation
+    data = {:enrollment => {:kindergarten =>
+                            './data/Kindergartners in full-day program.csv',
+                            :high_school_graduation => "./data/High school graduation rates.csv"}}
+    dr = DistrictRepository.new
+    instance = dr.load_data(data)
+    ha = HeadcountAnalyst.new(instance)
+    actual = ha.kindergarten_participation_against_high_school_graduation('ACADEMY 20')
+
+    assert_equal 0.641, actual
+  end
 end
