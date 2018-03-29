@@ -153,8 +153,12 @@ class DistrictTest < Minitest::Test
     dr = DistrictRepository.new
     instance = dr.load_data(data)
     ha = HeadcountAnalyst.new(instance)
+    districts = ['ACADEMY 20', 'COLORADO SPRINGS 11', 'GREELEY 6']
+
 
     assert ha.kindergarten_participation_correlates_with_high_school_graduation(for: 'ACADEMY 20')
     assert ha.kindergarten_participation_correlates_with_high_school_graduation(:for => 'STATEWIDE')
+    assert ha.kindergarten_participation_correlates_with_high_school_graduation(
+  :across => districts)
   end
 end

@@ -113,10 +113,9 @@ class HeadcountAnalyst
       state_correlation?
     elsif symbol[:for]
       district_correlation?(symbol[:for])
+    else symbol[:across]
+      across_correlation?(symbol[:across])
     end
-    # else symbol[:across]
-
-
   end
 
 
