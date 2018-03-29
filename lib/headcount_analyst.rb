@@ -98,9 +98,13 @@ class HeadcountAnalyst
   end
 
   def across_correlation?(districts)
-    list = districts.map {|district| district_correlation?(district) == true}
-    true_list = list.delete(false)
-    correlation = true_list.length / districts.length
+    true_districts = []
+    districts.each do |district|
+      if district_correlation?(district) == true
+        true_districts << district
+      end
+    end
+    correlation = true_districts.length.to_f / districts.length.to_f
     correlation?(correlation)
   end
 

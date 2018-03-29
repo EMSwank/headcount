@@ -139,9 +139,13 @@ class DistrictTest < Minitest::Test
     dr = DistrictRepository.new
     instance = dr.load_data(data)
     ha = HeadcountAnalyst.new(instance)
-    districts = ['ACADEMY 20', 'COLORADO SPRINGS 11', 'GREELEY 6', 'CHERRY CREEK 5']
-    assert ha.across_correlation?(districts)
+    districts_1 = ['ACADEMY 20', 'COLORADO SPRINGS 11', 'GREELEY 6']
+    districts_2 = ['ACADEMY 20', 'COLORADO SPRINGS 11', 'SHERIDAN 2']
+
+    assert ha.across_correlation?(districts_1)
+    refute ha.across_correlation?(districts_2)
   end
+
   def test_kindergarten_participation_correlates_with_high_school_graduation
     data = {:enrollment => {:kindergarten =>
                             './data/Kindergartners in full-day program.csv',
