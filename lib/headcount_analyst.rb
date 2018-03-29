@@ -58,8 +58,8 @@ class HeadcountAnalyst
 
   def kindergarten_participation_against_high_school_graduation(district)
     num = kindergarten_participation_rate_variation(district,
-                                                    :against => 'COLORADO')
-          / graduation_rate_variation(district, :against => 'COLORADO')
+                                                    :against => 'COLORADO')/
+          graduation_rate_variation(district, :against => 'COLORADO')
     num.round(3)
   end
 
@@ -89,15 +89,28 @@ class HeadcountAnalyst
 
   def state_correlation?
     values = @correlations.values
-    if values.map {|value| correlation?(value) == true}.length
-                  / @correlations.values.length > 0.7
+    correlation_values = values.map {|value| correlation?(value) == true}
+    if correlation_values.length / @correlations.values.length > 0.7
       return true
     else
       return false
     end
   end
 
+  def across_correlation?(districts)
+    list = districts.map {|district| district_correlation?(district) == true}
+    true_list = list.delete(false)
+    correlation = true_list.length / districts.length
+    correlation?(correlation)
+  end
+
   def kindergarten_participation_correlates_with_high_school_graduation(symbol)
+    if symbol[:for] == 'STATEWIDE'
+      state_correlation?
+    elsif symbol[:for]
+      district_correlation?(symbol[:for])
+    end
+    # else symbol[:across]
 
 
   end
