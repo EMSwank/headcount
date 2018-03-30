@@ -89,8 +89,14 @@ include GeneralCalculations
 
   def state_correlation?
     values = @correlations.values
-    correlation_values = values.map {|value| correlation?(value) == true}
-    if correlation_values.length / @correlations.values.length > 0.7
+    correlation_values = []
+    values.map do |value|
+      if correlation?(value) == true
+        correlation_values << value
+      end
+    end
+    # require 'pry'; binding.pry
+    if correlation_values.length.to_f / values.length.to_f > 0.7
       return true
     else
       return false

@@ -5,7 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <script src='./assets/0.10.2/application.js' type='text/javascript'></script>    
     <link href='./assets/0.10.2/application.css' media='screen, projection, print' rel='stylesheet' type='text/css'>
-    <link rel="shortcut icon" type="image/png" href="./assets/0.10.2/favicon_green.png" />
+    <link rel="shortcut icon" type="image/png" href="./assets/0.10.2/favicon_red.png" />
     <link rel="icon" type="image/png" href="./assets/0.10.2/favicon.png" />
   </head>
   
@@ -14,27 +14,27 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-03-30T12:50:46-06:00">2018-03-30T12:50:46-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-03-30T15:21:52-06:00">2018-03-30T15:21:52-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">99.17%</span></span>
+    (<span class="covered_percent"><span class="red">74.39%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         32961.56
+         29854.54
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>12</b> files in total.
-    <b>360</b> relevant lines. 
-    <span class="green"><b>357</b> lines covered</span> and
-    <span class="red"><b>3</b> lines missed </span>
+    <b>367</b> relevant lines. 
+    <span class="green"><b>273</b> lines covered</span> and
+    <span class="red"><b>94</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -77,7 +77,7 @@
         <td>23</td>
         <td>23</td>
         <td>0</td>
-        <td>30367.7</td>
+        <td>23030.5</td>
       </tr>
       
       <tr>
@@ -97,17 +97,17 @@
         <td>3</td>
         <td>3</td>
         <td>0</td>
-        <td>54707.7</td>
+        <td>15.3</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#92a5980ff75927fd14dfebc65302f6f86c025bb5" class="src_link" title="lib/headcount_analyst.rb">lib/headcount_analyst.rb</a></td>
-        <td class="green strong">98.65 %</td>
-        <td>124</td>
-        <td>74</td>
-        <td>73</td>
-        <td>1</td>
-        <td>7793.9</td>
+        <td class="red strong">27.16 %</td>
+        <td>128</td>
+        <td>81</td>
+        <td>22</td>
+        <td>59</td>
+        <td>0.8</td>
       </tr>
       
       <tr>
@@ -152,12 +152,12 @@
       
       <tr>
         <td class="strong"><a href="#d17433b320a4ba0a8a7c580d67e02a02cd329cd3" class="src_link" title="test/headcount_analyst_test.rb">test/headcount_analyst_test.rb</a></td>
-        <td class="green strong">100.0 %</td>
+        <td class="red strong">65.63 %</td>
         <td>164</td>
         <td>96</td>
-        <td>96</td>
-        <td>0</td>
-        <td>1.0</td>
+        <td>63</td>
+        <td>33</td>
+        <td>0.7</td>
       </tr>
       
       <tr>
@@ -736,14 +736,14 @@
           <code class="ruby">  def kindergarten_participation_by_year</code>
         </li>
       
-        <li class="covered" data-hits="9380" data-linenumber="23">
-          <span class="hits">9380</span>
+        <li class="covered" data-hits="4" data-linenumber="23">
+          <span class="hits">4</span>
           
           <code class="ruby">    @kindergarten_participation.reduce({}) do |year, value|</code>
         </li>
       
-        <li class="covered" data-hits="103164" data-linenumber="24">
-          <span class="hits">103164</span>
+        <li class="covered" data-hits="28" data-linenumber="24">
+          <span class="hits">28</span>
           
           <code class="ruby">      year.merge(value.first =&gt; truncate_to_three_decimals(value.last))</code>
         </li>
@@ -796,14 +796,14 @@
           <code class="ruby">  def graduation_rate_by_year</code>
         </li>
       
-        <li class="covered" data-hits="9377" data-linenumber="33">
-          <span class="hits">9377</span>
+        <li class="covered" data-hits="3" data-linenumber="33">
+          <span class="hits">3</span>
           
           <code class="ruby">    @high_school_graduation_rates.reduce({}) do |year, value|</code>
         </li>
       
-        <li class="covered" data-hits="46885" data-linenumber="34">
-          <span class="hits">46885</span>
+        <li class="covered" data-hits="15" data-linenumber="34">
+          <span class="hits">15</span>
           
           <code class="ruby">      year.merge(value.first =&gt; truncate_to_three_decimals(value.last))</code>
         </li>
@@ -1344,8 +1344,8 @@
           <code class="ruby">  def truncate_to_three_decimals(decimal)</code>
         </li>
       
-        <li class="covered" data-hits="164121" data-linenumber="4">
-          <span class="hits">164121</span>
+        <li class="covered" data-hits="44" data-linenumber="4">
+          <span class="hits">44</span>
           
           <code class="ruby">    (decimal.to_f*1000).floor/1000.0</code>
         </li>
@@ -1376,11 +1376,11 @@
         <div class="source_table" id="92a5980ff75927fd14dfebc65302f6f86c025bb5">
   <div class="header">
     <h3>lib/headcount_analyst.rb</h3>
-    <h4><span class="green">98.65 %</span> covered</h4>
+    <h4><span class="red">27.16 %</span> covered</h4>
     <div>
-      <b>74</b> relevant lines. 
-      <span class="green"><b>73</b> lines covered</span> and
-      <span class="red"><b>1</b> lines missed.</span>
+      <b>81</b> relevant lines. 
+      <span class="green"><b>22</b> lines covered</span> and
+      <span class="red"><b>59</b> lines missed.</span>
     </div>
   </div>
   
@@ -1471,661 +1471,685 @@
           <code class="ruby">  def average_kindergarten_participation(district_name)</code>
         </li>
       
-        <li class="covered" data-hits="221221" data-linenumber="15">
-          <span class="hits">221221</span>
+        <li class="missed" data-hits="0" data-linenumber="15">
           
-          <code class="ruby">    district = @dr.find {|district| district.name == district_name}</code>
+          
+          <code class="ruby">    district = @dr.districts.find {|district| district.name == district_name}</code>
         </li>
       
-        <li class="covered" data-hits="4687" data-linenumber="16">
-          <span class="hits">4687</span>
+        <li class="missed" data-hits="0" data-linenumber="16">
           
-          <code class="ruby">    total =</code>
+          
+          <code class="ruby">    total = district.enrollment.kindergarten_participation_by_year</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="17">
+        <li class="missed" data-hits="0" data-linenumber="17">
           
           
-          <code class="ruby">      district.enrollment.kindergarten_participation_by_year</code>
+          <code class="ruby">                               .reduce(0) {|sum, percent| sum + percent[1]}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="18">
+        <li class="missed" data-hits="0" data-linenumber="18">
           
           
-          <code class="ruby">                         .reduce(0) do |sum, percent|</code>
+          <code class="ruby">    avg = total / district.enrollment.kindergarten_participation_by_year.length</code>
         </li>
       
-        <li class="covered" data-hits="51557" data-linenumber="19">
-          <span class="hits">51557</span>
+        <li class="missed" data-hits="0" data-linenumber="19">
           
-          <code class="ruby">                           sum + percent[1]</code>
+          
+          <code class="ruby">    truncate_to_three_decimals(avg)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="20">
           
           
-          <code class="ruby">                         end</code>
-        </li>
-      
-        <li class="covered" data-hits="4687" data-linenumber="21">
-          <span class="hits">4687</span>
-          
-          <code class="ruby">    avg = total / district.enrollment.kindergarten_participation_by_year.length</code>
-        </li>
-      
-        <li class="covered" data-hits="4687" data-linenumber="22">
-          <span class="hits">4687</span>
-          
-          <code class="ruby">    truncate_to_three_decimals(avg)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="23">
-          
-          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="24">
+        <li class="never" data-hits="" data-linenumber="21">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="25">
+        <li class="covered" data-hits="1" data-linenumber="22">
           <span class="hits">1</span>
           
           <code class="ruby">  def kindergarten_participation_rate_variation(name, symbol)</code>
         </li>
       
-        <li class="covered" data-hits="2343" data-linenumber="26">
-          <span class="hits">2343</span>
+        <li class="missed" data-hits="0" data-linenumber="23">
+          
           
           <code class="ruby">    dist_1 = average_kindergarten_participation(name)</code>
         </li>
       
-        <li class="covered" data-hits="2343" data-linenumber="27">
-          <span class="hits">2343</span>
+        <li class="missed" data-hits="0" data-linenumber="24">
+          
           
           <code class="ruby">    dist_2 = average_kindergarten_participation(symbol[:against])</code>
         </li>
       
-        <li class="covered" data-hits="2343" data-linenumber="28">
-          <span class="hits">2343</span>
+        <li class="missed" data-hits="0" data-linenumber="25">
+          
           
           <code class="ruby">    rate_variation = dist_1 / dist_2</code>
         </li>
       
-        <li class="covered" data-hits="2343" data-linenumber="29">
-          <span class="hits">2343</span>
+        <li class="missed" data-hits="0" data-linenumber="26">
+          
           
           <code class="ruby">    truncate_to_three_decimals(rate_variation)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="30">
+        <li class="never" data-hits="" data-linenumber="27">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="31">
+        <li class="never" data-hits="" data-linenumber="28">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="32">
+        <li class="covered" data-hits="1" data-linenumber="29">
           <span class="hits">1</span>
           
           <code class="ruby">  def kindergarten_participation_rate_variation_trend(name, symbol)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="33">
-          <span class="hits">3</span>
+        <li class="missed" data-hits="0" data-linenumber="30">
+          
           
           <code class="ruby">    dist_name_1 = @dr.find {|district| district.name == name}</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="34">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="31">
+          
           
           <code class="ruby">    year_set_1 = dist_name_1.enrollment.kindergarten_participation_by_year</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="35">
-          <span class="hits">2</span>
+        <li class="missed" data-hits="0" data-linenumber="32">
+          
           
           <code class="ruby">    dist_name_2 = @dr.find {|district| district.name == symbol[:against]}</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="36">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="33">
+          
           
           <code class="ruby">    year_set_2 = dist_name_2.enrollment.kindergarten_participation_by_year</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="37">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="34">
+          
           
           <code class="ruby">    trends = year_set_1.merge(year_set_2) do |key, oldval, newval|</code>
         </li>
       
-        <li class="covered" data-hits="11" data-linenumber="38">
-          <span class="hits">11</span>
+        <li class="missed" data-hits="0" data-linenumber="35">
+          
           
           <code class="ruby">      result = oldval / newval</code>
         </li>
       
-        <li class="covered" data-hits="11" data-linenumber="39">
-          <span class="hits">11</span>
+        <li class="missed" data-hits="0" data-linenumber="36">
+          
           
           <code class="ruby">      truncate_to_three_decimals(result)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="40">
+        <li class="never" data-hits="" data-linenumber="37">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="41">
+        <li class="never" data-hits="" data-linenumber="38">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="42">
+        <li class="never" data-hits="" data-linenumber="39">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="43">
+        <li class="covered" data-hits="1" data-linenumber="40">
           <span class="hits">1</span>
           
           <code class="ruby">  def average_district_graduation_rate(district_name)</code>
         </li>
       
-        <li class="covered" data-hits="221221" data-linenumber="44">
-          <span class="hits">221221</span>
+        <li class="missed" data-hits="0" data-linenumber="41">
           
-          <code class="ruby">    district = @dr.find {|district| district.name == district_name}</code>
+          
+          <code class="ruby">    district = @dr.districts.find {|district| district.name == district_name}</code>
         </li>
       
-        <li class="covered" data-hits="4687" data-linenumber="45">
-          <span class="hits">4687</span>
+        <li class="missed" data-hits="0" data-linenumber="42">
           
-          <code class="ruby">    total =</code>
+          
+          <code class="ruby">    total = district.enrollment.graduation_rate_by_year</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="46">
+        <li class="missed" data-hits="0" data-linenumber="43">
           
           
-          <code class="ruby">      district.enrollment.graduation_rate_by_year</code>
+          <code class="ruby">                               .reduce(0) {|sum, percent| sum + percent[1]}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="47">
+        <li class="missed" data-hits="0" data-linenumber="44">
           
           
-          <code class="ruby">                         .reduce(0) do |sum, percent|</code>
+          <code class="ruby">    total_length = district.enrollment.graduation_rate_by_year.length</code>
         </li>
       
-        <li class="covered" data-hits="23435" data-linenumber="48">
-          <span class="hits">23435</span>
+        <li class="missed" data-hits="0" data-linenumber="45">
           
-          <code class="ruby">                           sum + percent[1]</code>
+          
+          <code class="ruby">    total_length == 0 ? total_length = 1 : total_length</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="46">
+          
+          
+          <code class="ruby">    avg = total / total_length</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="47">
+          
+          
+          <code class="ruby">    truncate_to_three_decimals(avg)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="48">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="49">
           
           
-          <code class="ruby">                         end</code>
-        </li>
-      
-        <li class="covered" data-hits="4687" data-linenumber="50">
-          <span class="hits">4687</span>
-          
-          <code class="ruby">    avg = total / district.enrollment.graduation_rate_by_year.length</code>
-        </li>
-      
-        <li class="covered" data-hits="4687" data-linenumber="51">
-          <span class="hits">4687</span>
-          
-          <code class="ruby">    truncate_to_three_decimals(avg)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="52">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="53">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="54">
+        <li class="covered" data-hits="1" data-linenumber="50">
           <span class="hits">1</span>
           
           <code class="ruby">  def graduation_rate_variation(name, symbol)</code>
         </li>
       
-        <li class="covered" data-hits="2343" data-linenumber="55">
-          <span class="hits">2343</span>
+        <li class="missed" data-hits="0" data-linenumber="51">
+          
           
           <code class="ruby">    dist_1 = average_district_graduation_rate(name)</code>
         </li>
       
-        <li class="covered" data-hits="2343" data-linenumber="56">
-          <span class="hits">2343</span>
+        <li class="missed" data-hits="0" data-linenumber="52">
+          
           
           <code class="ruby">    dist_2 = average_district_graduation_rate(symbol[:against])</code>
         </li>
       
-        <li class="covered" data-hits="2343" data-linenumber="57">
-          <span class="hits">2343</span>
+        <li class="missed" data-hits="0" data-linenumber="53">
+          
+          
+          <code class="ruby">    dist_2 == 0 ? dist_2 = 1: dist_2</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="54">
+          
           
           <code class="ruby">    rate_variation = dist_1 / dist_2</code>
         </li>
       
-        <li class="covered" data-hits="2343" data-linenumber="58">
-          <span class="hits">2343</span>
+        <li class="missed" data-hits="0" data-linenumber="55">
+          
           
           <code class="ruby">    truncate_to_three_decimals(rate_variation)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="59">
+        <li class="never" data-hits="" data-linenumber="56">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="60">
+        <li class="never" data-hits="" data-linenumber="57">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="61">
+        <li class="covered" data-hits="1" data-linenumber="58">
           <span class="hits">1</span>
           
           <code class="ruby">  def kindergarten_participation_against_high_school_graduation(district)</code>
         </li>
       
-        <li class="covered" data-hits="2341" data-linenumber="62">
-          <span class="hits">2341</span>
+        <li class="missed" data-hits="0" data-linenumber="59">
+          
           
           <code class="ruby">    num = kindergarten_participation_rate_variation(district,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="63">
+        <li class="never" data-hits="" data-linenumber="60">
           
           
           <code class="ruby">                                                    :against =&gt; &#39;COLORADO&#39;)/</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="64">
+        <li class="never" data-hits="" data-linenumber="61">
           
           
           <code class="ruby">          graduation_rate_variation(district, :against =&gt; &#39;COLORADO&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="2341" data-linenumber="65">
-          <span class="hits">2341</span>
+        <li class="missed" data-hits="0" data-linenumber="62">
+          
           
           <code class="ruby">    num.round(3)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="66">
+        <li class="never" data-hits="" data-linenumber="63">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="67">
+        <li class="never" data-hits="" data-linenumber="64">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="68">
+        <li class="covered" data-hits="1" data-linenumber="65">
           <span class="hits">1</span>
           
           <code class="ruby">  def correlation?(variation)</code>
         </li>
       
-        <li class="covered" data-hits="198" data-linenumber="69">
-          <span class="hits">198</span>
+        <li class="missed" data-hits="0" data-linenumber="66">
+          
           
           <code class="ruby">    if variation &gt; 0.6 &amp;&amp; variation &lt; 1.5</code>
         </li>
       
-        <li class="covered" data-hits="102" data-linenumber="70">
-          <span class="hits">102</span>
+        <li class="missed" data-hits="0" data-linenumber="67">
+          
           
           <code class="ruby">      return true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="68">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="69">
+          
+          
+          <code class="ruby">      return false</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="70">
+          
+          
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="71">
           
           
-          <code class="ruby">    else</code>
-        </li>
-      
-        <li class="covered" data-hits="96" data-linenumber="72">
-          <span class="hits">96</span>
-          
-          <code class="ruby">      return false</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="73">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="74">
-          
-          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="75">
+        <li class="never" data-hits="" data-linenumber="72">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="76">
+        <li class="covered" data-hits="1" data-linenumber="73">
           <span class="hits">1</span>
           
           <code class="ruby">  def district_correlations</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="77">
-          <span class="hits">13</span>
+        <li class="covered" data-hits="12" data-linenumber="74">
+          <span class="hits">12</span>
           
           <code class="ruby">    @correlations = {}</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="78">
-          <span class="hits">13</span>
+        <li class="covered" data-hits="12" data-linenumber="75">
+          <span class="hits">12</span>
           
-          <code class="ruby">    @dr.each do |district|</code>
+          <code class="ruby">    @dr.districts.each do |district|</code>
         </li>
       
-        <li class="covered" data-hits="2353" data-linenumber="79">
-          <span class="hits">2353</span>
+        <li class="missed" data-hits="0" data-linenumber="76">
           
-          <code class="ruby">      if district.name != &#39;COLORADO&#39;</code>
+          
+          <code class="ruby">      if district.name == &#39;COLORADO&#39;</code>
         </li>
       
-        <li class="covered" data-hits="2340" data-linenumber="80">
-          <span class="hits">2340</span>
+        <li class="missed" data-hits="0" data-linenumber="77">
+          
+          
+          <code class="ruby">        next</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="78">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="79">
+          
           
           <code class="ruby">        variation =</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="81">
+        <li class="never" data-hits="" data-linenumber="80">
           
           
           <code class="ruby">        kindergarten_participation_against_high_school_graduation(district.name)</code>
         </li>
       
-        <li class="covered" data-hits="2340" data-linenumber="82">
-          <span class="hits">2340</span>
+        <li class="missed" data-hits="0" data-linenumber="81">
+          
           
           <code class="ruby">        @correlations[district.name] = variation</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="82">
+          
+          
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="83">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="84">
           
           
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="85">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="86">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="87">
+        <li class="covered" data-hits="1" data-linenumber="85">
           <span class="hits">1</span>
           
           <code class="ruby">  def district_correlation?(district)</code>
         </li>
       
-        <li class="covered" data-hits="11" data-linenumber="88">
-          <span class="hits">11</span>
+        <li class="missed" data-hits="0" data-linenumber="86">
+          
           
           <code class="ruby">    value = @correlations[district]</code>
         </li>
       
-        <li class="covered" data-hits="11" data-linenumber="89">
-          <span class="hits">11</span>
+        <li class="missed" data-hits="0" data-linenumber="87">
+          
           
           <code class="ruby">    correlation?(value)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="90">
+        <li class="never" data-hits="" data-linenumber="88">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="91">
+        <li class="never" data-hits="" data-linenumber="89">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="92">
+        <li class="covered" data-hits="1" data-linenumber="90">
           <span class="hits">1</span>
           
           <code class="ruby">  def state_correlation?</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="93">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="91">
+          
           
           <code class="ruby">    values = @correlations.values</code>
         </li>
       
-        <li class="covered" data-hits="181" data-linenumber="94">
-          <span class="hits">181</span>
+        <li class="missed" data-hits="0" data-linenumber="92">
           
-          <code class="ruby">    correlation_values = values.map {|value| correlation?(value) == true}</code>
+          
+          <code class="ruby">    correlation_values = []</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="95">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="93">
           
-          <code class="ruby">    if correlation_values.length / @correlations.values.length &gt; 0.7</code>
+          
+          <code class="ruby">    values.map do |value|</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="96">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="94">
           
-          <code class="ruby">      return true</code>
+          
+          <code class="ruby">      if correlation?(value) == true</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="97">
+        <li class="missed" data-hits="0" data-linenumber="95">
           
           
-          <code class="ruby">    else</code>
+          <code class="ruby">        correlation_values &lt;&lt; value</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="98">
-          
-          
-          <code class="ruby">      return false</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="99">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="100">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="101">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="102">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def across_correlation?(districts)</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="103">
-          <span class="hits">3</span>
-          
-          <code class="ruby">    true_districts = []</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="104">
-          <span class="hits">3</span>
-          
-          <code class="ruby">    districts.each do |district|</code>
-        </li>
-      
-        <li class="covered" data-hits="9" data-linenumber="105">
-          <span class="hits">9</span>
-          
-          <code class="ruby">      if district_correlation?(district) == true</code>
-        </li>
-      
-        <li class="covered" data-hits="5" data-linenumber="106">
-          <span class="hits">5</span>
-          
-          <code class="ruby">        true_districts &lt;&lt; district</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="107">
+        <li class="never" data-hits="" data-linenumber="96">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="108">
+        <li class="never" data-hits="" data-linenumber="97">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="109">
-          <span class="hits">3</span>
+        <li class="never" data-hits="" data-linenumber="98">
           
-          <code class="ruby">    correlation = true_districts.length.to_f / districts.length.to_f</code>
+          
+          <code class="ruby">    # require &#39;pry&#39;; binding.pry</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="110">
-          <span class="hits">3</span>
+        <li class="missed" data-hits="0" data-linenumber="99">
           
-          <code class="ruby">    correlation?(correlation)</code>
+          
+          <code class="ruby">    if correlation_values.length.to_f / values.length.to_f &gt; 0.7</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="100">
+          
+          
+          <code class="ruby">      return true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="101">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="102">
+          
+          
+          <code class="ruby">      return false</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="103">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="104">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="105">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="106">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def across_correlation?(districts)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="107">
+          
+          
+          <code class="ruby">    true_districts = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="108">
+          
+          
+          <code class="ruby">    districts.each do |district|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="109">
+          
+          
+          <code class="ruby">      if district_correlation?(district) == true</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="110">
+          
+          
+          <code class="ruby">        true_districts &lt;&lt; district</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="111">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="112">
           
           
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="113">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def kindergarten_participation_correlates_with_high_school_graduation(symbol)</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="114">
-          <span class="hits">3</span>
-          
-          <code class="ruby">    if symbol[:for] == &#39;STATEWIDE&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="115">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      state_correlation?</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="116">
-          <span class="hits">2</span>
-          
-          <code class="ruby">    elsif symbol[:for]</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="117">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      district_correlation?(symbol[:for])</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="118">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    else symbol[:across]</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="119">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      across_correlation?(symbol[:across])</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="120">
-          
-          
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="121">
+        <li class="missed" data-hits="0" data-linenumber="113">
+          
+          
+          <code class="ruby">    correlation = true_districts.length.to_f / districts.length.to_f</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="114">
+          
+          
+          <code class="ruby">    correlation?(correlation)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="115">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="122">
+        <li class="never" data-hits="" data-linenumber="116">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="123">
+        <li class="covered" data-hits="1" data-linenumber="117">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def kindergarten_participation_correlates_with_high_school_graduation(symbol)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="118">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    if symbol[:for] == &#39;STATEWIDE&#39;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="119">
+          
+          
+          <code class="ruby">      state_correlation?</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="120">
+          
+          
+          <code class="ruby">    elsif symbol[:for]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="121">
+          
+          
+          <code class="ruby">      district_correlation?(symbol[:for])</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="122">
+          
+          
+          <code class="ruby">    else symbol[:across]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="123">
+          
+          
+          <code class="ruby">      across_correlation?(symbol[:across])</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="124">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="125">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="126">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="127">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="128">
           
           
           <code class="ruby">end</code>
@@ -3151,11 +3175,11 @@
         <div class="source_table" id="d17433b320a4ba0a8a7c580d67e02a02cd329cd3">
   <div class="header">
     <h3>test/headcount_analyst_test.rb</h3>
-    <h4><span class="green">100.0 %</span> covered</h4>
+    <h4><span class="red">65.63 %</span> covered</h4>
     <div>
       <b>96</b> relevant lines. 
-      <span class="green"><b>96</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <span class="green"><b>63</b> lines covered</span> and
+      <span class="red"><b>33</b> lines missed.</span>
     </div>
   </div>
   
@@ -3240,14 +3264,14 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="14">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="14">
+          
           
           <code class="ruby">    assert_instance_of HeadcountAnalyst, ha</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="15">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="15">
+          
           
           <code class="ruby">    assert_instance_of DistrictRepository, dr</code>
         </li>
@@ -3306,8 +3330,8 @@
           <code class="ruby">    ha = HeadcountAnalyst.new(instance)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="25">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="25">
+          
           
           <code class="ruby">    actual = ha.average_kindergarten_participation(&quot;ACADEMY 20&quot;)</code>
         </li>
@@ -3318,8 +3342,8 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="27">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="27">
+          
           
           <code class="ruby">    assert_equal 0.406, actual</code>
         </li>
@@ -3378,8 +3402,8 @@
           <code class="ruby">    ha = HeadcountAnalyst.new(instance)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="37">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="37">
+          
           
           <code class="ruby">    ex_1 = ha.kindergarten_participation_rate_variation(&#39;ACADEMY 20&#39;,</code>
         </li>
@@ -3390,8 +3414,8 @@
           <code class="ruby">                                                        :against =&gt; &#39;COLORADO&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="39">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="39">
+          
           
           <code class="ruby">    ex_2 = ha.kindergarten_participation_rate_variation(&#39;ACADEMY 20&#39;,</code>
         </li>
@@ -3402,14 +3426,14 @@
           <code class="ruby">                                          :against =&gt; &#39;GREELEY 6&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="41">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="41">
+          
           
           <code class="ruby">    assert_equal 0.766, ex_1</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="42">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="42">
+          
           
           <code class="ruby">    assert_equal 1.009, ex_2</code>
         </li>
@@ -3468,8 +3492,8 @@
           <code class="ruby">    ha = HeadcountAnalyst.new(instance)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="52">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="52">
+          
           
           <code class="ruby">    actual = ha.kindergarten_participation_rate_variation_trend(&#39;ACADEMY 20&#39;,</code>
         </li>
@@ -3486,8 +3510,8 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="55">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="55">
+          
           
           <code class="ruby">    expected = {2004 =&gt; 1.258, 2005 =&gt; 0.96, 2006 =&gt; 1.05, 2007 =&gt; 0.992, 2008 =&gt; 0.717, 2009 =&gt; 0.652, 2010 =&gt; 0.681, 2011 =&gt; 0.727, 2012 =&gt; 0.687, 2013 =&gt; 0.693, 2014 =&gt; 0.661 }</code>
         </li>
@@ -3498,8 +3522,8 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="57">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="57">
+          
           
           <code class="ruby">    assert_equal expected, actual</code>
         </li>
@@ -3558,8 +3582,8 @@
           <code class="ruby">    ha = HeadcountAnalyst.new(instance)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="67">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="67">
+          
           
           <code class="ruby">    actual = ha.average_district_graduation_rate(&#39;ACADEMY 20&#39;)</code>
         </li>
@@ -3570,8 +3594,8 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="69">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="69">
+          
           
           <code class="ruby">    assert_equal 0.898, actual</code>
         </li>
@@ -3630,14 +3654,14 @@
           <code class="ruby">      ha = HeadcountAnalyst.new(instance)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="79">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="79">
+          
           
           <code class="ruby">      ex_1 = ha.graduation_rate_variation(&#39;ACADEMY 20&#39;, :against =&gt;&#39;COLORADO&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="80">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="80">
+          
           
           <code class="ruby">      ex_2 = ha.graduation_rate_variation(&#39;ACADEMY 20&#39;,</code>
         </li>
@@ -3648,14 +3672,14 @@
           <code class="ruby">                                            :against =&gt; &#39;GREELEY 6&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="82">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="82">
+          
           
           <code class="ruby">      assert_equal 1.195, ex_1</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="83">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="83">
+          
           
           <code class="ruby">      assert_equal 1.206, ex_2</code>
         </li>
@@ -3720,8 +3744,8 @@
           <code class="ruby">    ha = HeadcountAnalyst.new(instance)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="94">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="94">
+          
           
           <code class="ruby">    actual = ha.kindergarten_participation_against_high_school_graduation(&#39;ACADEMY 20&#39;)</code>
         </li>
@@ -3732,8 +3756,8 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="96">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="96">
+          
           
           <code class="ruby">    assert_equal 0.641, actual</code>
         </li>
@@ -3798,26 +3822,26 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="107">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="107">
+          
           
           <code class="ruby">    assert  ha.correlation?(0.945)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="108">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="108">
+          
           
           <code class="ruby">    assert  ha.correlation?(1.33)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="109">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="109">
+          
           
           <code class="ruby">    refute  ha.correlation?(1.7)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="110">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="110">
+          
           
           <code class="ruby">    refute  ha.correlation?(0.554)</code>
         </li>
@@ -3882,8 +3906,8 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="121">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="121">
+          
           
           <code class="ruby">    assert ha.district_correlation?(&#39;ACADEMY 20&#39;)</code>
         </li>
@@ -3948,8 +3972,8 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="132">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="132">
+          
           
           <code class="ruby">    assert_instance_of Array, ha.district_correlations</code>
         </li>
@@ -4008,14 +4032,14 @@
           <code class="ruby">    ha = HeadcountAnalyst.new(instance)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="142">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="142">
+          
           
           <code class="ruby">    districts_1 = [&#39;ACADEMY 20&#39;, &#39;COLORADO SPRINGS 11&#39;, &#39;GREELEY 6&#39;]</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="143">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="143">
+          
           
           <code class="ruby">    districts_2 = [&#39;ACADEMY 20&#39;, &#39;COLORADO SPRINGS 11&#39;, &#39;SHERIDAN 2&#39;]</code>
         </li>
@@ -4026,14 +4050,14 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="145">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="145">
+          
           
           <code class="ruby">    assert ha.across_correlation?(districts_1)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="146">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="146">
+          
           
           <code class="ruby">    refute ha.across_correlation?(districts_2)</code>
         </li>
@@ -4092,8 +4116,8 @@
           <code class="ruby">    ha = HeadcountAnalyst.new(instance)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="156">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="156">
+          
           
           <code class="ruby">    districts = [&#39;ACADEMY 20&#39;, &#39;COLORADO SPRINGS 11&#39;, &#39;GREELEY 6&#39;]</code>
         </li>
@@ -4110,20 +4134,20 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="159">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="159">
+          
           
           <code class="ruby">    assert ha.kindergarten_participation_correlates_with_high_school_graduation(for: &#39;ACADEMY 20&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="160">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="160">
+          
           
           <code class="ruby">    assert ha.kindergarten_participation_correlates_with_high_school_graduation(:for =&gt; &#39;STATEWIDE&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="161">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="161">
+          
           
           <code class="ruby">    assert ha.kindergarten_participation_correlates_with_high_school_graduation(</code>
         </li>
