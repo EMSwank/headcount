@@ -27,9 +27,9 @@ include GeneralCalculations
   end
 
   def kindergarten_participation_rate_variation_trend(name, symbol)
-    dist_name_1 = @dr.find {|district| district.name == name}
+    dist_name_1 = @dr.find_by_name(name)
     year_set_1 = dist_name_1.enrollment.kindergarten_participation_by_year
-    dist_name_2 = @dr.find {|district| district.name == symbol[:against]}
+    dist_name_2 = @dr.find_by_name(symbol[:against])
     year_set_2 = dist_name_2.enrollment.kindergarten_participation_by_year
     trends = year_set_1.merge(year_set_2) do |key, oldval, newval|
       result = oldval / newval
@@ -95,7 +95,6 @@ include GeneralCalculations
         correlation_values << value
       end
     end
-    # require 'pry'; binding.pry
     if correlation_values.length.to_f / values.length.to_f > 0.7
       return true
     else
