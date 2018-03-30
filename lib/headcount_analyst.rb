@@ -1,6 +1,8 @@
 require_relative 'district_repository'
+require_relative 'general_calculations'
 
 class HeadcountAnalyst
+include GeneralCalculations
 
   attr_reader :dr
 
@@ -17,14 +19,14 @@ class HeadcountAnalyst
                            sum + percent[1]
                          end
     avg = total / district.enrollment.kindergarten_participation_by_year.length
-    (avg.to_f*1000).floor/1000.0
+    truncate_to_three_decimals(avg)
   end
 
   def kindergarten_participation_rate_variation(name, symbol)
     dist_1 = average_kindergarten_participation(name)
     dist_2 = average_kindergarten_participation(symbol[:against])
     rate_variation = dist_1 / dist_2
-    (rate_variation.to_f * 1000).floor/1000.0
+    truncate_to_three_decimals(rate_variation)
   end
 
   def kindergarten_participation_rate_variation_trend(name, symbol)
@@ -34,7 +36,7 @@ class HeadcountAnalyst
     year_set_2 = dist_name_2.enrollment.kindergarten_participation_by_year
     trends = year_set_1.merge(year_set_2) do |key, oldval, newval|
       result = oldval / newval
-      (result.to_f * 1000).floor/1000.0
+      truncate_to_three_decimals(result)
     end
   end
 
@@ -46,14 +48,14 @@ class HeadcountAnalyst
                            sum + percent[1]
                          end
     avg = total / district.enrollment.graduation_rate_by_year.length
-    (avg.to_f*1000).floor/1000.0
+    truncate_to_three_decimals(avg)
   end
 
   def graduation_rate_variation(name, symbol)
     dist_1 = average_district_graduation_rate(name)
     dist_2 = average_district_graduation_rate(symbol[:against])
     rate_variation = dist_1 / dist_2
-    (rate_variation.to_f * 1000).floor/1000.0
+    truncate_to_three_decimals(rate_variation)
   end
 
   def kindergarten_participation_against_high_school_graduation(district)

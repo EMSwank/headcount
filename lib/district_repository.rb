@@ -1,8 +1,10 @@
 require 'CSV'
 require_relative 'district'
 require_relative 'enrollment_repository'
+require_relative 'general_calculations'
 
 class DistrictRepository
+include GeneralCalculations
 
   attr_reader :districts,
               :enrollments
