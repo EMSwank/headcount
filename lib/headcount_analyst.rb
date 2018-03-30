@@ -12,12 +12,9 @@ include GeneralCalculations
   end
 
   def average_kindergarten_participation(district_name)
-    district = @dr.find {|district| district.name == district_name}
-    total =
-      district.enrollment.kindergarten_participation_by_year
-                         .reduce(0) do |sum, percent|
-                           sum + percent[1]
-                         end
+    district = @dr.districts.find {|district| district.name == district_name}
+    total = district.enrollment.kindergarten_participation_by_year
+                               .reduce(0) {|sum, percent| sum + percent[1]}
     avg = total / district.enrollment.kindergarten_participation_by_year.length
     truncate_to_three_decimals(avg)
   end
@@ -41,19 +38,19 @@ include GeneralCalculations
   end
 
   def average_district_graduation_rate(district_name)
-    district = @dr.find {|district| district.name == district_name}
-    total =
-      district.enrollment.graduation_rate_by_year
-                         .reduce(0) do |sum, percent|
-                           sum + percent[1]
-                         end
-    avg = total / district.enrollment.graduation_rate_by_year.length
+    district = @dr.districts.find {|district| district.name == district_name}
+    total = district.enrollment.graduation_rate_by_year
+                               .reduce(0) {|sum, percent| sum + percent[1]}
+    total_length = district.enrollment.graduation_rate_by_year.length
+    total_length == 0 ? total_length = 1 : total_length
+    avg = total / total_length
     truncate_to_three_decimals(avg)
   end
 
   def graduation_rate_variation(name, symbol)
     dist_1 = average_district_graduation_rate(name)
     dist_2 = average_district_graduation_rate(symbol[:against])
+    dist_2 == 0 ? dist_2 = 1: dist_2
     rate_variation = dist_1 / dist_2
     truncate_to_three_decimals(rate_variation)
   end
@@ -75,12 +72,13 @@ include GeneralCalculations
 
   def district_correlations
     @correlations = {}
-    @dr.each do |district|
-      if district.name != 'COLORADO'
+    @dr.districts.each do |district|
+      if district.name == 'COLORADO'
+        next
+      end
         variation =
         kindergarten_participation_against_high_school_graduation(district.name)
         @correlations[district.name] = variation
-      end
     end
   end
 
