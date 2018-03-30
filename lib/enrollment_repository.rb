@@ -1,15 +1,16 @@
 require 'CSV'
 require_relative 'enrollment'
+require_relative 'general_calculations'
 
 class EnrollmentRepository
+include GeneralCalculations
 
   attr_reader :enrollments
 
   def load_data(categories)
       @kinder_data = categories[:enrollment][:kindergarten]
       @hs_data = categories[:enrollment][:high_school_graduation]
-      kinder_source = CSV.open(@kinder_data, {headers: true,
-                                              header_converters: :symbol})
+      kinder_source = get_data(@kinder_data)
       @enrollments = get_enrollments(kinder_source)
       uniq_enrollments
       kinder_participation_data
@@ -33,7 +34,7 @@ class EnrollmentRepository
   end
 
   def kinder_participation_data
-    source = CSV.open(@kinder_data, {headers: true, header_converters: :symbol})
+    source = get_data(@kinder_data)
     source.each do |row|
       parse_rows(row)
       key = match_names(row)
@@ -44,7 +45,7 @@ class EnrollmentRepository
   end
 
   def hs_participation_data
-    source = CSV.open(@hs_data, {headers: true, header_converters: :symbol})
+    source = get_data(@hs_data)
     source.each do |row|
       parse_rows(row)
       key = match_names(row)

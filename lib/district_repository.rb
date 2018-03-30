@@ -20,7 +20,7 @@ include GeneralCalculations
   end
 
   def parse_data(data)
-    source = CSV.open(data, {headers: true, header_converters: :symbol})
+    source = get_data(data)
     @districts = source.map do |row|
       row[:name] = row[:location].upcase
       District.new(row)
