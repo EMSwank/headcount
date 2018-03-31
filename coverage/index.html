@@ -14,27 +14,27 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-03-31T12:36:52-06:00">2018-03-31T12:36:52-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-03-31T14:37:52-06:00">2018-03-31T14:37:52-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">99.2%</span></span>
+    (<span class="covered_percent"><span class="green">97.07%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         31759.66
+         29026.69
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
-    <b>12</b> files in total.
-    <b>374</b> relevant lines. 
-    <span class="green"><b>371</b> lines covered</span> and
-    <span class="red"><b>3</b> lines missed </span>
+    <b>14</b> files in total.
+    <b>410</b> relevant lines. 
+    <span class="green"><b>398</b> lines covered</span> and
+    <span class="red"><b>12</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -97,7 +97,7 @@
         <td>9</td>
         <td>9</td>
         <td>0</td>
-        <td>76833.0</td>
+        <td>76833.1</td>
       </tr>
       
       <tr>
@@ -111,13 +111,23 @@
       </tr>
       
       <tr>
+        <td class="strong"><a href="#3fb34f61f290c3e78c9d172db7345ded5bb2ac54" class="src_link" title="lib/statewide_test.rb">lib/statewide_test.rb</a></td>
+        <td class="red strong">58.82 %</td>
+        <td>40</td>
+        <td>17</td>
+        <td>10</td>
+        <td>7</td>
+        <td>894.7</td>
+      </tr>
+      
+      <tr>
         <td class="strong"><a href="#cc3358d3f10ccce35995e45b234cd8b2419f71d5" class="src_link" title="lib/statewide_test_repository.rb">lib/statewide_test_repository.rb</a></td>
-        <td class="green strong">100.0 %</td>
-        <td>8</td>
-        <td>4</td>
-        <td>4</td>
-        <td>0</td>
-        <td>1.0</td>
+        <td class="yellow strong">89.47 %</td>
+        <td>30</td>
+        <td>19</td>
+        <td>17</td>
+        <td>2</td>
+        <td>400.9</td>
       </tr>
       
       <tr>
@@ -164,8 +174,18 @@
         <td class="strong"><a href="#94a9a9016d3ef92c6a4cd1e56eb08bd031baf936" class="src_link" title="test/statewide_test_repository_test.rb">test/statewide_test_repository_test.rb</a></td>
         <td class="green strong">100.0 %</td>
         <td>20</td>
+        <td>7</td>
+        <td>7</td>
+        <td>0</td>
+        <td>1.0</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#c043bf422a85be6b63ecd03116f3bbef1bda9c82" class="src_link" title="test/statewide_test_test.rb">test/statewide_test_test.rb</a></td>
+        <td class="green strong">100.0 %</td>
         <td>6</td>
-        <td>6</td>
+        <td>3</td>
+        <td>3</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -1350,8 +1370,8 @@
           <code class="ruby">  def get_data(file_path)</code>
         </li>
       
-        <li class="covered" data-hits="119" data-linenumber="4">
-          <span class="hits">119</span>
+        <li class="covered" data-hits="120" data-linenumber="4">
+          <span class="hits">120</span>
           
           <code class="ruby">    CSV.open(file_path, {headers: true, header_converters: :symbol})</code>
         </li>
@@ -2226,14 +2246,273 @@
 </div>
 
       
+        <div class="source_table" id="3fb34f61f290c3e78c9d172db7345ded5bb2ac54">
+  <div class="header">
+    <h3>lib/statewide_test.rb</h3>
+    <h4><span class="red">58.82 %</span> covered</h4>
+    <div>
+      <b>17</b> relevant lines. 
+      <span class="green"><b>10</b> lines covered</span> and
+      <span class="red"><b>7</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="never" data-hits="" data-linenumber="1">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class StatewideTest</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_reader :name,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby">              :third_grade,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
+          
+          
+          <code class="ruby">              :eighth_grade,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="7">
+          
+          
+          <code class="ruby">              :race_data</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize(symbols)</code>
+        </li>
+      
+        <li class="covered" data-hits="3801" data-linenumber="10">
+          <span class="hits">3801</span>
+          
+          <code class="ruby">    @name         = symbols[:name]</code>
+        </li>
+      
+        <li class="covered" data-hits="3801" data-linenumber="11">
+          <span class="hits">3801</span>
+          
+          <code class="ruby">    @third_grade  = symbols[:third_grade]</code>
+        </li>
+      
+        <li class="covered" data-hits="3801" data-linenumber="12">
+          <span class="hits">3801</span>
+          
+          <code class="ruby">    @eighth_grade = symbols[:eighth_grade]</code>
+        </li>
+      
+        <li class="covered" data-hits="3801" data-linenumber="13">
+          <span class="hits">3801</span>
+          
+          <code class="ruby">    @race_data    = symbols[:race_data]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="16">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def load_third_grade</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="17">
+          
+          
+          <code class="ruby">    @third_grade  = symbols[:third_grade]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="18">
+          
+          
+          <code class="ruby">    if @third_grade.nil? then @third_grade = {} end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def load_eight_grade</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="22">
+          
+          
+          <code class="ruby">    @eighth_grade = symbols[:eighth_grade]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="23">
+          
+          
+          <code class="ruby">    if @eighth_grade.nil? then @eighth_grade = {} end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="25">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="26">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def load_race_data</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="27">
+          
+          
+          <code class="ruby">    @race_data = symbols[:race_data]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="28">
+          
+          
+          <code class="ruby">    if @race_data.nil?</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="29">
+          
+          
+          <code class="ruby">      @race_data =  { :all_students =&gt; {},</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="30">
+          
+          
+          <code class="ruby">                      :asian =&gt; {},</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="31">
+          
+          
+          <code class="ruby">                      :black =&gt; {},</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="32">
+          
+          
+          <code class="ruby">                      :pacific_islander =&gt; {},</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="33">
+          
+          
+          <code class="ruby">                      :hispanic =&gt; {},</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="34">
+          
+          
+          <code class="ruby">                      :native_american =&gt; {},</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="35">
+          
+          
+          <code class="ruby">                      :tow_or_more =&gt; {},</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="36">
+          
+          
+          <code class="ruby">                      :white =&gt; {}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="37">
+          
+          
+          <code class="ruby">                    }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="38">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="39">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="40">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+
+      
         <div class="source_table" id="cc3358d3f10ccce35995e45b234cd8b2419f71d5">
   <div class="header">
     <h3>lib/statewide_test_repository.rb</h3>
-    <h4><span class="green">100.0 %</span> covered</h4>
+    <h4><span class="yellow">89.47 %</span> covered</h4>
     <div>
-      <b>4</b> relevant lines. 
-      <span class="green"><b>4</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <b>19</b> relevant lines. 
+      <span class="green"><b>17</b> lines covered</span> and
+      <span class="red"><b>2</b> lines missed.</span>
     </div>
   </div>
   
@@ -2276,13 +2555,145 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="7">
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def load_data(categories)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @third_grade_scores       = categories[:statewide_testing][:third_grade]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @eighth_grade_scores      = categories[:statewide_testing][:eighth_grade]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="10">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @math_race_proficiency    = categories[:statewide_testing][:math]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="11">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @reading_race_proficiency = categories[:statewide_testing][:reading]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="12">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @writing_race_proficiency = categories[:statewide_testing][:writing]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="13">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @test_scores = get_test_data(@third_grade_scores)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="8">
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="17">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_test_data(source)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="18">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    data = get_data(source)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="19">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    data.map do |row|</code>
+        </li>
+      
+        <li class="covered" data-hits="3801" data-linenumber="20">
+          <span class="hits">3801</span>
+          
+          <code class="ruby">      row[:name] = row[:location].upcase</code>
+        </li>
+      
+        <li class="covered" data-hits="3801" data-linenumber="21">
+          <span class="hits">3801</span>
+          
+          <code class="ruby">      StatewideTest.new({:name =&gt; row[:name]})</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="22">
+          
+          
+          <code class="ruby">    end </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="25">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def uniq_districts</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="26">
+          
+          
+          <code class="ruby">    @test_scores.uniq! do |district|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="27">
+          
+          
+          <code class="ruby">      district.name</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="28">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="29">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="30">
           
           
           <code class="ruby">end</code>
@@ -4270,8 +4681,8 @@
     <h3>test/statewide_test_repository_test.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>6</b> relevant lines. 
-      <span class="green"><b>6</b> lines covered</span> and
+      <b>7</b> relevant lines. 
+      <span class="green"><b>7</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -4321,58 +4732,58 @@
           <code class="ruby">    str = StatewideTestRepository.new</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="8">
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    # str.load_data({</code>
+          <code class="ruby">    str.load_data({</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="9">
           
           
-          <code class="ruby">    #     :statewide_testing =&gt; {</code>
+          <code class="ruby">        :statewide_testing =&gt; {</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="10">
           
           
-          <code class="ruby">    #       :third_grade =&gt; &quot;./data/3rd grade students scoring proficient or above on the CSAP_TCAP.csv&quot;,</code>
+          <code class="ruby">          :third_grade =&gt; &quot;./data/3rd grade students scoring proficient or above on the CSAP_TCAP.csv&quot;,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="11">
           
           
-          <code class="ruby">    #       :eighth_grade =&gt; &quot;./data/8th grade students scoring proficient or above on the CSAP_TCAP.csv&quot;,</code>
+          <code class="ruby">          :eighth_grade =&gt; &quot;./data/8th grade students scoring proficient or above on the CSAP_TCAP.csv&quot;,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="12">
           
           
-          <code class="ruby">    #       :math =&gt; &quot;./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Math.csv&quot;,</code>
+          <code class="ruby">          :math =&gt; &quot;./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Math.csv&quot;,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="13">
           
           
-          <code class="ruby">    #       :reading =&gt; &quot;./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Reading.csv&quot;,</code>
+          <code class="ruby">          :reading =&gt; &quot;./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Reading.csv&quot;,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="14">
           
           
-          <code class="ruby">    #       :writing =&gt; &quot;./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Writing.csv&quot;</code>
+          <code class="ruby">          :writing =&gt; &quot;./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Writing.csv&quot;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="15">
           
           
-          <code class="ruby">    #   }</code>
+          <code class="ruby">      }</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="16">
           
           
-          <code class="ruby">    # })</code>
+          <code class="ruby">    })</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="17">
@@ -4394,6 +4805,61 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+
+      
+        <div class="source_table" id="c043bf422a85be6b63ecd03116f3bbef1bda9c82">
+  <div class="header">
+    <h3>test/statewide_test_test.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>3</b> relevant lines. 
+      <span class="green"><b>3</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;./test/test_helper&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;./lib/statewide_test&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class StatewideTestRepositoryTest &lt; Minitest::Test</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
           
           
           <code class="ruby">end</code>

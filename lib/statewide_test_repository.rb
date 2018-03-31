@@ -19,6 +19,7 @@ class StatewideTestRepository
     data.map do |row|
       row[:name] = row[:location].upcase
       StatewideTest.new({:name => row[:name]})
+    end 
   end
 
   def uniq_districts
