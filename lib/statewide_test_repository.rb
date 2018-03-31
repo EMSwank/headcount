@@ -19,12 +19,16 @@ class StatewideTestRepository
     data.map do |row|
       row[:name] = row[:location].upcase
       StatewideTest.new({:name => row[:name]})
-    end 
+    end
   end
 
   def uniq_districts
     @test_scores.uniq! do |district|
       district.name
     end
+  end
+
+  def find_by_name(name)
+    @test_scores.find {|score| score.name == name}
   end
 end
