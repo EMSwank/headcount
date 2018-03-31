@@ -1,7 +1,7 @@
 require_relative 'general_calculations'
 
 class Enrollment
-include GeneralCalculations
+  include GeneralCalculations
 
   attr_reader   :name
   attr_accessor :kindergarten_participation,

@@ -4,7 +4,7 @@ require_relative 'enrollment_repository'
 require_relative 'general_calculations'
 
 class DistrictRepository
-include GeneralCalculations
+  include GeneralCalculations
 
   attr_reader :districts,
               :enrollments

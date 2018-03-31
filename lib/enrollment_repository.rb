@@ -3,7 +3,7 @@ require_relative 'enrollment'
 require_relative 'general_calculations'
 
 class EnrollmentRepository
-include GeneralCalculations
+  include GeneralCalculations
 
   attr_reader :enrollments
 
@@ -27,11 +27,11 @@ include GeneralCalculations
     end
   end
 
-  def parse_rows(row)
-    row[:name] = row[:location].upcase
-    row[:timeframe] = row[:timeframe].to_i
-    row[:data] = row[:data].to_f
-  end
+  # def parse_rows(row)
+  #   row[:name] = row[:location].upcase
+  #   row[:timeframe] = row[:timeframe].to_i
+  #   row[:data] = row[:data].to_f
+  # end
 
   def kinder_participation_data
     source = get_data(@kinder_data)

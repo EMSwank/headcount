@@ -120,6 +120,13 @@
         164121,
         null,
         null,
+        1,
+        175751,
+        175751,
+        175751,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/eliotswank/turing/interim/headcount/lib/enrollment_repository.rb": [
@@ -152,10 +159,10 @@
         null,
         null,
         null,
-        1,
-        175751,
-        175751,
-        175751,
+        null,
+        null,
+        null,
+        null,
         null,
         null,
         1,
@@ -675,10 +682,15 @@
       ],
       "/Users/eliotswank/turing/interim/headcount/lib/statewide_test_repository.rb": [
         1,
+        1,
+        null,
+        1,
+        1,
+        null,
         null,
         null
       ]
     },
-    "timestamp": 1522447040
+    "timestamp": 1522521412
   }
 }

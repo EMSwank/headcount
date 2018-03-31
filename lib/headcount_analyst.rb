@@ -2,7 +2,7 @@ require_relative 'district_repository'
 require_relative 'general_calculations'
 
 class HeadcountAnalyst
-include GeneralCalculations
+  include GeneralCalculations
 
   attr_reader :dr
 
