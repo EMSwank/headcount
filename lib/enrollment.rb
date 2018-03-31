@@ -3,7 +3,6 @@ class Enrollment
   attr_reader :name
   attr_accessor :kindergarten_participation, :high_school_graduation_rates
 
-
   def initialize(data)
     @name = data[:name]
     @kindergarten_participation = data[:kindergarten_participation]
@@ -32,13 +31,11 @@ class Enrollment
 
   def graduation_rate_by_year
     @high_school_graduation_rates.reduce({}) do |year, value|
-      # binding.pry
       year.merge(value.first => truncate_to_three_decimals(value.last))
     end
   end
 
   def graduation_rate_in_year(year)
     graduation_rate_by_year[year]
-
   end
 end
