@@ -1,5 +1,5 @@
 require 'csv'
-
+require_relative 'data_errors'
 class StatewideTest
 
   attr_reader :name,

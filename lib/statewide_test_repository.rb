@@ -35,24 +35,25 @@ class StatewideTestRepository
     data.map do |row|
       parse_rows(row)
       row[:data] = truncate_to_three_decimals(row[:data])
-      test_index = @test_scores.find_index do |test|
-        test.name == row[:location].upcase
-      end
-      add_subject_scores(row, test_index)
-      add_subject_scores(row, test_index)
+      test_index = find_indexes_for_scores(row)
       add_subject_scores(row, test_index)
     end
     @test_scores
   end
 
+  def find_indexes_for_scores(row)
+    @test_scores.find_index do |test|
+      test.name == row[:location].upcase
+    end
+  end
+  
   def add_subject_scores(row, test_index)
-    # require 'pry'; binding.pry
     if @test_scores[test_index].third_grade[row[:timeframe]] != nil
       @test_scores[test_index].third_grade[row[:timeframe]]
                               .merge!(row[:score].to_sym => row[:data])
     else
       @test_scores[test_index].third_grade[row[:timeframe]] =
-                                    {row[:score].to_sym => row[:data]}
+                                          {row[:score].to_sym => row[:data]}
     end
   end
 
