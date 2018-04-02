@@ -59,10 +59,12 @@ class StatewideTestTest < Minitest::Test
              }
 
     assert_equal result, statewide_test.proficient_by_grade(3)
-    assert_raises UnknownDataError, statewide_test.proficient_by_grade(5)
+    assert_raises UnknownDataError do
+    statewide_test.proficient_by_grade(5)
+      end 
   end
 
-  def test_proficient_by_race_or_ethnicity(race)
+  def test_proficient_by_race_or_ethnicity
     str = StatewideTestRepository.new
     str.load_data({:statewide_testing => {
                       :third_grade => "./data/3rd grade students scoring proficient or above on the CSAP_TCAP.csv",

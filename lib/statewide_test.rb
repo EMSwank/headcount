@@ -9,11 +9,8 @@ class StatewideTest
 
   def initialize(symbols)
     @name = symbols[:name]
-    # @third_grade = load_third_grade(symbols)
     @third_grade  = symbols[:third_grade]
     if @third_grade.nil? then @third_grade = {} end
-      # require 'pry'; binding.pry
-
     @eighth_grade = load_eight_grade(symbols)
     @race_data = load_race_data(symbols)
   end
@@ -50,6 +47,16 @@ class StatewideTest
       @eighth_grade
     else
       raise UnknownDataError
+    end
+  end
+
+  def proficient_by_race_or_ethnicity(race)
+    # require 'pry'; binding.pry
+    races = @race_data.keys
+    if races.include?(race)
+      @race_data[race]
+    else
+      raise UnknownRaceError
     end
   end
 end
