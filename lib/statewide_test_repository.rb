@@ -1,5 +1,6 @@
 require 'CSV'
 require_relative 'general_calculations'
+require_relative 'statewide_test'
 
 class StatewideTestRepository
   include GeneralCalculations
@@ -11,7 +12,8 @@ class StatewideTestRepository
     @reading_race_proficiency = categories[:statewide_testing][:reading]
     @writing_race_proficiency = categories[:statewide_testing][:writing]
     @test_scores = get_test_data(@third_grade_scores)
-
+    uniq_districts
+    add_third_grade_data
   end
 
   def get_test_data(source)
@@ -25,6 +27,32 @@ class StatewideTestRepository
   def uniq_districts
     @test_scores.uniq! do |district|
       district.name
+    end
+  end
+
+  def add_third_grade_data
+    data = get_data(@third_grade_scores)
+    data.map do |row|
+      parse_rows(row)
+      row[:data] = truncate_to_three_decimals(row[:data])
+      test_index = @test_scores.find_index do |test|
+        test.name == row[:location].upcase
+      end
+      add_subject_scores(row, test_index)
+      add_subject_scores(row, test_index)
+      add_subject_scores(row, test_index)
+    end
+    @test_scores
+  end
+
+  def add_subject_scores(row, test_index)
+    # require 'pry'; binding.pry
+    if @test_scores[test_index].third_grade[row[:timeframe]] != nil
+      @test_scores[test_index].third_grade[row[:timeframe]]
+                              .merge!(row[:score].to_sym => row[:data])
+    else
+      @test_scores[test_index].third_grade[row[:timeframe]] =
+                                    {row[:score].to_sym => row[:data]}
     end
   end
 

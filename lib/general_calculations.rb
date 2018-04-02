@@ -12,6 +12,9 @@ module GeneralCalculations
     row[:name] = row[:location].upcase
     row[:timeframe] = row[:timeframe].to_i
     row[:data] = row[:data].to_f
+    row[:score] = row[:score].downcase
+    # require 'pry'; binding.pry
+    # row[:race] = row[:race_ethnicity].downcase
   end
 
 
