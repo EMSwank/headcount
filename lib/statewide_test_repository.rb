@@ -5,6 +5,8 @@ require_relative 'statewide_test'
 class StatewideTestRepository
   include GeneralCalculations
 
+  attr_reader :test_scores
+
   def load_data(categories)
     @third_grade_scores       = categories[:statewide_testing][:third_grade]
     @eighth_grade_scores      = categories[:statewide_testing][:eighth_grade]
@@ -14,6 +16,10 @@ class StatewideTestRepository
     @test_scores = get_test_data(@third_grade_scores)
     uniq_districts
     add_third_grade_data
+    add_eighth_grade_data
+    add_race_data(@math_race_proficiency)
+    add_race_data(@reading_race_proficiency)
+    add_race_data(@writing_race_proficiency)
   end
 
   def get_test_data(source)
@@ -34,7 +40,6 @@ class StatewideTestRepository
     data = get_data(@third_grade_scores)
     data.map do |row|
       parse_rows(row)
-      row[:data] = truncate_to_three_decimals(row[:data])
       test_index = find_indexes_for_scores(row)
       add_third_grade_subject_scores(row, test_index)
     end
@@ -45,7 +50,6 @@ class StatewideTestRepository
     data = get_data(@eighth_grade_scores)
     data.map do |row|
       parse_rows(row)
-      row[:data] = truncate_to_three_decimals(row[:data])
       test_index = find_indexes_for_scores(row)
       add_eighth_grade_subject_scores(row, test_index)
     end
@@ -55,9 +59,8 @@ class StatewideTestRepository
     def add_race_data(data_set)
       data = get_data(data_set)
       data.map do |row|
-        parse_rows(row)
-        row[:race] = row[:race_ethnicity].downcase
-        row[:data] = truncate_to_three_decimals(row[:data])
+        parse_rows_race(row)
+        # require 'pry'; binding.pry
         test_index = find_indexes_for_scores(row)
         add_math_race_data(row, row[:race], test_index)
       end
@@ -94,6 +97,7 @@ class StatewideTestRepository
   end
 
   def add_math_race_data(row, race, test_index)
+    # require 'pry'; binding.pry
     if @test_scores[test_index].race_data[race.to_sym][row[:timeframe]] != nil
       @test_scores[test_index].race_data[race.to_sym][row[:timeframe]].merge!
                                                     {:math => row[:data]}
