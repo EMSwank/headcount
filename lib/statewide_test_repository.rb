@@ -17,6 +17,7 @@ class StatewideTestRepository
     uniq_districts
     add_third_grade_data
     add_eighth_grade_data
+    require 'pry'; binding.pry
     add_race_data(@math_race_proficiency)
     add_race_data(@reading_race_proficiency)
     add_race_data(@writing_race_proficiency)
@@ -60,10 +61,12 @@ class StatewideTestRepository
       data = get_data(data_set)
       data.map do |row|
         parse_rows_race(row)
-        # require 'pry'; binding.pry
         test_index = find_indexes_for_scores(row)
-        add_math_race_data(row, row[:race], test_index)
+        add_math_race_data(row, test_index)
+        add_reading_race_data(row, test_index)
+        add_writing_race_data(row, test_index)
       end
+      @test_scores
     end
 
   def find_indexes_for_scores(row)
@@ -73,22 +76,20 @@ class StatewideTestRepository
   end
 
   def add_third_grade_subject_scores(row, test_index)
-    if @test_scores[test_index].third_grade[row[:timeframe]] != nil
-      @test_scores[test_index].third_grade[row[:timeframe]]
-                              .merge!(row[:score].to_sym => row[:data])
+    entry = @test_scores[test_index].third_grade[row[:timeframe]]
+    if entry != nil
+      entry.merge!(row[:score].to_sym => row[:data])
     else
-      @test_scores[test_index].third_grade[row[:timeframe]] =
-                                          {row[:score].to_sym => row[:data]}
+      entry = {row[:score].to_sym => row[:data]}
     end
   end
 
   def add_eighth_grade_subject_scores(row, test_index)
-    if @test_scores[test_index].eighth_grade[row[:timeframe]] != nil
-      @test_scores[test_index].eighth_grade[row[:timeframe]]
-                              .merge!(row[:score].to_sym => row[:data])
+    entry = @test_scores[test_index].eighth_grade[row[:timeframe]]
+    if entry != nil
+      entry.merge!(row[:score].to_sym => row[:data])
     else
-      @test_scores[test_index].eighth_grade[row[:timeframe]] =
-                                          {row[:score].to_sym => row[:data]}
+      entry = {row[:score].to_sym => row[:data]}
     end
   end
 
@@ -96,14 +97,39 @@ class StatewideTestRepository
     @test_scores.find {|score| score.name == name}
   end
 
-  def add_math_race_data(row, race, test_index)
-    # require 'pry'; binding.pry
-    if @test_scores[test_index].race_data[race.to_sym][row[:timeframe]] != nil
-      @test_scores[test_index].race_data[race.to_sym][row[:timeframe]].merge!
-                                                    {:math => row[:data]}
+  def add_math_race_data(row, test_index)
+    race = convert_to_symbol(row[:race])
+    entry = @test_scores[test_index].race_data[race][row[:timeframe]]
+    if entry != nil
+      entry.merge!(:math => row[:data])
     else
-      @test_scores[test_index].race_data[race.to_sym][row[:timeframe]] =
-                                                    {:math => row[:data]}
+      entry = {:math => row[:data]}
     end
+  end
+
+  def add_reading_race_data(row, test_index)
+    race = convert_to_symbol(row[:race])
+    entry = @test_scores[test_index].race_data[race][row[:timeframe]]
+    if entry != nil
+      entry.merge!(:reading => row[:data])
+    else
+      entry = {:reading => row[:data]}
+    end
+  end
+
+  def add_writing_race_data(row, test_index)
+    race = convert_to_symbol(row[:race])
+    entry = @test_scores[test_index].race_data[race][row[:timeframe]]
+    if entry != nil
+      entry.merge!(:writing => row[:data])
+    else
+      entry = {:writing => row[:data]}
+    end
+  end
+
+
+  def convert_to_symbol(row)
+    name = row.gsub(" " , "_")
+    name.to_sym
   end
 end
