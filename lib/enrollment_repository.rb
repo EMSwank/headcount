@@ -22,7 +22,7 @@ class EnrollmentRepository
 
   def get_enrollments(source)
     source.map do |row|
-      parse_rows(row)
+      parse_rows_enrollment(row)
       Enrollment.new(:name => row[:name])
     end
   end
@@ -36,7 +36,7 @@ class EnrollmentRepository
   def kinder_participation_data
     source = get_data(@kinder_data)
     source.each do |row|
-      parse_rows(row)
+      parse_rows_enrollment(row)
       key = match_names(row)
       enrollments[key].kindergarten_participation[row[:timeframe]] =
                                                   row[:data]
@@ -47,7 +47,7 @@ class EnrollmentRepository
   def hs_participation_data
     source = get_data(@hs_data)
     source.each do |row|
-      parse_rows(row)
+      parse_rows_enrollment(row)
       key = match_names(row)
       enrollments[key].high_school_graduation_rates[row[:timeframe]] =
                                                     row[:data]

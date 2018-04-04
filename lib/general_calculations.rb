@@ -24,4 +24,9 @@ module GeneralCalculations
     row[:data] = truncate_to_three_decimals(row[:data])
   end
 
+  def parse_rows_enrollment(row)
+    row[:name] = row[:location].upcase
+    row[:timeframe] = row[:timeframe].to_i
+    row[:data] = row[:data].to_f
+  end
 end
