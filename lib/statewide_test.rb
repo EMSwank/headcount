@@ -34,7 +34,7 @@ class StatewideTest
                       :pacific_islander => {},
                       :hispanic => {},
                       :native_american => {},
-                      :tow_or_more => {},
+                      :two_or_more => {},
                       :white => {}
                     }
     end

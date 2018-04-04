@@ -14,7 +14,6 @@ module GeneralCalculations
     row[:data] = row[:data].to_f
     row[:score] = row[:score].downcase
     row[:data] = truncate_to_three_decimals(row[:data])
-
   end
 
   def parse_rows_race(row)
@@ -23,7 +22,6 @@ module GeneralCalculations
     row[:data] = row[:data].to_f
     row[:race] = row[:race_ethnicity].downcase
     row[:data] = truncate_to_three_decimals(row[:data])
-
   end
 
 end
