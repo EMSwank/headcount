@@ -112,6 +112,24 @@ class StatewideTestTest < Minitest::Test
     assert_raises UnknownDataError do
       statewide_test.proficient_for_subject_by_grade_in_year(:science, 3, 2008)
     end
+  end
 
+  def test_proficient_for_subject_by_race_in_year
+    str = StatewideTestRepository.new
+    str.load_data({:statewide_testing => {
+                      :third_grade => "./data/3rd grade students scoring proficient or above on the CSAP_TCAP.csv",
+                      :eighth_grade => "./data/8th grade students scoring proficient or above on the CSAP_TCAP.csv",
+                      :math => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Math.csv",
+                      :reading => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Reading.csv",
+                      :writing => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Writing.csv"
+                    }
+                  })
+    statewide_test = str.find_by_name('ACADEMY 20')
+    actual = statewide_test.proficient_for_subject_by_race_in_year(:math, :asian, 2012)
+
+    assert_equal 0.818, actual
+    assert_raises UnknownDataError do
+      statewide_test.proficient_for_subject_by_grade_in_year(:science, 3, 2008)
+    end 
   end
 end

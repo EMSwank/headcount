@@ -1,6 +1,7 @@
 require 'CSV'
 require_relative 'district'
 require_relative 'enrollment_repository'
+require_relative 'statewide_test_repository'
 require_relative 'general_calculations'
 
 class DistrictRepository

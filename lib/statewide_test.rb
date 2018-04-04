@@ -67,6 +67,16 @@ class StatewideTest
       eighth_grade[year][subject]
     else
       raise UnknownDataError
-    end 
+    end
+  end
+
+  def proficient_for_subject_by_race_in_year(subject, race, year)
+    races = @race_data.keys
+    subjects = [:math, :reading, :writing]
+    if races.include?(race) && subjects.include?(subject)
+      race_data[race][year][subject]
+    else
+      raise UnknownDataError
+    end
   end
 end

@@ -83,34 +83,33 @@ class HeadcountAnalyst
   end
 
   def district_correlation?(district)
-    value = @correlations[district]
-    correlation?(value)
+    correlation?(@correlations[district])
   end
 
   def state_correlation?
     values = @correlations.values
-    correlation_values = []
-    values.map do |value|
-      if correlation?(value) == true
-        correlation_values << value
+      correlation_values = []
+      values.map do |value|
+        if correlation?(value) == true
+          correlation_values << value
+        end
       end
-    end
-    if correlation_values.length.to_f / values.length.to_f > 0.7
-      return true
-    else
-      return false
-    end
+      if correlation_values.length.to_f / values.length.to_f > 0.7
+        return true
+      else
+        return false
+      end
   end
 
   def across_correlation?(districts)
-    true_districts = []
-    districts.each do |district|
-      if district_correlation?(district) == true
-        true_districts << district
+      true_districts = []
+      districts.each do |district|
+        if district_correlation?(district) == true
+          true_districts << district
+        end
       end
-    end
-    correlation = true_districts.length.to_f / districts.length.to_f
-    correlation?(correlation)
+      correlation = true_districts.length.to_f / districts.length.to_f
+      correlation?(correlation)
   end
 
   def kindergarten_participation_correlates_with_high_school_graduation(symbol)

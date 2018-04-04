@@ -27,12 +27,6 @@ class EnrollmentRepository
     end
   end
 
-  # def parse_rows(row)
-  #   row[:name] = row[:location].upcase
-  #   row[:timeframe] = row[:timeframe].to_i
-  #   row[:data] = row[:data].to_f
-  # end
-
   def kinder_participation_data
     source = get_data(@kinder_data)
     source.each do |row|
