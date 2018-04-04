@@ -51,7 +51,6 @@ class StatewideTest
   end
 
   def proficient_by_race_or_ethnicity(race)
-    require 'pry'; binding.pry
     races = @race_data.keys
     if races.include?(race)
       @race_data[race]

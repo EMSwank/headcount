@@ -14,27 +14,27 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-04-04T13:02:37-06:00">2018-04-04T13:02:37-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-04-04T13:20:14-06:00">2018-04-04T13:20:14-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">90.3%</span></span>
+    (<span class="covered_percent"><span class="green">96.43%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         43841.02
+         78658.84
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>4</b> files in total.
-    <b>134</b> relevant lines. 
-    <span class="green"><b>121</b> lines covered</span> and
-    <span class="red"><b>13</b> lines missed </span>
+    <b>140</b> relevant lines. 
+    <span class="green"><b>135</b> lines covered</span> and
+    <span class="red"><b>5</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -67,27 +67,27 @@
         <td>17</td>
         <td>17</td>
         <td>0</td>
-        <td>18910.4</td>
+        <td>35264.8</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#3fb34f61f290c3e78c9d172db7345ded5bb2ac54" class="src_link" title="lib/statewide_test.rb">lib/statewide_test.rb</a></td>
-        <td class="green strong">93.55 %</td>
-        <td>62</td>
-        <td>31</td>
-        <td>29</td>
+        <td class="green strong">93.33 %</td>
+        <td>61</td>
+        <td>30</td>
+        <td>28</td>
         <td>2</td>
-        <td>5395.6</td>
+        <td>5575.4</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#cc3358d3f10ccce35995e45b234cd8b2419f71d5" class="src_link" title="lib/statewide_test_repository.rb">lib/statewide_test_repository.rb</a></td>
-        <td class="yellow strong">86.9 %</td>
-        <td>139</td>
-        <td>84</td>
-        <td>73</td>
-        <td>11</td>
-        <td>64118.5</td>
+        <td class="green strong">96.7 %</td>
+        <td>143</td>
+        <td>91</td>
+        <td>88</td>
+        <td>3</td>
+        <td>112587.6</td>
       </tr>
       
     </tbody>
@@ -187,8 +187,8 @@
           <code class="ruby">  def get_data(file_path)</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="4">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="24" data-linenumber="4">
+          <span class="hits">24</span>
           
           <code class="ruby">    CSV.open(file_path, {headers: true, header_converters: :symbol})</code>
         </li>
@@ -211,8 +211,8 @@
           <code class="ruby">  def truncate_to_three_decimals(decimal)</code>
         </li>
       
-        <li class="covered" data-hits="53576" data-linenumber="8">
-          <span class="hits">53576</span>
+        <li class="covered" data-hits="99912" data-linenumber="8">
+          <span class="hits">99912</span>
           
           <code class="ruby">    (decimal.to_f*1000).floor/1000.0</code>
         </li>
@@ -283,32 +283,32 @@
           <code class="ruby">  def parse_rows_race(row)</code>
         </li>
       
-        <li class="covered" data-hits="23168" data-linenumber="20">
-          <span class="hits">23168</span>
+        <li class="covered" data-hits="69504" data-linenumber="20">
+          <span class="hits">69504</span>
           
           <code class="ruby">    row[:name] = row[:location].upcase</code>
         </li>
       
-        <li class="covered" data-hits="23168" data-linenumber="21">
-          <span class="hits">23168</span>
+        <li class="covered" data-hits="69504" data-linenumber="21">
+          <span class="hits">69504</span>
           
           <code class="ruby">    row[:timeframe] = row[:timeframe].to_i</code>
         </li>
       
-        <li class="covered" data-hits="23168" data-linenumber="22">
-          <span class="hits">23168</span>
+        <li class="covered" data-hits="69504" data-linenumber="22">
+          <span class="hits">69504</span>
           
           <code class="ruby">    row[:data] = row[:data].to_f</code>
         </li>
       
-        <li class="covered" data-hits="23168" data-linenumber="23">
-          <span class="hits">23168</span>
+        <li class="covered" data-hits="69504" data-linenumber="23">
+          <span class="hits">69504</span>
           
           <code class="ruby">    row[:race] = row[:race_ethnicity].downcase</code>
         </li>
       
-        <li class="covered" data-hits="23168" data-linenumber="24">
-          <span class="hits">23168</span>
+        <li class="covered" data-hits="69504" data-linenumber="24">
+          <span class="hits">69504</span>
           
           <code class="ruby">    row[:data] = truncate_to_three_decimals(row[:data])</code>
         </li>
@@ -339,10 +339,10 @@
         <div class="source_table" id="3fb34f61f290c3e78c9d172db7345ded5bb2ac54">
   <div class="header">
     <h3>lib/statewide_test.rb</h3>
-    <h4><span class="green">93.55 %</span> covered</h4>
+    <h4><span class="green">93.33 %</span> covered</h4>
     <div>
-      <b>31</b> relevant lines. 
-      <span class="green"><b>29</b> lines covered</span> and
+      <b>30</b> relevant lines. 
+      <span class="green"><b>28</b> lines covered</span> and
       <span class="red"><b>2</b> lines missed.</span>
     </div>
   </div>
@@ -671,52 +671,46 @@
         <li class="covered" data-hits="1" data-linenumber="54">
           <span class="hits">1</span>
           
-          <code class="ruby">    require &#39;pry&#39;; binding.pry</code>
+          <code class="ruby">    races = @race_data.keys</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="55">
           <span class="hits">1</span>
           
-          <code class="ruby">    races = @race_data.keys</code>
+          <code class="ruby">    if races.include?(race)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="56">
           <span class="hits">1</span>
           
-          <code class="ruby">    if races.include?(race)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="57">
-          <span class="hits">1</span>
-          
           <code class="ruby">      @race_data[race]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="58">
+        <li class="never" data-hits="" data-linenumber="57">
           
           
           <code class="ruby">    else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="59">
+        <li class="missed" data-hits="0" data-linenumber="58">
           
           
           <code class="ruby">      raise UnknownRaceError</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="60">
+        <li class="never" data-hits="" data-linenumber="59">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="61">
+        <li class="never" data-hits="" data-linenumber="60">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="62">
+        <li class="never" data-hits="" data-linenumber="61">
           
           
           <code class="ruby">end</code>
@@ -730,11 +724,11 @@
         <div class="source_table" id="cc3358d3f10ccce35995e45b234cd8b2419f71d5">
   <div class="header">
     <h3>lib/statewide_test_repository.rb</h3>
-    <h4><span class="yellow">86.9 %</span> covered</h4>
+    <h4><span class="green">96.7 %</span> covered</h4>
     <div>
-      <b>84</b> relevant lines. 
-      <span class="green"><b>73</b> lines covered</span> and
-      <span class="red"><b>11</b> lines missed.</span>
+      <b>91</b> relevant lines. 
+      <span class="green"><b>88</b> lines covered</span> and
+      <span class="red"><b>3</b> lines missed.</span>
     </div>
   </div>
   
@@ -861,16 +855,16 @@
           <code class="ruby">    add_race_data(@math_race_proficiency)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="21">
+        <li class="covered" data-hits="4" data-linenumber="21">
+          <span class="hits">4</span>
           
-          
-          <code class="ruby">    # add_race_data(@reading_race_proficiency)</code>
+          <code class="ruby">    add_race_data(@reading_race_proficiency)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="22">
+        <li class="covered" data-hits="4" data-linenumber="22">
+          <span class="hits">4</span>
           
-          
-          <code class="ruby">    # add_race_data(@writing_race_proficiency)</code>
+          <code class="ruby">    add_race_data(@writing_race_proficiency)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="23">
@@ -1095,232 +1089,232 @@
           <code class="ruby">    def add_race_data(data_set)</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="60">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="12" data-linenumber="60">
+          <span class="hits">12</span>
           
           <code class="ruby">      data = get_data(data_set)</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="61">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="12" data-linenumber="61">
+          <span class="hits">12</span>
           
           <code class="ruby">      data.map do |row|</code>
         </li>
       
-        <li class="covered" data-hits="23168" data-linenumber="62">
-          <span class="hits">23168</span>
+        <li class="covered" data-hits="69504" data-linenumber="62">
+          <span class="hits">69504</span>
           
           <code class="ruby">        parse_rows_race(row)</code>
         </li>
       
-        <li class="covered" data-hits="23168" data-linenumber="63">
-          <span class="hits">23168</span>
+        <li class="covered" data-hits="69504" data-linenumber="63">
+          <span class="hits">69504</span>
           
           <code class="ruby">        test_index = find_indexes_for_scores(row)</code>
         </li>
       
-        <li class="covered" data-hits="23168" data-linenumber="64">
+        <li class="covered" data-hits="69504" data-linenumber="64">
+          <span class="hits">69504</span>
+          
+          <code class="ruby">        if data_set == @math_race_proficiency</code>
+        </li>
+      
+        <li class="covered" data-hits="23168" data-linenumber="65">
           <span class="hits">23168</span>
           
-          <code class="ruby">        add_math_race_data(row, test_index)</code>
+          <code class="ruby">          add_math_race_data(row, test_index)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="65">
+        <li class="covered" data-hits="46336" data-linenumber="66">
+          <span class="hits">46336</span>
           
-          
-          <code class="ruby">        # add_reading_race_data(row, test_index)</code>
+          <code class="ruby">        elsif data_set == @reading_race_proficiency</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="66">
+        <li class="covered" data-hits="23168" data-linenumber="67">
+          <span class="hits">23168</span>
           
-          
-          <code class="ruby">        # add_writing_race_data(row, test_index)</code>
+          <code class="ruby">          add_reading_race_data(row, test_index)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="67">
+        <li class="covered" data-hits="23168" data-linenumber="68">
+          <span class="hits">23168</span>
           
-          
-          <code class="ruby">        # require &#39;pry&#39;; binding.pry</code>
+          <code class="ruby">        elsif data_set == @writing_race_proficiency</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="68">
+        <li class="covered" data-hits="23168" data-linenumber="69">
+          <span class="hits">23168</span>
           
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="covered" data-hits="4" data-linenumber="69">
-          <span class="hits">4</span>
-          
-          <code class="ruby">      test_scores</code>
+          <code class="ruby">          add_writing_race_data(row, test_index)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="70">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">        end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="71">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        # require &#39;pry&#39;; binding.pry</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="72">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="72">
           
-          <code class="ruby">  def find_indexes_for_scores(row)</code>
+          
+          <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="53576" data-linenumber="73">
-          <span class="hits">53576</span>
+        <li class="covered" data-hits="12" data-linenumber="73">
+          <span class="hits">12</span>
           
-          <code class="ruby">    @test_scores.find_index do |test|</code>
+          <code class="ruby">      test_scores</code>
         </li>
       
-        <li class="covered" data-hits="4875416" data-linenumber="74">
-          <span class="hits">4875416</span>
+        <li class="never" data-hits="" data-linenumber="74">
           
-          <code class="ruby">      test.name == row[:location].upcase</code>
+          
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="75">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="76">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def find_indexes_for_scores(row)</code>
+        </li>
+      
+        <li class="covered" data-hits="99912" data-linenumber="77">
+          <span class="hits">99912</span>
+          
+          <code class="ruby">    @test_scores.find_index do |test|</code>
+        </li>
+      
+        <li class="covered" data-hits="9091992" data-linenumber="78">
+          <span class="hits">9091992</span>
+          
+          <code class="ruby">      test.name == row[:location].upcase</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="79">
+          
+          
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="76">
+        <li class="never" data-hits="" data-linenumber="80">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="77">
+        <li class="never" data-hits="" data-linenumber="81">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="78">
+        <li class="covered" data-hits="1" data-linenumber="82">
           <span class="hits">1</span>
           
           <code class="ruby">  def add_third_grade_subject_scores(row, test_index)</code>
         </li>
       
-        <li class="covered" data-hits="15204" data-linenumber="79">
+        <li class="covered" data-hits="15204" data-linenumber="83">
           <span class="hits">15204</span>
           
           <code class="ruby">    entry = @test_scores[test_index].third_grade[row[:timeframe]]</code>
         </li>
       
-        <li class="covered" data-hits="15204" data-linenumber="80">
+        <li class="covered" data-hits="15204" data-linenumber="84">
           <span class="hits">15204</span>
           
           <code class="ruby">    if entry != nil</code>
         </li>
       
-        <li class="covered" data-hits="10136" data-linenumber="81">
+        <li class="covered" data-hits="10136" data-linenumber="85">
           <span class="hits">10136</span>
           
           <code class="ruby">      entry.merge!(row[:score].to_sym =&gt; row[:data])</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="82">
-          
-          
-          <code class="ruby">    else</code>
-        </li>
-      
-        <li class="covered" data-hits="5068" data-linenumber="83">
-          <span class="hits">5068</span>
-          
-          <code class="ruby">      @test_scores[test_index].third_grade[row[:timeframe]] = {row[:score].to_sym =&gt; row[:data]}</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="84">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="85">
-          
-          
-          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="86">
           
           
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="87">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def add_eighth_grade_subject_scores(row, test_index)</code>
-        </li>
-      
-        <li class="covered" data-hits="15204" data-linenumber="88">
-          <span class="hits">15204</span>
-          
-          <code class="ruby">    entry = @test_scores[test_index].eighth_grade[row[:timeframe]]</code>
-        </li>
-      
-        <li class="covered" data-hits="15204" data-linenumber="89">
-          <span class="hits">15204</span>
-          
-          <code class="ruby">    if entry != nil</code>
-        </li>
-      
-        <li class="covered" data-hits="10136" data-linenumber="90">
-          <span class="hits">10136</span>
-          
-          <code class="ruby">      entry.merge!(row[:score].to_sym =&gt; row[:data])</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="91">
-          
-          
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="5068" data-linenumber="92">
+        <li class="covered" data-hits="5068" data-linenumber="87">
           <span class="hits">5068</span>
           
-          <code class="ruby">      @test_scores[test_index].eighth_grade[row[:timeframe]] = {row[:score].to_sym =&gt; row[:data]}</code>
+          <code class="ruby">      @test_scores[test_index].third_grade[row[:timeframe]] = {row[:score].to_sym =&gt; row[:data]}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="93">
+        <li class="never" data-hits="" data-linenumber="88">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="94">
+        <li class="never" data-hits="" data-linenumber="89">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="95">
+        <li class="never" data-hits="" data-linenumber="90">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="96">
+        <li class="covered" data-hits="1" data-linenumber="91">
           <span class="hits">1</span>
           
-          <code class="ruby">  def find_by_name(name)</code>
+          <code class="ruby">  def add_eighth_grade_subject_scores(row, test_index)</code>
         </li>
       
-        <li class="covered" data-hits="12" data-linenumber="97">
-          <span class="hits">12</span>
+        <li class="covered" data-hits="15204" data-linenumber="92">
+          <span class="hits">15204</span>
           
-          <code class="ruby">    @test_scores.find {|score| score.name == name}</code>
+          <code class="ruby">    entry = @test_scores[test_index].eighth_grade[row[:timeframe]]</code>
+        </li>
+      
+        <li class="covered" data-hits="15204" data-linenumber="93">
+          <span class="hits">15204</span>
+          
+          <code class="ruby">    if entry != nil</code>
+        </li>
+      
+        <li class="covered" data-hits="10136" data-linenumber="94">
+          <span class="hits">10136</span>
+          
+          <code class="ruby">      entry.merge!(row[:score].to_sym =&gt; row[:data])</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="95">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="covered" data-hits="5068" data-linenumber="96">
+          <span class="hits">5068</span>
+          
+          <code class="ruby">      @test_scores[test_index].eighth_grade[row[:timeframe]] = {row[:score].to_sym =&gt; row[:data]}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="97">
+          
+          
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="98">
@@ -1338,238 +1332,262 @@
         <li class="covered" data-hits="1" data-linenumber="100">
           <span class="hits">1</span>
           
+          <code class="ruby">  def find_by_name(name)</code>
+        </li>
+      
+        <li class="covered" data-hits="12" data-linenumber="101">
+          <span class="hits">12</span>
+          
+          <code class="ruby">    @test_scores.find {|score| score.name == name}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="102">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="103">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="104">
+          <span class="hits">1</span>
+          
           <code class="ruby">  def add_math_race_data(row, test_index)</code>
         </li>
       
-        <li class="covered" data-hits="23168" data-linenumber="101">
+        <li class="covered" data-hits="23168" data-linenumber="105">
           <span class="hits">23168</span>
           
           <code class="ruby">    race = convert_to_symbol(row[:race])</code>
-        </li>
-      
-        <li class="covered" data-hits="23168" data-linenumber="102">
-          <span class="hits">23168</span>
-          
-          <code class="ruby">    entry = @test_scores[test_index].race_data[race][row[:timeframe]]</code>
-        </li>
-      
-        <li class="covered" data-hits="23168" data-linenumber="103">
-          <span class="hits">23168</span>
-          
-          <code class="ruby">    if entry != nil</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="104">
-          
-          
-          <code class="ruby">      entry.merge!(:math =&gt; row[:data])</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="105">
-          
-          
-          <code class="ruby">    else</code>
         </li>
       
         <li class="covered" data-hits="23168" data-linenumber="106">
           <span class="hits">23168</span>
           
-          <code class="ruby">      @test_scores[test_index].race_data[race][row[:timeframe]] = {:math =&gt; row[:data]}</code>
+          <code class="ruby">    entry = @test_scores[test_index].race_data[race][row[:timeframe]]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="107">
+        <li class="covered" data-hits="23168" data-linenumber="107">
+          <span class="hits">23168</span>
           
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">    if entry != nil</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="108">
+        <li class="missed" data-hits="0" data-linenumber="108">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">      @test_scores[test_index].race_data[race][row[:timeframe]].merge!(:math =&gt; row[:data])</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="109">
           
           
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="covered" data-hits="23168" data-linenumber="110">
+          <span class="hits">23168</span>
+          
+          <code class="ruby">      @test_scores[test_index].race_data[race][row[:timeframe]] = {:math =&gt; row[:data]}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="111">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="112">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="113">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="110">
+        <li class="covered" data-hits="1" data-linenumber="114">
           <span class="hits">1</span>
           
           <code class="ruby">  def add_reading_race_data(row, test_index)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="111">
-          
+        <li class="covered" data-hits="23168" data-linenumber="115">
+          <span class="hits">23168</span>
           
           <code class="ruby">    race = convert_to_symbol(row[:race])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="112">
-          
+        <li class="covered" data-hits="23168" data-linenumber="116">
+          <span class="hits">23168</span>
           
           <code class="ruby">    entry = @test_scores[test_index].race_data[race][row[:timeframe]]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="113">
-          
+        <li class="covered" data-hits="23168" data-linenumber="117">
+          <span class="hits">23168</span>
           
           <code class="ruby">    if entry != nil</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="114">
+        <li class="covered" data-hits="23168" data-linenumber="118">
+          <span class="hits">23168</span>
           
-          
-          <code class="ruby">      entry.merge!(:reading =&gt; row[:data])</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="115">
-          
-          
-          <code class="ruby">    else</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="116">
-          
-          
-          <code class="ruby">      @test_scores[test_index].race_data[race][row[:timeframe]] = {:reading =&gt; row[:data]}</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="117">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="118">
-          
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">      @test_scores[test_index].race_data[race][row[:timeframe]].merge!(:reading =&gt; row[:data])</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="119">
           
           
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="120">
+          
+          
+          <code class="ruby">      @test_scores[test_index].race_data[race][row[:timeframe]] = {:reading =&gt; row[:data]}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="121">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="122">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="123">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="120">
+        <li class="covered" data-hits="1" data-linenumber="124">
           <span class="hits">1</span>
           
           <code class="ruby">  def add_writing_race_data(row, test_index)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="121">
-          
+        <li class="covered" data-hits="23168" data-linenumber="125">
+          <span class="hits">23168</span>
           
           <code class="ruby">    race = convert_to_symbol(row[:race])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="122">
-          
+        <li class="covered" data-hits="23168" data-linenumber="126">
+          <span class="hits">23168</span>
           
           <code class="ruby">    entry = @test_scores[test_index].race_data[race][row[:timeframe]]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="123">
-          
+        <li class="covered" data-hits="23168" data-linenumber="127">
+          <span class="hits">23168</span>
           
           <code class="ruby">    if entry != nil</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="124">
+        <li class="covered" data-hits="23168" data-linenumber="128">
+          <span class="hits">23168</span>
           
-          
-          <code class="ruby">      entry.merge!(:writing =&gt; row[:data])</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="125">
-          
-          
-          <code class="ruby">    else</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="126">
-          
-          
-          <code class="ruby">      entry = {:writing =&gt; row[:data]}</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="127">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="128">
-          
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">      @test_scores[test_index].race_data[race][row[:timeframe]].merge!(:writing =&gt; row[:data])</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="129">
           
           
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="130">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="131">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def convert_to_symbol(row)</code>
-        </li>
-      
-        <li class="covered" data-hits="23168" data-linenumber="132">
-          <span class="hits">23168</span>
-          
-          <code class="ruby">    if row == &#39;hawaiian/pacific islander&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="2896" data-linenumber="133">
-          <span class="hits">2896</span>
-          
-          <code class="ruby">      row = :pacific_islander</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="134">
-          
-          
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="20272" data-linenumber="135">
-          <span class="hits">20272</span>
+        <li class="missed" data-hits="0" data-linenumber="130">
           
-          <code class="ruby">    name = row.gsub(&quot; &quot; , &quot;_&quot;)</code>
+          
+          <code class="ruby">      @test_scores[test_index].race_data[race][row[:timeframe]] = {:writing =&gt; row[:data]}</code>
         </li>
       
-        <li class="covered" data-hits="20272" data-linenumber="136">
-          <span class="hits">20272</span>
-          
-          <code class="ruby">    name.to_sym</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="137">
+        <li class="never" data-hits="" data-linenumber="131">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="138">
+        <li class="never" data-hits="" data-linenumber="132">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="139">
+        <li class="never" data-hits="" data-linenumber="133">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="134">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="135">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def convert_to_symbol(row)</code>
+        </li>
+      
+        <li class="covered" data-hits="69504" data-linenumber="136">
+          <span class="hits">69504</span>
+          
+          <code class="ruby">    if row == &#39;hawaiian/pacific islander&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="8688" data-linenumber="137">
+          <span class="hits">8688</span>
+          
+          <code class="ruby">      row = :pacific_islander</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="138">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="covered" data-hits="60816" data-linenumber="139">
+          <span class="hits">60816</span>
+          
+          <code class="ruby">    name = row.gsub(&quot; &quot; , &quot;_&quot;)</code>
+        </li>
+      
+        <li class="covered" data-hits="60816" data-linenumber="140">
+          <span class="hits">60816</span>
+          
+          <code class="ruby">    name.to_sym</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="141">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="142">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="143">
           
           
           <code class="ruby">end</code>

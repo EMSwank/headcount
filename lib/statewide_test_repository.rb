@@ -18,8 +18,8 @@ class StatewideTestRepository
     add_third_grade_data
     add_eighth_grade_data
     add_race_data(@math_race_proficiency)
-    # add_race_data(@reading_race_proficiency)
-    # add_race_data(@writing_race_proficiency)
+    add_race_data(@reading_race_proficiency)
+    add_race_data(@writing_race_proficiency)
   end
 
   def get_test_data(source)
@@ -61,9 +61,13 @@ class StatewideTestRepository
       data.map do |row|
         parse_rows_race(row)
         test_index = find_indexes_for_scores(row)
-        add_math_race_data(row, test_index)
-        # add_reading_race_data(row, test_index)
-        # add_writing_race_data(row, test_index)
+        if data_set == @math_race_proficiency
+          add_math_race_data(row, test_index)
+        elsif data_set == @reading_race_proficiency
+          add_reading_race_data(row, test_index)
+        elsif data_set == @writing_race_proficiency
+          add_writing_race_data(row, test_index)
+        end
         # require 'pry'; binding.pry
       end
       test_scores
@@ -101,7 +105,7 @@ class StatewideTestRepository
     race = convert_to_symbol(row[:race])
     entry = @test_scores[test_index].race_data[race][row[:timeframe]]
     if entry != nil
-      entry.merge!(:math => row[:data])
+      @test_scores[test_index].race_data[race][row[:timeframe]].merge!(:math => row[:data])
     else
       @test_scores[test_index].race_data[race][row[:timeframe]] = {:math => row[:data]}
     end
@@ -111,7 +115,7 @@ class StatewideTestRepository
     race = convert_to_symbol(row[:race])
     entry = @test_scores[test_index].race_data[race][row[:timeframe]]
     if entry != nil
-      entry.merge!(:reading => row[:data])
+      @test_scores[test_index].race_data[race][row[:timeframe]].merge!(:reading => row[:data])
     else
       @test_scores[test_index].race_data[race][row[:timeframe]] = {:reading => row[:data]}
     end
@@ -121,9 +125,9 @@ class StatewideTestRepository
     race = convert_to_symbol(row[:race])
     entry = @test_scores[test_index].race_data[race][row[:timeframe]]
     if entry != nil
-      entry.merge!(:writing => row[:data])
+      @test_scores[test_index].race_data[race][row[:timeframe]].merge!(:writing => row[:data])
     else
-      entry = {:writing => row[:data]}
+      @test_scores[test_index].race_data[race][row[:timeframe]] = {:writing => row[:data]}
     end
   end
 
