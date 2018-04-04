@@ -58,4 +58,15 @@ class StatewideTest
       raise UnknownRaceError
     end
   end
+
+  def proficient_for_subject_by_grade_in_year(subject, grade, year)
+    subjects = [:math, :reading, :writing]
+    if grade == 3 && subjects.include?(subject)
+      third_grade[year][subject]
+    elsif grade == 8 && subjects.include?(subject)
+      eighth_grade[year][subject]
+    else
+      raise UnknownDataError
+    end 
+  end
 end
