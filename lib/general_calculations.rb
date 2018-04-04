@@ -11,17 +11,23 @@ module GeneralCalculations
   def parse_rows(row)
     row[:name] = row[:location].upcase
     row[:timeframe] = row[:timeframe].to_i
-    row[:data] = row[:data].to_f
+    if row[:data] == 'N/A' || row[:data] == 'LNE'
+      row[:data] = 'N/A'
+    else
+      row[:data] = truncate_to_three_decimals(row[:data])
+    end
     row[:score] = row[:score].downcase
-    row[:data] = truncate_to_three_decimals(row[:data])
   end
 
   def parse_rows_race(row)
     row[:name] = row[:location].upcase
     row[:timeframe] = row[:timeframe].to_i
-    row[:data] = row[:data].to_f
+    if row[:data] == 'N/A' || row[:data] == 'LNE'
+      row[:data] = 'N/A'
+    else
+      row[:data] = truncate_to_three_decimals(row[:data])
+    end
     row[:race] = row[:race_ethnicity].downcase
-    row[:data] = truncate_to_three_decimals(row[:data])
   end
 
   def parse_rows_enrollment(row)

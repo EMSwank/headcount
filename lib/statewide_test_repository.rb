@@ -54,7 +54,6 @@ class StatewideTestRepository
       add_eighth_grade_subject_scores(row, test_index)
     end
     @test_scores
-    # require 'pry'; binding.pry
   end
 
     def add_race_data(data_set)
