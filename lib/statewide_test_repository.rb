@@ -54,6 +54,7 @@ class StatewideTestRepository
       add_eighth_grade_subject_scores(row, test_index)
     end
     @test_scores
+    # require 'pry'; binding.pry
   end
 
     def add_race_data(data_set)
@@ -68,7 +69,6 @@ class StatewideTestRepository
         elsif data_set == @writing_race_proficiency
           add_writing_race_data(row, test_index)
         end
-        # require 'pry'; binding.pry
       end
       test_scores
     end
