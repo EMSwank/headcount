@@ -4,17 +4,43 @@
       "/Users/eliotswank/turing/interim/headcount/lib/economic_profile_repository.rb": [
         1,
         1,
-        null,
-        1,
         1,
         null,
         1,
         1,
+        null,
         1,
         1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        null,
+        null,
         1,
+        2,
+        2,
+        1810,
+        1810,
+        null,
+        null,
+        null,
+        1,
+        1812,
+        null,
+        null,
+        null
+      ],
+      "/Users/eliotswank/turing/interim/headcount/lib/economic_profile.rb": [
         1,
         null,
+        1,
+        null,
+        1,
+        1810,
         null,
         null
       ],
@@ -22,7 +48,7 @@
         1,
         null,
         1,
-        0,
+        2,
         null,
         null,
         1,
@@ -59,6 +85,6 @@
         null
       ]
     },
-    "timestamp": 1522956446
+    "timestamp": 1522961025
   }
 }
