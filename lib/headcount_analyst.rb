@@ -63,11 +63,7 @@ class HeadcountAnalyst
   end
 
   def correlation?(variation)
-    if variation > 0.6 && variation < 1.5
-      return true
-    else
-      return false
-    end
+    variation > 0.6 && variation < 1.5 ? true : false
   end
 
   def district_correlations
@@ -121,6 +117,4 @@ class HeadcountAnalyst
       across_correlation?(symbol[:across])
     end
   end
-
-
 end

@@ -18,11 +18,11 @@ class DistrictRepository
       er.load_data(symbols)
       @enrollments = er.load_data(symbols)
       add_enrollment
-    elsif symbols[:statewide_testing]
+    end
+    if symbols[:statewide_testing]
       str = StatewideTestRepository.new
       @statewide_tests = str.load_data(symbols)
       add_statewide_tests
-      require 'pry'; binding.pry
     end
   end
 

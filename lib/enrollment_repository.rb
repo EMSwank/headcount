@@ -32,8 +32,7 @@ class EnrollmentRepository
     source.each do |row|
       parse_rows_enrollment(row)
       key = match_names(row)
-      enrollments[key].kindergarten_participation[row[:timeframe]] =
-                                                  row[:data]
+      enrollments[key].kindergarten_participation[row[:timeframe]] = row[:data]
       end
     enrollments
   end
