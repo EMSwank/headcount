@@ -8,8 +8,8 @@ class DistrictTest < Minitest::Test
                             './data/Kindergartners in full-day program.csv',
                             :high_school_graduation => "./data/High school graduation rates.csv"}}
     dr = DistrictRepository.new
-    instance = dr.load_data(data)
-    ha = HeadcountAnalyst.new(instance)
+    dr.load_data(data)
+    ha = HeadcountAnalyst.new(dr)
 
     assert_instance_of HeadcountAnalyst, ha
     assert_instance_of DistrictRepository, dr
@@ -20,8 +20,8 @@ class DistrictTest < Minitest::Test
                             './data/Kindergartners in full-day program.csv',
                             :high_school_graduation => "./data/High school graduation rates.csv"}}
     dr = DistrictRepository.new
-    instance = dr.load_data(data)
-    ha = HeadcountAnalyst.new(instance)
+    dr.load_data(data)
+    ha = HeadcountAnalyst.new(dr)
     actual = ha.average_kindergarten_participation("ACADEMY 20")
 
     assert_equal 0.406, actual
@@ -32,8 +32,8 @@ class DistrictTest < Minitest::Test
                             './data/Kindergartners in full-day program.csv',
                             :high_school_graduation => "./data/High school graduation rates.csv"}}
     dr = DistrictRepository.new
-    instance = dr.load_data(data)
-    ha = HeadcountAnalyst.new(instance)
+    dr.load_data(data)
+    ha = HeadcountAnalyst.new(dr)
     ex_1 = ha.kindergarten_participation_rate_variation('ACADEMY 20',
                                                         :against => 'COLORADO')
     ex_2 = ha.kindergarten_participation_rate_variation('ACADEMY 20',
@@ -47,8 +47,8 @@ class DistrictTest < Minitest::Test
                             './data/Kindergartners in full-day program.csv',
                             :high_school_graduation => "./data/High school graduation rates.csv"}}
     dr = DistrictRepository.new
-    instance = dr.load_data(data)
-    ha = HeadcountAnalyst.new(instance)
+    dr.load_data(data)
+    ha = HeadcountAnalyst.new(dr)
     actual = ha.kindergarten_participation_rate_variation_trend('ACADEMY 20',
                                                         :against => 'COLORADO')
 
@@ -62,8 +62,8 @@ class DistrictTest < Minitest::Test
                             './data/Kindergartners in full-day program.csv',
                             :high_school_graduation => "./data/High school graduation rates.csv"}}
     dr = DistrictRepository.new
-    instance = dr.load_data(data)
-    ha = HeadcountAnalyst.new(instance)
+    dr.load_data(data)
+    ha = HeadcountAnalyst.new(dr)
     actual = ha.average_district_graduation_rate('ACADEMY 20')
 
     assert_equal 0.898, actual
@@ -74,8 +74,8 @@ class DistrictTest < Minitest::Test
                               './data/Kindergartners in full-day program.csv',
                               :high_school_graduation => "./data/High school graduation rates.csv"}}
       dr = DistrictRepository.new
-      instance = dr.load_data(data)
-      ha = HeadcountAnalyst.new(instance)
+      dr.load_data(data)
+      ha = HeadcountAnalyst.new(dr)
       ex_1 = ha.graduation_rate_variation('ACADEMY 20', :against =>'COLORADO')
       ex_2 = ha.graduation_rate_variation('ACADEMY 20',
                                             :against => 'GREELEY 6')
@@ -89,8 +89,8 @@ class DistrictTest < Minitest::Test
                             './data/Kindergartners in full-day program.csv',
                             :high_school_graduation => "./data/High school graduation rates.csv"}}
     dr = DistrictRepository.new
-    instance = dr.load_data(data)
-    ha = HeadcountAnalyst.new(instance)
+    dr.load_data(data)
+    ha = HeadcountAnalyst.new(dr)
     actual = ha.kindergarten_participation_against_high_school_graduation('ACADEMY 20')
 
     assert_equal 0.641, actual
@@ -101,8 +101,8 @@ class DistrictTest < Minitest::Test
                             './data/Kindergartners in full-day program.csv',
                             :high_school_graduation => "./data/High school graduation rates.csv"}}
     dr = DistrictRepository.new
-    instance = dr.load_data(data)
-    ha = HeadcountAnalyst.new(instance)
+    dr.load_data(data)
+    ha = HeadcountAnalyst.new(dr)
 
     assert  ha.correlation?(0.945)
     assert  ha.correlation?(1.33)
@@ -115,8 +115,8 @@ class DistrictTest < Minitest::Test
                             './data/Kindergartners in full-day program.csv',
                             :high_school_graduation => "./data/High school graduation rates.csv"}}
     dr = DistrictRepository.new
-    instance = dr.load_data(data)
-    ha = HeadcountAnalyst.new(instance)
+    dr.load_data(data)
+    ha = HeadcountAnalyst.new(dr)
 
     assert ha.district_correlation?('ACADEMY 20')
   end
@@ -126,8 +126,8 @@ class DistrictTest < Minitest::Test
                             './data/Kindergartners in full-day program.csv',
                             :high_school_graduation => "./data/High school graduation rates.csv"}}
     dr = DistrictRepository.new
-    instance = dr.load_data(data)
-    ha = HeadcountAnalyst.new(instance)
+    dr.load_data(data)
+    ha = HeadcountAnalyst.new(dr)
 
     assert_instance_of Array, ha.district_correlations
   end
@@ -137,8 +137,8 @@ class DistrictTest < Minitest::Test
                             './data/Kindergartners in full-day program.csv',
                             :high_school_graduation => "./data/High school graduation rates.csv"}}
     dr = DistrictRepository.new
-    instance = dr.load_data(data)
-    ha = HeadcountAnalyst.new(instance)
+    dr.load_data(data)
+    ha = HeadcountAnalyst.new(dr)
     districts_1 = ['ACADEMY 20', 'COLORADO SPRINGS 11', 'GREELEY 6']
     districts_2 = ['ACADEMY 20', 'COLORADO SPRINGS 11', 'SHERIDAN 2']
 
@@ -151,14 +151,13 @@ class DistrictTest < Minitest::Test
                             './data/Kindergartners in full-day program.csv',
                             :high_school_graduation => "./data/High school graduation rates.csv"}}
     dr = DistrictRepository.new
-    instance = dr.load_data(data)
-    ha = HeadcountAnalyst.new(instance)
+    dr.load_data(data)
+    ha = HeadcountAnalyst.new(dr)
     districts = ['ACADEMY 20', 'COLORADO SPRINGS 11', 'GREELEY 6']
 
 
     assert ha.kindergarten_participation_correlates_with_high_school_graduation(for: 'ACADEMY 20')
-    assert ha.kindergarten_participation_correlates_with_high_school_graduation(:for => 'STATEWIDE')
-    assert ha.kindergarten_participation_correlates_with_high_school_graduation(
-  :across => districts)
+    refute ha.kindergarten_participation_correlates_with_high_school_graduation(:for => 'STATEWIDE')
+    assert ha.kindergarten_participation_correlates_with_high_school_graduation(:across => districts)
   end
 end

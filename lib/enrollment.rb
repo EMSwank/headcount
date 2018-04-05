@@ -1,7 +1,11 @@
-class Enrollment
+require_relative 'general_calculations'
 
-  attr_reader :name
-  attr_accessor :kindergarten_participation, :high_school_graduation_rates
+class Enrollment
+  include GeneralCalculations
+
+  attr_reader   :name
+  attr_accessor :kindergarten_participation,
+                :high_school_graduation_rates
 
   def initialize(data)
     @name = data[:name]
@@ -19,10 +23,6 @@ class Enrollment
     @kindergarten_participation.reduce({}) do |year, value|
       year.merge(value.first => truncate_to_three_decimals(value.last))
     end
-  end
-
-  def truncate_to_three_decimals(decimal)
-    (decimal.to_f*1000).floor/1000.0
   end
 
   def kindergarten_participation_in_year(year)

@@ -1,35 +1,49 @@
 require 'CSV'
 require_relative 'district'
 require_relative 'enrollment_repository'
+require_relative 'statewide_test_repository'
+require_relative 'general_calculations'
 
 class DistrictRepository
+  include GeneralCalculations
 
   attr_reader :districts,
               :enrollments
 
   def load_data(symbols)
+    data = symbols[:enrollment][:kindergarten]
+    parse_data(data)
     if symbols[:enrollment]
       er = EnrollmentRepository.new
       er.load_data(symbols)
       @enrollments = er.load_data(symbols)
+      add_enrollment
     end
-    data = symbols[:enrollment][:kindergarten]
-    parse_data(data)
+    if symbols[:statewide_testing]
+      str = StatewideTestRepository.new
+      @statewide_tests = str.load_data(symbols)
+      add_statewide_tests
+    end
   end
 
   def parse_data(data)
-    source = CSV.open(data, {headers: true, header_converters: :symbol})
+    source = get_data(data)
     @districts = source.map do |row|
       row[:name] = row[:location].upcase
       District.new(row)
     end
     @districts.uniq! {|district| district.name}
-    add_enrollment
   end
 
   def add_enrollment
     @districts.each_with_index do |district, index|
       district.enrollment = @enrollments[index]
+    end
+  end
+
+  def add_statewide_tests
+    @districts.each_with_index do |district, index|
+      district.statewide_test = @statewide_tests[index]
     end
   end
 
