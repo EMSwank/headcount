@@ -19,13 +19,17 @@ class EconomicProfileRepository
   def get_profiles(source)
     profiles = get_data(source)
     profiles.map do |row|
-      row[:name] == row[:location].upcase
+      row[:name] = row[:location].upcase
+      # require 'pry'; binding.pry
       EconomicProfile.new({:name => row[:name]})
     end
   end
 
   def uniq_profiles
     profiles.uniq! {|profile| profile.name}
-    # require 'pry'; binding.pry
+  end
+
+  def find_by_name(name)
+    profiles.find {|profile| profile.name == name}
   end
 end
