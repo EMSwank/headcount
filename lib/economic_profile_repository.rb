@@ -14,14 +14,35 @@ class EconomicProfileRepository
     @title_i = data[:economic_profile][:title_i]
     @profiles = get_profiles(@title_i)
     uniq_profiles
+    add_median_household_incomes
   end
 
   def get_profiles(source)
     profiles = get_data(source)
     profiles.map do |row|
       row[:name] = row[:location].upcase
-      # require 'pry'; binding.pry
       EconomicProfile.new({:name => row[:name]})
+    end
+  end
+
+  def add_median_household_incomes
+    data = get_data(@median_household_income)
+    data.each do |row|
+      parse_median_incomes(row)
+      index = find_index_for_profile(row)
+      profiles[index].median_household_income[row[:timeframe]] = row[:data]
+    end
+    profiles
+  end
+
+  def parse_median_incomes(row)
+    row[:name] = row[:location].upcase
+    row[:timeframe] = row[:timeframe].split('-')
+    row[:timeframe] = convert_to_integer(row[:timeframe])
+    if row[:data].to_i != Integer
+      row[:data] == 'N/A'
+    else
+      row[:data] == row[:data].to_i
     end
   end
 
@@ -31,5 +52,15 @@ class EconomicProfileRepository
 
   def find_by_name(name)
     profiles.find {|profile| profile.name == name}
+  end
+
+  def find_index_for_profile(row)
+    profiles.find_index do |profile|
+      profile.name == row[:location].upcase
+    end
+  end
+
+  def convert_to_integer(numbers)
+    numbers.map {|year| year.to_i}
   end
 end
