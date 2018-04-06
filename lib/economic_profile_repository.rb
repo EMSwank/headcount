@@ -16,6 +16,7 @@ class EconomicProfileRepository
     get_medium_household_incomes
     get_children_in_poverty
     get_free_or_reduced_lunch
+    get_title_i
   end
 
   def get_profiles(source)
@@ -87,9 +88,8 @@ class EconomicProfileRepository
   end
 
   def add_free_or_reduced_data(row, index)
-    # require 'pry'; binding.pry
     if row[:dataformat] == 'Percent'
-      truncate_to_three_decimals(row[:data])
+      row[:data] = truncate_to_three_decimals(row[:data])
       symbol = :percentage
       parse_dataformat_info(row, symbol, index)
     elsif row[:dataformat] == 'Number'
@@ -107,6 +107,22 @@ class EconomicProfileRepository
       profiles[index].free_or_reduced_price_lunch[row[:timeframe]] =
       {symbol => row[:data]}
     end
+  end
+
+  def get_title_i
+    data = get_data(@title_i)
+    data.each do |row|
+      parse_title_i(row)
+      index = find_index_for_profiles(row)
+      profiles[index].title_i[row[:timeframe]] = row[:data]
+    end
+    profiles
+  end
+
+  def parse_title_i(row)
+    row[:name] = row[:location].upcase
+    row[:timeframe] = row[:timeframe].to_i
+    row[:data] = truncate_to_three_decimals(row[:data])
   end
 
   def convert_to_integer(numbers)
