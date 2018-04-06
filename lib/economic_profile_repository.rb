@@ -14,6 +14,7 @@ class EconomicProfileRepository
     @profiles = get_profiles(@title_i)
     uniq_profiles
     get_medium_household_incomes
+    get_children_in_poverty
   end
 
   def get_profiles(source)
@@ -46,6 +47,25 @@ class EconomicProfileRepository
       row[:data] = row[:data].to_i
     else
       row[:data] = 'N/A'
+    end
+  end
+
+  def get_children_in_poverty
+    data = get_data(@children_in_poverty)
+    data.each do |row|
+      parse_poverty_info(row)
+      index = find_index_for_profiles(row)
+      # require 'pry'; binding.pry
+      profiles[index].children_in_poverty[row[:timeframe]] = row[:data]
+    end
+    profiles
+  end
+
+  def parse_poverty_info(row)
+    row[:name] = row[:location].upcase
+    row[:timeframe] = row[:timeframe].to_i
+    unless row[:dataformat] == 'Number'
+      row[:data] = row[:data].to_f
     end
   end
 

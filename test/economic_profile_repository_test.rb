@@ -76,7 +76,7 @@ class EconomicProfileRepositoryTest < Minitest::Test
     assert_equal [2005, 2009], ep
   end
 
-  def test_parse_median_incomes
+  def test_
 
   end
 end
