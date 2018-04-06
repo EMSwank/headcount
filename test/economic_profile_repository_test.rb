@@ -76,7 +76,9 @@ class EconomicProfileRepositoryTest < Minitest::Test
     assert_equal [2005, 2009], ep
   end
 
-  def test_
-
-  end
+  # def test_it_parses_rows
+  #   epr = EconomicProfileRepository.new
+  #
+  #   # assert_equal row[:]
+  # end
 end
