@@ -39,6 +39,7 @@ class EconomicProfile
   end
 
   def median_household_income_in_year(year)
+    build_income_averages
     # @income_averages ||=
     years = @median_household_income.keys
     incomes = []
@@ -46,7 +47,7 @@ class EconomicProfile
       year_range = (range[0]..range[1]).to_a
       if year_range.include?(year)
         value = @median_household_income.fetch(range)
-        require 'pry'; binding.pry
+        # require 'pry'; binding.pry
         @income_averages[year] = incomes.push(value)
       end
     end
@@ -55,13 +56,35 @@ class EconomicProfile
     # @income_averages
   end
 
+  def build_income_averages
+    incomes = @median_household_income
+    incomes.each do |key, val|
+      years = (key[0]..key[1]).to_a
+      years.each do |year|
+        if @income_averages[year] == nil
+          @income_averages[year] = []
+        elsif @income_averages.key?(year)
+          @income_averages[year] = @income_averages.fetch(year) << val
+        end
+      end
+    end
+    @income_averages.each do |key, value|
+      value.uniq!
+      while value.length != 0
+        new_value = value.sum / value.length
+        @income_averages[key] = new_value
+      end
+    end
+    require 'pry'; binding.pry
+  end
+
   def get_median_household_incomes
     years = @median_household_income
     incomes = []
     years.each do |key, val|
       year_range = (key[0]..key[1]).to_a
-      if year_range.include?(year) && if 
-        @income_averages[year] =
+      if !year_range.include?(year)
+        @income_averages[year] = [val]
       end
 
     end
