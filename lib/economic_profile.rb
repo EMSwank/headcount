@@ -1,3 +1,5 @@
+require_relative 'data_errors'
+
 class EconomicProfile
 
   attr_reader :name,
@@ -33,5 +35,9 @@ class EconomicProfile
   def load_title_i(data)
     @title_i = data[:title_i]
     @title_i = {} if data[:title_i].nil?
+  end
+
+  def median_household_income_in_year(year)
+    require 'pry'; binding.pry
   end
 end
