@@ -14,7 +14,6 @@ class EconomicProfile
     load_children_in_poverty(data)
     load_free_or_reduced(data)
     load_title_i(data)
-    # require 'pry'; binding.pry
   end
 
   def load_median_household_income(data)
@@ -38,6 +37,17 @@ class EconomicProfile
   end
 
   def median_household_income_in_year(year)
-    require 'pry'; binding.pry
+    years = @median_household_income.keys
+    incomes = []
+    income_averages = {}
+    years.each do |range|
+      year_range = (range[0]..range[1]).to_a
+      if year_range.include?(year)
+        value = @median_household_income.fetch(range)
+        income_averages[year] = incomes.push(value)
+      end
+    end
+  raise UnknownDataError if incomes.length == 0
+  incomes.sum / incomes.length
   end
 end

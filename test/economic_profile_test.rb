@@ -26,5 +26,8 @@ class EconomicProfileTest < Minitest::Test
 
     assert_equal 50000, economic_profile.median_household_income_in_year(2005)
     assert_equal 55000, economic_profile.median_household_income_in_year(2009)
+    assert_raises UnknownDataError do
+      economic_profile.median_household_income_in_year(1997)
+    end 
   end
 end
