@@ -28,6 +28,18 @@ class EconomicProfileTest < Minitest::Test
     assert_equal 55000, economic_profile.median_household_income_in_year(2009)
     assert_raises UnknownDataError do
       economic_profile.median_household_income_in_year(1997)
-    end 
+    end
+  end
+
+  def test_median_household_income_average
+    data = {:median_household_income => {[2005, 2009] => 50000, [2008, 2014] => 60000},
+        :children_in_poverty => {2012 => 0.1845},
+        :free_or_reduced_price_lunch => {2014 => {:percentage => 0.023, :total => 100}},
+        :title_i => {2015 => 0.543},
+        :name => "ACADEMY 20"
+       }
+    economic_profile = EconomicProfile.new(data)
+
+    assert_equal 55000, economic_profile.median_household_income_average
   end
 end

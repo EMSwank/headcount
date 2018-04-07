@@ -14,6 +14,8 @@ class EconomicProfile
     load_children_in_poverty(data)
     load_free_or_reduced(data)
     load_title_i(data)
+    @income_averages = {}
+    # get_median_household_incomes
   end
 
   def load_median_household_income(data)
@@ -37,17 +39,47 @@ class EconomicProfile
   end
 
   def median_household_income_in_year(year)
+    # @income_averages ||=
     years = @median_household_income.keys
     incomes = []
-    income_averages = {}
     years.each do |range|
       year_range = (range[0]..range[1]).to_a
       if year_range.include?(year)
         value = @median_household_income.fetch(range)
-        income_averages[year] = incomes.push(value)
+        require 'pry'; binding.pry
+        @income_averages[year] = incomes.push(value)
       end
     end
-  raise UnknownDataError if incomes.length == 0
-  incomes.sum / incomes.length
+    raise UnknownDataError if incomes.length == 0
+    incomes.sum / incomes.length
+    # @income_averages
+  end
+
+  def get_median_household_incomes
+    years = @median_household_income
+    incomes = []
+    years.each do |key, val|
+      year_range = (key[0]..key[1]).to_a
+      if year_range.include?(year) && if 
+        @income_averages[year] =
+      end
+
+    end
+    average_median_household_incomes
+  end
+
+  def average_median_household_incomes
+    @income_averages.each do |key, val|
+      no_repeat_values = val.uniq.concat
+      @income_averages[key] = no_repeat_values
+    end
+    @income_averages.each do |key, val|
+      avg = val.sum / val.length
+      @income_averages[key] = avg
+    end
+  end
+
+  def median_household_income_average
+
   end
 end
