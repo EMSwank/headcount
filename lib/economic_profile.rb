@@ -1,7 +1,8 @@
 require_relative 'data_errors'
+require_relative 'general_calculations'
 
 class EconomicProfile
-
+  include GeneralCalculations
   attr_reader :name,
               :median_household_income,
               :children_in_poverty,
@@ -76,5 +77,10 @@ class EconomicProfile
   def median_household_income_average
     incomes = @median_household_income.values
     incomes.sum / incomes.length
+  end
+
+  def children_in_poverty_in_year(year)
+    raise UnknownDataError if @children_in_poverty[year] == nil
+    truncate_to_three_decimals(@children_in_poverty[year])
   end
 end
