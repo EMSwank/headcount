@@ -14,26 +14,26 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-04-08T12:57:17-06:00">2018-04-08T12:57:17-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-04-08T13:08:30-06:00">2018-04-08T13:08:30-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">64.31%</span></span>
+    (<span class="covered_percent"><span class="red">64.41%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         26068.95
+         25995.3
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>9</b> files in total.
-    <b>353</b> relevant lines. 
-    <span class="green"><b>227</b> lines covered</span> and
+    <b>354</b> relevant lines. 
+    <span class="green"><b>228</b> lines covered</span> and
     <span class="red"><b>126</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -112,12 +112,12 @@
       
       <tr>
         <td class="strong"><a href="#92a5980ff75927fd14dfebc65302f6f86c025bb5" class="src_link" title="lib/headcount_analyst.rb">lib/headcount_analyst.rb</a></td>
-        <td class="green strong">98.75 %</td>
+        <td class="green strong">98.77 %</td>
         <td>125</td>
+        <td>81</td>
         <td>80</td>
-        <td>79</td>
         <td>1</td>
-        <td>7919.4</td>
+        <td>7821.6</td>
       </tr>
       
       <tr>
@@ -215,7 +215,7 @@
         <li class="never" data-hits="" data-linenumber="8">
           
           
-          <code class="ruby">end </code>
+          <code class="ruby">end</code>
         </li>
       
     </ol>
@@ -1659,10 +1659,10 @@
         <div class="source_table" id="92a5980ff75927fd14dfebc65302f6f86c025bb5">
   <div class="header">
     <h3>lib/headcount_analyst.rb</h3>
-    <h4><span class="green">98.75 %</span> covered</h4>
+    <h4><span class="green">98.77 %</span> covered</h4>
     <div>
-      <b>80</b> relevant lines. 
-      <span class="green"><b>79</b> lines covered</span> and
+      <b>81</b> relevant lines. 
+      <span class="green"><b>80</b> lines covered</span> and
       <span class="red"><b>1</b> lines missed.</span>
     </div>
   </div>
@@ -2396,16 +2396,16 @@
           <code class="ruby">  def top_statewide_test_year_over_year_growth(params)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="122">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="122">
+          <span class="hits">2</span>
           
           <code class="ruby">    raise InsufficientInformationError if !params.include?(:grade)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="123">
+        <li class="covered" data-hits="1" data-linenumber="123">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">    raise UnknownDataError if params[:grade] != 3 || 8</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="124">

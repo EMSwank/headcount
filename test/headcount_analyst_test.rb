@@ -173,6 +173,8 @@ class DistrictTest < Minitest::Test
     assert_raises InsufficientInformationError do
       ha.top_statewide_test_year_over_year_growth(subject: :math)
     end
-    
+    assert_raises UnknownDataError do
+      ha.top_statewide_test_year_over_year_growth(grade: 9, subject: :math)
+    end 
   end
 end

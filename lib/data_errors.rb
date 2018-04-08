@@ -5,4 +5,4 @@ class UnknownRaceError < Exception
 end
 
 class InsufficientInformationError < Exception
-end 
+end

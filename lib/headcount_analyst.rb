@@ -120,6 +120,6 @@ class HeadcountAnalyst
 
   def top_statewide_test_year_over_year_growth(params)
     raise InsufficientInformationError if !params.include?(:grade)
-
+    raise UnknownDataError if params[:grade] != 3 || 8
   end
 end
