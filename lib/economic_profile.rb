@@ -15,6 +15,7 @@ class EconomicProfile
     load_free_or_reduced(data)
     load_title_i(data)
     @income_averages = {}
+    build_income_averages
     # get_median_household_incomes
   end
 
@@ -39,21 +40,8 @@ class EconomicProfile
   end
 
   def median_household_income_in_year(year)
-    build_income_averages
-    # @income_averages ||=
-    years = @median_household_income.keys
-    incomes = []
-    years.each do |range|
-      year_range = (range[0]..range[1]).to_a
-      if year_range.include?(year)
-        value = @median_household_income.fetch(range)
-        # require 'pry'; binding.pry
-        @income_averages[year] = incomes.push(value)
-      end
-    end
-    raise UnknownDataError if incomes.length == 0
-    incomes.sum / incomes.length
-    # @income_averages
+    raise UnknownDataError if @income_averages[year] == nil
+    @income_averages[year]
   end
 
   def build_income_averages
@@ -62,47 +50,25 @@ class EconomicProfile
       years = (key[0]..key[1]).to_a
       years.each do |year|
         if @income_averages[year] == nil
-          @income_averages[year] = []
+          @income_averages[year] = [val]
         elsif @income_averages.key?(year)
           @income_averages[year] = @income_averages.fetch(year) << val
         end
       end
     end
     @income_averages.each do |key, value|
-      value.uniq!
-      while value.length != 0
+      if value.length == 0
+        new_value = []
+      else
         new_value = value.sum / value.length
-        @income_averages[key] = new_value
       end
-    end
-    require 'pry'; binding.pry
-  end
-
-  def get_median_household_incomes
-    years = @median_household_income
-    incomes = []
-    years.each do |key, val|
-      year_range = (key[0]..key[1]).to_a
-      if !year_range.include?(year)
-        @income_averages[year] = [val]
-      end
-
-    end
-    average_median_household_incomes
-  end
-
-  def average_median_household_incomes
-    @income_averages.each do |key, val|
-      no_repeat_values = val.uniq.concat
-      @income_averages[key] = no_repeat_values
-    end
-    @income_averages.each do |key, val|
-      avg = val.sum / val.length
-      @income_averages[key] = avg
+      @income_averages[key] = new_value
     end
   end
 
   def median_household_income_average
-
+    # require 'pry'; binding.pry
+    incomes = @median_household_income.values
+    incomes.sum / incomes.length
   end
 end
