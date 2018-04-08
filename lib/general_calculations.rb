@@ -1,3 +1,5 @@
+require 'CSV'
+
 module GeneralCalculations
 
   def get_data(file_path)
