@@ -160,4 +160,19 @@ class DistrictTest < Minitest::Test
     refute ha.kindergarten_participation_correlates_with_high_school_graduation(:for => 'STATEWIDE')
     assert ha.kindergarten_participation_correlates_with_high_school_graduation(:across => districts)
   end
+
+  def test_top_statewide_test_year_over_year_growth
+    data = {:enrollment => {:kindergarten =>
+                            './data/Kindergartners in full-day program.csv',
+                            :high_school_graduation => "./data/High school graduation rates.csv"}}
+    dr = DistrictRepository.new
+    dr.load_data(data)
+    ha = HeadcountAnalyst.new(dr)
+    districts = ['ACADEMY 20', 'COLORADO SPRINGS 11', 'GREELEY 6']
+
+    assert_raises InsufficientInformationError do
+      ha.top_statewide_test_year_over_year_growth(subject: :math)
+    end
+    
+  end
 end

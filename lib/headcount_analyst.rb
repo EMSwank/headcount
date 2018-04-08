@@ -117,4 +117,9 @@ class HeadcountAnalyst
       across_correlation?(symbol[:across])
     end
   end
+
+  def top_statewide_test_year_over_year_growth(params)
+    raise InsufficientInformationError if !params.include?(:grade)
+
+  end
 end
