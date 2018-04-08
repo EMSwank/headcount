@@ -83,4 +83,10 @@ class EconomicProfile
     raise UnknownDataError if @children_in_poverty[year] == nil
     truncate_to_three_decimals(@children_in_poverty[year])
   end
+
+  def free_or_reduced_price_lunch_percentage_in_year(year)
+    # require 'pry'; binding.pry
+    raise UnknownDataError if @free_or_reduced_price_lunch[year] == nil
+    truncate_to_three_decimals(@free_or_reduced_price_lunch[year][:percentage])
+  end
 end
