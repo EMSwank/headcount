@@ -119,7 +119,56 @@ class HeadcountAnalyst
   end
 
   def top_statewide_test_year_over_year_growth(params)
+    available_grades = [3, 8]
     raise InsufficientInformationError if !params.include?(:grade)
-    raise UnknownDataError if params[:grade] != 3 || 8
+    raise UnknownDataError if !available_grades.include?(params[:grade])
+    load_top_third_grade_growth
+    # @third_growth = {}
+    # @dr.districts.each do |district|
+    #   math_result = []
+    #   reading_result = []
+    #   writing_result = []
+    #   scores = district.statewide_test.third_grade
+    #   scores.each_pair do |year|
+    #     math_result << year[1][:math]
+    #     reading_result << year[1][:reading]
+    #     writing_result << year[1][:writing]
+    #   end
+    #   avg_math = (math_result.reduce(:+) / math_result.length)
+    #   avg_math = truncate_to_three_decimals(avg_math)
+    #   avg_read = (reading_result.reduce(:+) / reading_result.length)
+    #   avg_read = truncate_to_three_decimals(avg_read)
+    #   avg_write = (writing_result.reduce(:+) / math_result.length)
+    #   avg_write = truncate_to_three_decimals(avg_write)
+    #   @third_growth[district.name] = {:math => avg_math,
+    #                                   :reading => avg_read,
+    #                                   :writing => avg_write}
+    end
+
+
+  end
+
+  def load_top_third_grade_growth
+    @third_growth = {}
+    @dr.districts.each do |district|
+      math_result = []
+      reading_result = []
+      writing_result = []
+      scores = district.statewide_test.third_grade
+      scores.each_pair do |year|
+        math_result << year[1][:math] if year[1][:math].is_a?(Float)
+        reading_result << year[1][:reading] if year[1][:reading].is_a?(Float)
+        writing_result << year[1][:writing] if year[1][:writing].is_a?(Float)
+      end
+      avg_math = (math_result.reduce(:+) / math_result.length) || 0
+      avg_math = truncate_to_three_decimals(avg_math) || 0
+      avg_read = (reading_result.reduce(:+) / reading_result.length) || 0
+      avg_read = truncate_to_three_decimals(avg_read) || 0
+      avg_write = (writing_result.reduce(:+) / math_result.length) || 0
+      avg_write = truncate_to_three_decimals(avg_write) || 0
+      @third_growth[district.name] = {:math => avg_math,
+                                      :reading => avg_read,
+                                      :writing => avg_write}
+                                      require 'pry'; binding.pry
   end
 end
