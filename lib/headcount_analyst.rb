@@ -123,53 +123,15 @@ class HeadcountAnalyst
     raise InsufficientInformationError if !params.include?(:grade)
     raise UnknownDataError if !available_grades.include?(params[:grade])
     load_top_third_grade_growth
-    # @third_growth = {}
-    # @dr.districts.each do |district|
-    #   math_result = []
-    #   reading_result = []
-    #   writing_result = []
-    #   scores = district.statewide_test.third_grade
-    #   scores.each_pair do |year|
-    #     math_result << year[1][:math]
-    #     reading_result << year[1][:reading]
-    #     writing_result << year[1][:writing]
-    #   end
-    #   avg_math = (math_result.reduce(:+) / math_result.length)
-    #   avg_math = truncate_to_three_decimals(avg_math)
-    #   avg_read = (reading_result.reduce(:+) / reading_result.length)
-    #   avg_read = truncate_to_three_decimals(avg_read)
-    #   avg_write = (writing_result.reduce(:+) / math_result.length)
-    #   avg_write = truncate_to_three_decimals(avg_write)
-    #   @third_growth[district.name] = {:math => avg_math,
-    #                                   :reading => avg_read,
-    #                                   :writing => avg_write}
-    end
+  end
 
 
   end
-
-  def load_top_third_grade_growth
-    @third_growth = {}
-    @dr.districts.each do |district|
-      math_result = []
-      reading_result = []
-      writing_result = []
-      scores = district.statewide_test.third_grade
-      scores.each_pair do |year|
-        if @third_growth.has_key?(district.name)
-          @third_growth[district.name] = @third_growth[district.name].merge(year[1]) do |key, oldval, newval|
-            newval = [oldval, newval].flatten
-            # newval
-          end
-        else
-          @third_growth[district.name] = year[1]
-      end
-        end
-    end
+  def normalize_data
     @third_growth.each_value do |scores|
       scores.each do |key, val|
-        val.delete("N/A")
-        if val.is_a?(Integer)
+        val.delete("N/A") if val.is_a?(Array)
+        if val.is_a?(Float)
           avg = val
         elsif val.empty?
           avg = 0
@@ -178,8 +140,41 @@ class HeadcountAnalyst
         end
         scores[key] = truncate_to_three_decimals(avg)
       end
+    end
+  end
 
+  def load_top_third_grade_growth
+    @third_growth = {}
+    @dr.districts.each do |district|
+      scores = district.statewide_test.third_grade
+      build_growth_tables(scores, @third_growth, district)
+      normalize_data
+    end
+    get_third_math_scores
+    require 'pry'; binding.pry
+  end
+
+  def get_third_math_scores
+    @third_math = {}
+    @third_growth.each do |k,v|
+      @third_math[k] = v[:math]
+    end
+  end
+
+  def build_growth_tables(scores, table_name, district)
+    scores.each_pair do |year|
+      name = district.name
+      if table_name.has_key?(name)
+        value = table_name[name].merge(year[1]) do |key, oldval, newval|
+          newval = [oldval, newval].flatten
+        end
+        table_name[name] = value
+      else
+        table_name[name] = year[1]
+      end
+  end
+
+  def method_name
 
   end
-  require 'pry'; binding.pry
 end
