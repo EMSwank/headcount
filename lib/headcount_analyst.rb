@@ -164,14 +164,22 @@ class HeadcountAnalyst
         else
           @third_growth[district.name] = year[1]
       end
-        @third_growth.each_value do |scores|
-          scores.each do |key, val|
-          avg = val.reduce(:+) / val.length
-          scores[key] = truncate_to_three_decimals(avg)
-          end
         end
-        require 'pry'; binding.pry
     end
+    @third_growth.each_value do |scores|
+      scores.each do |key, val|
+        val.delete("N/A")
+        if val.is_a?(Integer)
+          avg = val
+        elsif val.empty?
+          avg = 0
+        else
+          avg = val.reduce(:+) / val.length
+        end
+        scores[key] = truncate_to_three_decimals(avg)
+      end
+
 
   end
+  require 'pry'; binding.pry
 end
