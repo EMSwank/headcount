@@ -152,12 +152,19 @@ class HeadcountAnalyst
       read_scores = []
       write_scores = []
       scores = raw_scores.each do |score|
-        math_scores << score[1][:math] if score[1][:math].is_a?(Float)
-        read_scores << score[1][:reading] if score[1][:reading].is_a?(Float)
-        write_scores << score[1][:math] if score[1][:write].is_a?(Float)
+        unless score[1][:math].class == String
+          math_scores << score[1][:math]
+        end
+        unless score[1][:reading].class == String
+          read_scores << score[1][:reading]
+        end
+        unless score[1][:writing].class == String
+          write_scores << score[1][:writing]
+        end
       end
       high_year = scores.max[0]
       low_year = scores.min[0]
+      require 'pry'; binding.pry
       num_of_years = high_year - low_year
       math_growth = (math_scores.max - math_scores.min) / (num_of_years)
       read_growth = (read_scores.max - read_scores.min) / (num_of_years)
@@ -167,9 +174,10 @@ class HeadcountAnalyst
                             :reading => truncate_to_three_decimals(read_growth),
                             :writing => truncate_to_three_decimals(write_growth)
                           }
+      # @third_growth.values.each do |val|
+        # val[:math]
       # build_growth_tables(scores, @third_growth, district)
       # normalize_data
-      require 'pry'; binding.pry
     end
     # get_third_math_scores
   end
@@ -192,9 +200,5 @@ class HeadcountAnalyst
       else
         table_name[name] = year[1]
       end
-  end
-
-  def method_name
-
   end
 end
