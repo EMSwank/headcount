@@ -184,6 +184,10 @@ class HeadcountAnalyst
       # build_growth_tables(scores, @third_growth, district)
       # normalize_data
     end
+    math_growth = []
+    pairs = @third_growth.to_a
+    ordered_math_scores = pairs.sort_by {|district, growth| growth}.reverse
+    ordered_math_scores[0]
     require 'pry'; binding.pry
   end
     # get_third_math_scores
