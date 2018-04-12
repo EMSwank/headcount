@@ -152,51 +152,50 @@ class HeadcountAnalyst
       read_scores = []
       write_scores = []
       scores = raw_scores.each do |score|
-        unless score[1][:math].class == String
-          math_scores << score[1][:math]
+        require 'pry'; binding.pry
+        if score[1][:math].class == String || score[1][:math] == 0.0 || score[1][:math].nil?
+          math_scores << [district.name, score[1][:math]]
         end
-        unless score[1][:reading].class == String
-          read_scores << score[1][:reading]
+        if score[1][:reading].class == String || score[1][:reading] == 0.0 || score[1][:reading].nil?
+          read_scores << [district.name, score[1][:reading]]
         end
-        unless score[1][:writing].class == String
-          write_scores << score[1][:writing]
+        if score[1][:writing].class == String || score[1][:writing] == 0.0 || score[1][:writing].nil?
+          write_scores << [district.name. score[1][:writing]]
         end
       end
-      require 'pry'; binding.pry
-    end
+
+      high_year = scores.max[0]
+      low_year = scores.min[0]
+      year_difference = high_year - low_year
+      # num_of_years = year_difference - (year_difference - math_scores.length)
+      if !math_scores.empty? || math_scores.length == 1
+        math_growth = (math_scores.max - math_scores.min) / (year_difference)
+      end
+      if !read_scores.empty? || read_scores.length == 1
+        read_growth = (read_scores.max - read_scores.min) / (year_difference)
+      end
+      if !write_scores.empty? || write_scores.length == 1
+        write_growth = (write_scores.max - write_scores.min) / (year_difference)
+      end
+      unless math_growth.nil? || read_growth.nil? || write_growth.nil?
+        @third_growth[district.name] = {
+                                :math => truncate_to_three_decimals(math_growth),
+                              :reading => truncate_to_three_decimals(read_growth),
+                              :writing => truncate_to_three_decimals(write_growth)
+                            }
+      end
   end
-  #     high_year = scores.max[0]
-  #     low_year = scores.min[0]
-  #     num_of_years = high_year - low_year
-  #     if !math_scores.empty?
-  #       math_growth = (math_scores.max - math_scores.min) / (num_of_years)
-  #     end
-  #     if !read_scores.empty?
-  #       read_growth = (read_scores.max - read_scores.min) / (num_of_years)
-  #     end
-  #     if !write_scores.empty?
-  #       write_growth = (write_scores.max - write_scores.min) / (num_of_years)
-  #     end
-  #     @third_growth[district.name] = {
-  #                             :math => truncate_to_three_decimals(math_growth),
-  #                           :reading => truncate_to_three_decimals(read_growth),
-  #                           :writing => truncate_to_three_decimals(write_growth)
-  #                         }
-  #     # @third_growth.values.each do |val|
-  #       # val[:math]
-  #     # build_growth_tables(scores, @third_growth, district)
-  #     # normalize_data
-  #   end
-  #   math_growth = []
-  #   pairs = @third_growth.to_a
-  #   pairs.each {|pair| math_growth << [pair[0], pair[1][:math]]}
-  #   ordered_math_scores = math_growth.sort_by do |district, growth|
-  #     growth
-  #   end.reverse
-  #   ordered_math_scores[0]
-  # end
+
+    math_growth = []
+    pairs = @third_growth.to_a
+    pairs.each {|pair| math_growth << [pair[0], pair[1][:math]]}
+    ordered_math_scores = math_growth.sort_by do |district, growth|
+      growth
+    end.reverse
+    ordered_math_scores[0]
+  end
   #   # get_third_math_scores
-  end
+end
 
   def get_third_math_scores
     @third_math = {}
