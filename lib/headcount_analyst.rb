@@ -162,35 +162,40 @@ class HeadcountAnalyst
           write_scores << score[1][:writing]
         end
       end
-      high_year = scores.max[0]
-      low_year = scores.min[0]
-      num_of_years = high_year - low_year
-      if !math_scores.empty?
-        math_growth = (math_scores.max - math_scores.min) / (num_of_years)
-      end
-      if !read_scores.empty?
-        read_growth = (read_scores.max - read_scores.min) / (num_of_years)
-      end
-      if !write_scores.empty?
-        write_growth = (write_scores.max - write_scores.min) / (num_of_years)
-      end
-      @third_growth[district.name] = {
-                              :math => truncate_to_three_decimals(math_growth),
-                            :reading => truncate_to_three_decimals(read_growth),
-                            :writing => truncate_to_three_decimals(write_growth)
-                          }
-      # @third_growth.values.each do |val|
-        # val[:math]
-      # build_growth_tables(scores, @third_growth, district)
-      # normalize_data
+      require 'pry'; binding.pry
     end
-    math_growth = []
-    pairs = @third_growth.to_a
-    ordered_math_scores = pairs.sort_by {|district, growth| growth}.reverse
-    ordered_math_scores[0]
-    require 'pry'; binding.pry
   end
-    # get_third_math_scores
+  #     high_year = scores.max[0]
+  #     low_year = scores.min[0]
+  #     num_of_years = high_year - low_year
+  #     if !math_scores.empty?
+  #       math_growth = (math_scores.max - math_scores.min) / (num_of_years)
+  #     end
+  #     if !read_scores.empty?
+  #       read_growth = (read_scores.max - read_scores.min) / (num_of_years)
+  #     end
+  #     if !write_scores.empty?
+  #       write_growth = (write_scores.max - write_scores.min) / (num_of_years)
+  #     end
+  #     @third_growth[district.name] = {
+  #                             :math => truncate_to_three_decimals(math_growth),
+  #                           :reading => truncate_to_three_decimals(read_growth),
+  #                           :writing => truncate_to_three_decimals(write_growth)
+  #                         }
+  #     # @third_growth.values.each do |val|
+  #       # val[:math]
+  #     # build_growth_tables(scores, @third_growth, district)
+  #     # normalize_data
+  #   end
+  #   math_growth = []
+  #   pairs = @third_growth.to_a
+  #   pairs.each {|pair| math_growth << [pair[0], pair[1][:math]]}
+  #   ordered_math_scores = math_growth.sort_by do |district, growth|
+  #     growth
+  #   end.reverse
+  #   ordered_math_scores[0]
+  # end
+  #   # get_third_math_scores
   end
 
   def get_third_math_scores
