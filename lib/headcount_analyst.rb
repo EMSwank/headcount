@@ -124,25 +124,25 @@ class HeadcountAnalyst
     raise UnknownDataError if !available_grades.include?(params[:grade])
     load_top_third_grade_growth
   end
-
-
-  end
-  def normalize_data
-    @third_growth.each_value do |scores|
-      scores.each do |key, val|
-        val.delete("N/A") if val.is_a?(Array)
-        # if val.empty? && val.length != 1
-        # if val.is_a?(Float)
-        #   avg = val
-        # elsif val.empty?
-        #   avg = 0
-        # else
-        #   avg = val.reduce(:+) / val.length
-        # end
-        # scores[key] = truncate_to_three_decimals(avg)
-      end
-    end
-  end
+  #
+  #
+  # end
+  # def normalize_data
+  #   @third_growth.each_value do |scores|
+  #     scores.each do |key, val|
+  #       val.delete("N/A") if val.is_a?(Array)
+  #       # if val.empty? && val.length != 1
+  #       # if val.is_a?(Float)
+  #       #   avg = val
+  #       # elsif val.empty?
+  #       #   avg = 0
+  #       # else
+  #       #   avg = val.reduce(:+) / val.length
+  #       # end
+  #       # scores[key] = truncate_to_three_decimals(avg)
+  #     end
+  #   end
+  # end
 
   def load_top_third_grade_growth
     @third_growth = {}
@@ -164,11 +164,16 @@ class HeadcountAnalyst
       end
       high_year = scores.max[0]
       low_year = scores.min[0]
-      require 'pry'; binding.pry
       num_of_years = high_year - low_year
-      math_growth = (math_scores.max - math_scores.min) / (num_of_years)
-      read_growth = (read_scores.max - read_scores.min) / (num_of_years)
-      write_growth = (write_scores.max - write_scores.min) / (num_of_years)
+      if !math_scores.empty?
+        math_growth = (math_scores.max - math_scores.min) / (num_of_years)
+      end
+      if !read_scores.empty?
+        read_growth = (read_scores.max - read_scores.min) / (num_of_years)
+      end
+      if !write_scores.empty?
+        write_growth = (write_scores.max - write_scores.min) / (num_of_years)
+      end
       @third_growth[district.name] = {
                               :math => truncate_to_three_decimals(math_growth),
                             :reading => truncate_to_three_decimals(read_growth),
@@ -179,6 +184,8 @@ class HeadcountAnalyst
       # build_growth_tables(scores, @third_growth, district)
       # normalize_data
     end
+    require 'pry'; binding.pry
+  end
     # get_third_math_scores
   end
 
