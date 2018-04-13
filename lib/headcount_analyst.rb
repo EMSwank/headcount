@@ -11,6 +11,7 @@ class HeadcountAnalyst
     district_correlations
     @third_growth = {}
     @eighth_growth = {}
+    @overall_top_third_grade = {}
   end
 
   def average_kindergarten_participation(district_name)
@@ -125,7 +126,7 @@ class HeadcountAnalyst
     raise InsufficientInformationError if !params.include?(:grade)
     raise UnknownDataError if !available_grades.include?(params[:grade])
     if params[:weighting].nil? && params[:subject].nil?
-      load_top_district_average(params)
+      load_overall_top_third_grade(params)
     elsif params[:grade] == 3
       load_top_third_grade_growth(params)
     elsif params[:grade] == 8
@@ -156,24 +157,56 @@ class HeadcountAnalyst
     rank_district_growth(params)
   end
 
-  def load_top_third_grade(params)
-    districts_growth = []
+  def load_overall_top_third_grade(params)
+
     @dr.districts.each do |district|
-      year_data = district.statewide_test.third_grade.to_a
-      top_statewide_test_year_growth_all_subjects_weighted(params, year_data,
-        district, districts_growth)
-    end
-    select_top_district_or_districts(params, districts_growth)
-  end
-    if params[:grade] == 3
-
-      load_top_third_grade_growth(:grade => 3, subject: :math)
+      subject_scores = []
+      raw_scores = district.statewide_test.third_grade
+      max_year = raw_scores.keys.max
+      min_year = raw_scores.keys.min
+      year_difference = max_year - min_year
+      high_scores = raw_scores.fetch(max_year).to_a
+      low_scores = raw_scores.fetch(min_year).to_a
+      subject_scores << high_scores.assoc(:math)
+      subject_scores << low_scores.assoc(:math)
       require 'pry'; binding.pry
-      load_top_third_grade_growth(:grade => 3, subject: :reading)
-      load_top_third_grade_growth(:grade => 3, subject: :writing)
+      if subject_scores != []
+        avg = (subject_scores[0][1] - subject_scores[1][1]) / year_difference
+        if avg.is_a?(Float)
+          @overall_top_third_grade[district.name] = truncate_to_three_decimals(avg)
+        end
+      end
+      subject_scores.clear
+      subject_scores << high_scores.assoc(:reading)
+      subject_scores << low_scores.assoc(:reading)
+      if subject_scores != []
+        avg = (subject_scores[0][1] - subject_scores[1][1]) / year_difference
+        if avg.is_a?(Float)
+          @overall_top_third_grade[district.name] = truncate_to_three_decimals(avg)
+        end
+      end
+
+      subject_scores.clear
+      subject_scores << high_scores.assoc(:writing)
+      subject_scores << low_scores.assoc(:writing)
+      if subject_scores != []
+        avg = (subject_scores[0][1] - subject_scores[1][1]) / year_difference
+        if avg.is_a?(Float)
+          @overall_top_third_grade[district.name] = truncate_to_three_decimals(avg)
+        end
+      end
 
 
     end
+  # end
+  #   if params[:grade] == 3
+  #
+  #     load_top_third_grade_growth(:grade => 3, subject: :math)
+  #     load_top_third_grade_growth(:grade => 3, subject: :reading)
+  #     load_top_third_grade_growth(:grade => 3, subject: :writing)
+  #
+  #
+  #   end
   end
 
   def normalize_scores(params, scores, subject_scores)
@@ -184,6 +217,9 @@ class HeadcountAnalyst
   end
 
   def get_subject_scores(params, raw_scores, subject_scores, district)
+    # if params[:subject].nil?
+    #   params = (:math, :reading, :writing)
+    # end
     raw_scores.each do |score|
       subject_scores << [district.name, score[1][params[:subject]]]
     end
@@ -226,7 +262,6 @@ class HeadcountAnalyst
       pairs = @eighth_growth.to_a
     end
     pairs.each {|pair| growth << [pair[0], pair[1][params[:subject]]]}
-    binding.pry
     ordered_scores = growth.sort_by {|district, growth| growth}.reverse
     if params[:top]
       ordered_scores[0..(params[:top] - 1)]
