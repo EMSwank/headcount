@@ -158,12 +158,16 @@ class HeadcountAnalyst
   end
 
   def load_overall_top_third_grade(params)
-
+    all_scores = {}
     load_top_third_grade_growth(:grade => 3, :subject => :math)
-    # maths = @third_growth
+    all_scores.merge!(@third_growth)
     load_top_third_grade_growth(:grade => 3, :subject => :reading)
-    require 'pry'; binding.pry
+    all_scores.each {|district, score| score.merge!(@third_growth[district])}
+    load_top_third_grade_growth(:grade => 3, :subject => :writing)
+    all_scores.each {|district, score| score.merge!(@third_growth[district])}
 
+
+    # require 'pry'; binding.pry
 
 
     # load_top_third_grade_growth(:grade => 3, :subject => :writing)
@@ -283,13 +287,7 @@ class HeadcountAnalyst
       pairs = @eighth_growth.to_a
     end
     pairs.each {|pair| growth << [pair[0], pair[1][params[:subject]]]}
-    ordered_scores = growth.sort_by do |district, growth|
-      if growth.class != nil?
-        growth
-      end
-    end.reverse
-    require 'pry'; binding.pry
-
+    ordered_scores = growth.sort_by {|district, growth| growth || 0}.reverse
     if params[:top]
       ordered_scores[0..(params[:top] - 1)]
     else
