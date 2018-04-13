@@ -122,40 +122,33 @@ class HeadcountAnalyst
     available_grades = [3, 8]
     raise InsufficientInformationError if !params.include?(:grade)
     raise UnknownDataError if !available_grades.include?(params[:grade])
-    load_top_third_grade_growth
+    if params[:grade] == 3
+      load_top_third_grade_growth(params)
+    end
   end
 
-  def load_top_third_grade_growth
+  def load_top_third_grade_growth(params)
     @third_growth = {}
-    @eighth_growth = {}
     @dr.districts.each do |district|
       raw_scores = district.statewide_test.third_grade.to_a
-      subjects = [:math, :reading, :writing]
       subject_scores = []
-      scores = get_subject_scores(:math, raw_scores, subject_scores, district)
-      normalize_scores(scores, subject_scores)
+      scores = get_subject_scores(params, raw_scores, subject_scores, district)
+      normalize_scores(params, scores, subject_scores)
       get_year_difference(scores, subject_scores, district)
     end
-    rank_district_growth
-    # growth = []
-    # pairs = @third_growth.to_a
-    # pairs.each {|pair| growth << [pair[0], pair[1][:math]]}
-    # ordered_math_scores = growth.sort_by do |district, growth|
-    #   growth
-    # end.reverse
-    # ordered_math_scores[0]
+    rank_district_growth(params)
   end
 
-  def normalize_scores(scores, subject_scores)
-    scores.delete_if {|score| score[1][:math].is_a?(String)}
-    scores.delete_if {|score| score[1][:math] == 0.0}
+  def normalize_scores(params, scores, subject_scores)
+    scores.delete_if {|score| score[1][params[:subject]].is_a?(String)}
+    scores.delete_if {|score| score[1][params[:subject]] == 0.0}
     subject_scores.delete_if {|score| score[1].is_a?(String)}
     subject_scores.delete_if {|score| score[1] == 0.0}
   end
 
-  def get_subject_scores(subjects, raw_scores, subject_scores, district)
+  def get_subject_scores(params, raw_scores, subject_scores, district)
     raw_scores.each do |score|
-      subject_scores << [district.name, score[1][subjects]]
+      subject_scores << [district.name, score[1][params[:subject]]]
     end
   end
 
@@ -177,13 +170,13 @@ class HeadcountAnalyst
     end
   end
 
-  def rank_district_growth(districts = 1)
+  def rank_district_growth(params)
     growth = []
     pairs = @third_growth.to_a
-    pairs.each {|pair| growth << [pair[0], pair[1][:math]]}
+    pairs.each {|pair| growth << [pair[0], pair[1][params[:subject]]]}
     ordered_math_scores = growth.sort_by {|district, growth| growth}.reverse
-    if districts > 1
-      ordered_math_scores[0..(districts - 1)]
+    if params[:top]
+      ordered_math_scores[0..(params[:top] - 1)]
     else
       ordered_math_scores[0]
     end
