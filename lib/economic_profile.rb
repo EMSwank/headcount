@@ -68,7 +68,7 @@ class EconomicProfile
       if value.length == 0
         new_value = []
       else
-        new_value = value.sum / value.length
+        new_value = value.reduce(:+) / value.length
       end
       @income_averages[key] = new_value
     end
@@ -76,7 +76,7 @@ class EconomicProfile
 
   def median_household_income_average
     incomes = @median_household_income.values
-    incomes.sum / incomes.length
+    incomes.reduce(:+) / incomes.length
   end
 
   def children_in_poverty_in_year(year)

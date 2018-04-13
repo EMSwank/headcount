@@ -9,6 +9,9 @@ class HeadcountAnalyst
   def initialize(dr)
     @dr = dr
     district_correlations
+    @third_growth = {}
+    @eighth_growth = {}
+    @overall_top_third_grade = {}
   end
 
   def average_kindergarten_participation(district_name)
@@ -57,8 +60,8 @@ class HeadcountAnalyst
 
   def kindergarten_participation_against_high_school_graduation(district)
     num = kindergarten_participation_rate_variation(district,
-                                                    :against => 'COLORADO')/
-          graduation_rate_variation(district, :against => 'COLORADO')
+                                                        :against => 'COLORADO')/
+                     graduation_rate_variation(district, :against => 'COLORADO')
     num.round(3)
   end
 
@@ -115,6 +118,118 @@ class HeadcountAnalyst
       district_correlation?(symbol[:for])
     else symbol[:across]
       across_correlation?(symbol[:across])
+    end
+  end
+
+  def top_statewide_test_year_over_year_growth(params)
+    available_grades = [3, 8]
+    raise InsufficientInformationError if !params.include?(:grade)
+    raise UnknownDataError if !available_grades.include?(params[:grade])
+    if params[:weighting].nil? && params[:subject].nil?
+      load_overall_top_third_grade(params)
+    elsif params[:grade] == 3
+      load_top_third_grade_growth(params)
+    elsif params[:grade] == 8
+      load_top_eight_grade_growth(params)
+
+    end
+  end
+
+  def load_top_third_grade_growth(params)
+    @dr.districts.each do |district|
+      raw_scores = district.statewide_test.third_grade.to_a
+      subject_scores = []
+      scores = get_subject_scores(params, raw_scores, subject_scores, district)
+      normalize_scores(params, scores, subject_scores)
+      get_year_difference(params, scores, subject_scores, district)
+    end
+    rank_district_growth(params)
+  end
+
+  def load_top_eight_grade_growth(params)
+    @dr.districts.each do |district|
+      raw_scores = district.statewide_test.eighth_grade.to_a
+      subject_scores = []
+      scores = get_subject_scores(params, raw_scores, subject_scores, district)
+      normalize_scores(params, scores, subject_scores)
+      get_year_difference(params, scores, subject_scores, district)
+    end
+    rank_district_growth(params)
+  end
+
+  def load_overall_top_third_grade(params)
+    all_scores = {}
+    load_top_third_grade_growth(:grade => 3, :subject => :math)
+    all_scores.merge!(@third_growth)
+    load_top_third_grade_growth(:grade => 3, :subject => :reading)
+    all_scores.each {|district, score| score.merge!(@third_growth[district])}
+    load_top_third_grade_growth(:grade => 3, :subject => :writing)
+    all_scores.each {|district, score| score.merge!(@third_growth[district])}
+    parsed_scores = all_scores.to_a
+     parsed_scores.each do |scores|
+      avg_scores = scores[1].values.reduce(:+)
+      total_avg = avg_scores / scores[1].count
+      if scores[1].include?(:math && :reading && :writing)
+        scores[1] = truncate_to_three_decimals(total_avg)
+      end
+    end
+  end
+
+  def normalize_scores(params, scores, subject_scores)
+    scores.delete_if {|score| score[1][params[:subject]].is_a?(String)}
+    scores.delete_if {|score| score[1][params[:subject]] == 0.0}
+    subject_scores.delete_if {|score| score[1].is_a?(String)}
+    subject_scores.delete_if {|score| score[1] == 0.0}
+  end
+
+  def get_subject_scores(params, raw_scores, subject_scores, district)
+    raw_scores.each do |score|
+      subject_scores << [district.name, score[1][params[:subject]]]
+    end
+  end
+
+  def get_year_difference(params, scores, subject_scores, district)
+    if !scores.empty? || scores.length > 1
+      high_year = scores.max[0]
+      low_year = scores.min[0]
+      if !subject_scores.empty? || !subject_scores.nil? ||
+         subject_scores.length > 1
+        unless high_year.nil? || low_year.nil?
+          year_difference = high_year - low_year
+          growth = (subject_scores.max[1] - subject_scores.min[1]) / year_difference
+        end
+        add_growth(params, year_difference, district, growth)
+      end
+    end
+  end
+
+  def add_growth(params, year_difference, district, growth)
+    if params[:grade] == 3
+      unless year_difference == 0
+      @third_growth[district.name] = {params[:subject] =>
+                                      truncate_to_three_decimals(growth)}
+      end
+    elsif params[:grade] == 8
+      unless year_difference == 0
+      @eighth_growth[district.name] = {params[:subject] => truncate_to_three_decimals(growth)}
+      end
+    end
+
+  end
+
+  def rank_district_growth(params)
+    growth = []
+    if params[:grade] == 3
+      pairs = @third_growth.to_a
+    elsif params[:grade] == 8
+      pairs = @eighth_growth.to_a
+    end
+    pairs.each {|pair| growth << [pair[0], pair[1][params[:subject]]]}
+    ordered_scores = growth.sort_by {|district, growth| growth || 0}.reverse
+    if params[:top]
+      ordered_scores[0..(params[:top] - 1)]
+    else
+      ordered_scores[0]
     end
   end
 end

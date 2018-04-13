@@ -1,7 +1,7 @@
 require './test/test_helper'
 require './lib/headcount_analyst'
 
-class DistrictTest < Minitest::Test
+class HeadcountAnalystTest < Minitest::Test
 
   def test_it_exists
     data = {:enrollment => {:kindergarten =>
@@ -159,5 +159,37 @@ class DistrictTest < Minitest::Test
     assert ha.kindergarten_participation_correlates_with_high_school_graduation(for: 'ACADEMY 20')
     refute ha.kindergarten_participation_correlates_with_high_school_graduation(:for => 'STATEWIDE')
     assert ha.kindergarten_participation_correlates_with_high_school_graduation(:across => districts)
+  end
+
+  def test_top_statewide_test_year_over_year_growth
+    dr = DistrictRepository.new
+    dr.load_data({:enrollment => {
+                    :kindergarten => "./data/Kindergartners in full-day program.csv",
+                    :high_school_graduation => "./data/High school graduation rates.csv",
+                   },
+                   :statewide_testing => {
+                     :third_grade => "./data/3rd grade students scoring proficient or above on the CSAP_TCAP.csv",
+                     :eighth_grade => "./data/8th grade students scoring proficient or above on the CSAP_TCAP.csv",
+                     :math => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Math.csv",
+                     :reading => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Reading.csv",
+                     :writing => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Writing.csv"
+                   }
+                 })
+    dr
+    ha = HeadcountAnalyst.new(dr)
+    district = dr.find_by_name('ACADEMY 20')
+    statewide_test = district.statewide_test
+
+    assert statewide_test.is_a?(StatewideTest)
+    assert_raises InsufficientInformationError do
+      ha.top_statewide_test_year_over_year_growth(subject: :math)
+    end
+    assert_raises UnknownDataError do
+      ha.top_statewide_test_year_over_year_growth(grade: 9, subject: :math)
+    end
+    assert_equal "WILEY RE-13 JT", ha.top_statewide_test_year_over_year_growth(grade: 3, subject: :math).first
+    assert_equal "COTOPAXI RE-3", ha.top_statewide_test_year_over_year_growth(grade: 8, subject: :reading).first
+    assert_equal [["WILEY RE-13 JT", 0.3], ["LA VETA RE-2", 0.162], ["LAKE COUNTY R-1", 0.112]], ha.top_statewide_test_year_over_year_growth(grade: 3, top: 3, subject: :math)
+    assert_equal "SANGRE DE CRISTO RE-22J", ha.top_statewide_test_year_over_year_growth(grade: 3).first
   end
 end
