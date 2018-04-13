@@ -135,27 +135,15 @@ class HeadcountAnalyst
       scores = get_subject_scores(:math, raw_scores, subject_scores, district)
       normalize_scores(scores, subject_scores)
       get_year_difference(scores, subject_scores, district)
-      # if !scores.empty? || scores.length > 1
-      #   high_year = scores.max[0]
-      #   low_year = scores.min[0]
-      # end
-      # if !subject_scores.empty? || !subject_scores.nil? || subject_scores.length > 1
-      #   unless @high_year.nil? || @low_year.nil?
-      #     year_difference = @high_year - @low_year
-      #     math_growth = (subject_scores.max[1] - subject_scores.min[1]) / year_difference
-      #     unless year_difference == 0
-      #       @third_growth[district.name] = {:math => truncate_to_three_decimals(math_growth)}
-      #     end
-      #   end
-      # end
     end
-    math_growth = []
-    pairs = @third_growth.to_a
-    pairs.each {|pair| math_growth << [pair[0], pair[1][:math]]}
-    ordered_math_scores = math_growth.sort_by do |district, growth|
-      growth
-    end.reverse
-    ordered_math_scores[0]
+    rank_district_growth
+    # growth = []
+    # pairs = @third_growth.to_a
+    # pairs.each {|pair| growth << [pair[0], pair[1][:math]]}
+    # ordered_math_scores = growth.sort_by do |district, growth|
+    #   growth
+    # end.reverse
+    # ordered_math_scores[0]
   end
 
   def normalize_scores(scores, subject_scores)
@@ -181,10 +169,23 @@ class HeadcountAnalyst
           growth = (subject_scores.max[1] - subject_scores.min[1]) / year_difference
         end
         unless year_difference == 0
-          @third_growth[district.name] = {:math => truncate_to_three_decimals(growth)}
+          @third_growth[district.name] = {:math =>
+                                          truncate_to_three_decimals(growth)}
         end
       end
 
+    end
+  end
+
+  def rank_district_growth(districts = 1)
+    growth = []
+    pairs = @third_growth.to_a
+    pairs.each {|pair| growth << [pair[0], pair[1][:math]]}
+    ordered_math_scores = growth.sort_by {|district, growth| growth}.reverse
+    if districts > 1
+      ordered_math_scores[0..(districts - 1)]
+    else
+      ordered_math_scores[0]
     end
   end
 end

@@ -14,27 +14,27 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-04-12T22:36:33-06:00">2018-04-12T22:36:33-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-04-12T22:51:18-06:00">2018-04-12T22:51:18-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">92.07%</span></span>
+    (<span class="covered_percent"><span class="green">91.88%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         30640.14
+         30406.84
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>9</b> files in total.
-    <b>391</b> relevant lines. 
-    <span class="green"><b>360</b> lines covered</span> and
-    <span class="red"><b>31</b> lines missed </span>
+    <b>394</b> relevant lines. 
+    <span class="green"><b>362</b> lines covered</span> and
+    <span class="red"><b>32</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -112,12 +112,12 @@
       
       <tr>
         <td class="strong"><a href="#92a5980ff75927fd14dfebc65302f6f86c025bb5" class="src_link" title="lib/headcount_analyst.rb">lib/headcount_analyst.rb</a></td>
-        <td class="green strong">99.15 %</td>
-        <td>190</td>
-        <td>117</td>
-        <td>116</td>
-        <td>1</td>
-        <td>5496.3</td>
+        <td class="green strong">98.33 %</td>
+        <td>191</td>
+        <td>120</td>
+        <td>118</td>
+        <td>2</td>
+        <td>5358.9</td>
       </tr>
       
       <tr>
@@ -1677,11 +1677,11 @@
         <div class="source_table" id="92a5980ff75927fd14dfebc65302f6f86c025bb5">
   <div class="header">
     <h3>lib/headcount_analyst.rb</h3>
-    <h4><span class="green">99.15 %</span> covered</h4>
+    <h4><span class="green">98.33 %</span> covered</h4>
     <div>
-      <b>117</b> relevant lines. 
-      <span class="green"><b>116</b> lines covered</span> and
-      <span class="red"><b>1</b> lines missed.</span>
+      <b>120</b> relevant lines. 
+      <span class="green"><b>118</b> lines covered</span> and
+      <span class="red"><b>2</b> lines missed.</span>
     </div>
   </div>
   
@@ -2513,316 +2513,322 @@
         <li class="never" data-hits="" data-linenumber="138">
           
           
-          <code class="ruby">      # if !scores.empty? || scores.length &gt; 1</code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="139">
+        <li class="covered" data-hits="1" data-linenumber="139">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">      #   high_year = scores.max[0]</code>
+          <code class="ruby">    rank_district_growth</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="140">
           
           
-          <code class="ruby">      #   low_year = scores.min[0]</code>
+          <code class="ruby">    # growth = []</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="141">
           
           
-          <code class="ruby">      # end</code>
+          <code class="ruby">    # pairs = @third_growth.to_a</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="142">
           
           
-          <code class="ruby">      # if !subject_scores.empty? || !subject_scores.nil? || subject_scores.length &gt; 1</code>
+          <code class="ruby">    # pairs.each {|pair| growth &lt;&lt; [pair[0], pair[1][:math]]}</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="143">
           
           
-          <code class="ruby">      #   unless @high_year.nil? || @low_year.nil?</code>
+          <code class="ruby">    # ordered_math_scores = growth.sort_by do |district, growth|</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="144">
           
           
-          <code class="ruby">      #     year_difference = @high_year - @low_year</code>
+          <code class="ruby">    #   growth</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="145">
           
           
-          <code class="ruby">      #     math_growth = (subject_scores.max[1] - subject_scores.min[1]) / year_difference</code>
+          <code class="ruby">    # end.reverse</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="146">
           
           
-          <code class="ruby">      #     unless year_difference == 0</code>
+          <code class="ruby">    # ordered_math_scores[0]</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="147">
           
           
-          <code class="ruby">      #       @third_growth[district.name] = {:math =&gt; truncate_to_three_decimals(math_growth)}</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="148">
           
           
-          <code class="ruby">      #     end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="149">
-          
-          
-          <code class="ruby">      #   end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="150">
-          
-          
-          <code class="ruby">      # end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="151">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="152">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    math_growth = []</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="153">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    pairs = @third_growth.to_a</code>
-        </li>
-      
-        <li class="covered" data-hits="143" data-linenumber="154">
-          <span class="hits">143</span>
-          
-          <code class="ruby">    pairs.each {|pair| math_growth &lt;&lt; [pair[0], pair[1][:math]]}</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="155">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    ordered_math_scores = math_growth.sort_by do |district, growth|</code>
-        </li>
-      
-        <li class="covered" data-hits="142" data-linenumber="156">
-          <span class="hits">142</span>
-          
-          <code class="ruby">      growth</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="157">
-          
-          
-          <code class="ruby">    end.reverse</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="158">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    ordered_math_scores[0]</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="159">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="160">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="161">
+        <li class="covered" data-hits="1" data-linenumber="149">
           <span class="hits">1</span>
           
           <code class="ruby">  def normalize_scores(scores, subject_scores)</code>
         </li>
       
-        <li class="covered" data-hits="1448" data-linenumber="162">
+        <li class="covered" data-hits="1448" data-linenumber="150">
           <span class="hits">1448</span>
           
           <code class="ruby">    scores.delete_if {|score| score[1][:math].is_a?(String)}</code>
         </li>
       
-        <li class="covered" data-hits="1205" data-linenumber="163">
+        <li class="covered" data-hits="1205" data-linenumber="151">
           <span class="hits">1205</span>
           
           <code class="ruby">    scores.delete_if {|score| score[1][:math] == 0.0}</code>
         </li>
       
-        <li class="covered" data-hits="1448" data-linenumber="164">
+        <li class="covered" data-hits="1448" data-linenumber="152">
           <span class="hits">1448</span>
           
           <code class="ruby">    subject_scores.delete_if {|score| score[1].is_a?(String)}</code>
         </li>
       
-        <li class="covered" data-hits="1205" data-linenumber="165">
+        <li class="covered" data-hits="1205" data-linenumber="153">
           <span class="hits">1205</span>
           
           <code class="ruby">    subject_scores.delete_if {|score| score[1] == 0.0}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="166">
+        <li class="never" data-hits="" data-linenumber="154">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="167">
+        <li class="never" data-hits="" data-linenumber="155">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="168">
+        <li class="covered" data-hits="1" data-linenumber="156">
           <span class="hits">1</span>
           
           <code class="ruby">  def get_subject_scores(subjects, raw_scores, subject_scores, district)</code>
         </li>
       
-        <li class="covered" data-hits="181" data-linenumber="169">
+        <li class="covered" data-hits="181" data-linenumber="157">
           <span class="hits">181</span>
           
           <code class="ruby">    raw_scores.each do |score|</code>
         </li>
       
-        <li class="covered" data-hits="1267" data-linenumber="170">
+        <li class="covered" data-hits="1267" data-linenumber="158">
           <span class="hits">1267</span>
           
           <code class="ruby">      subject_scores &lt;&lt; [district.name, score[1][subjects]]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="171">
+        <li class="never" data-hits="" data-linenumber="159">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="172">
+        <li class="never" data-hits="" data-linenumber="160">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="173">
+        <li class="never" data-hits="" data-linenumber="161">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="174">
+        <li class="covered" data-hits="1" data-linenumber="162">
           <span class="hits">1</span>
           
           <code class="ruby">  def get_year_difference(scores, subject_scores, district)</code>
         </li>
       
-        <li class="covered" data-hits="181" data-linenumber="175">
+        <li class="covered" data-hits="181" data-linenumber="163">
           <span class="hits">181</span>
           
           <code class="ruby">    if !scores.empty? || scores.length &gt; 1</code>
         </li>
       
-        <li class="covered" data-hits="150" data-linenumber="176">
+        <li class="covered" data-hits="150" data-linenumber="164">
           <span class="hits">150</span>
           
           <code class="ruby">      high_year = scores.max[0]</code>
         </li>
       
-        <li class="covered" data-hits="150" data-linenumber="177">
+        <li class="covered" data-hits="150" data-linenumber="165">
           <span class="hits">150</span>
           
           <code class="ruby">      low_year = scores.min[0]</code>
         </li>
       
-        <li class="covered" data-hits="150" data-linenumber="178">
+        <li class="covered" data-hits="150" data-linenumber="166">
           <span class="hits">150</span>
           
           <code class="ruby">      if !subject_scores.empty? || !subject_scores.nil? || subject_scores.length &gt; 1</code>
         </li>
       
-        <li class="covered" data-hits="150" data-linenumber="179">
+        <li class="covered" data-hits="150" data-linenumber="167">
           <span class="hits">150</span>
           
           <code class="ruby">        unless high_year.nil? || low_year.nil?</code>
         </li>
       
-        <li class="covered" data-hits="150" data-linenumber="180">
+        <li class="covered" data-hits="150" data-linenumber="168">
           <span class="hits">150</span>
           
           <code class="ruby">          year_difference = high_year - low_year</code>
         </li>
       
-        <li class="covered" data-hits="150" data-linenumber="181">
+        <li class="covered" data-hits="150" data-linenumber="169">
           <span class="hits">150</span>
           
           <code class="ruby">          growth = (subject_scores.max[1] - subject_scores.min[1]) / year_difference</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="182">
+        <li class="never" data-hits="" data-linenumber="170">
           
           
           <code class="ruby">        end</code>
         </li>
       
-        <li class="covered" data-hits="150" data-linenumber="183">
+        <li class="covered" data-hits="150" data-linenumber="171">
           <span class="hits">150</span>
           
           <code class="ruby">        unless year_difference == 0</code>
         </li>
       
-        <li class="covered" data-hits="142" data-linenumber="184">
+        <li class="covered" data-hits="142" data-linenumber="172">
           <span class="hits">142</span>
           
-          <code class="ruby">          @third_growth[district.name] = {:math =&gt; truncate_to_three_decimals(growth)}</code>
+          <code class="ruby">          @third_growth[district.name] = {:math =&gt;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="185">
+        <li class="never" data-hits="" data-linenumber="173">
+          
+          
+          <code class="ruby">                                          truncate_to_three_decimals(growth)}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="174">
           
           
           <code class="ruby">        end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="186">
+        <li class="never" data-hits="" data-linenumber="175">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="187">
+        <li class="never" data-hits="" data-linenumber="176">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="188">
+        <li class="never" data-hits="" data-linenumber="177">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="189">
+        <li class="never" data-hits="" data-linenumber="178">
           
           
           <code class="ruby">  end</code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="179">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="180">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def rank_district_growth(districts = 1)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="181">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    growth = []</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="182">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    pairs = @third_growth.to_a</code>
+        </li>
+      
+        <li class="covered" data-hits="143" data-linenumber="183">
+          <span class="hits">143</span>
+          
+          <code class="ruby">    pairs.each {|pair| growth &lt;&lt; [pair[0], pair[1][:math]]}</code>
+        </li>
+      
+        <li class="covered" data-hits="143" data-linenumber="184">
+          <span class="hits">143</span>
+          
+          <code class="ruby">    ordered_math_scores = growth.sort_by {|district, growth| growth}.reverse</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="185">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    if districts &gt; 1</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="186">
+          
+          
+          <code class="ruby">      ordered_math_scores[0..(districts - 1)]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="187">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="188">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      ordered_math_scores[0]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="189">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
         <li class="never" data-hits="" data-linenumber="190">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="191">
           
           
           <code class="ruby">end</code>
