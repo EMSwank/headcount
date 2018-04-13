@@ -126,6 +126,8 @@ class HeadcountAnalyst
       load_top_third_grade_growth(params)
     elsif params[:grade] == 8
       load_top_eight_grade_growth(params)
+    elsif params[:weighting] && params[:subject] == nil
+      load_top_district_average
     end
   end
 
@@ -153,6 +155,16 @@ class HeadcountAnalyst
     rank_district_growth(params)
   end
 
+  def load_top_district_average(params)
+    if params[:grade] == 3
+      load_top_third_grade_growth(subject: math)
+      load_top_third_grade_growth(subject: reading)
+      load_top_third_grade_growth(subject: writing)
+      require 'pry'; binding.pry
+
+    end
+  end
+
   def normalize_scores(params, scores, subject_scores)
     scores.delete_if {|score| score[1][params[:subject]].is_a?(String)}
     scores.delete_if {|score| score[1][params[:subject]] == 0.0}
@@ -170,7 +182,8 @@ class HeadcountAnalyst
     if !scores.empty? || scores.length > 1
       high_year = scores.max[0]
       low_year = scores.min[0]
-      if !subject_scores.empty? || !subject_scores.nil? || subject_scores.length > 1
+      if !subject_scores.empty? || !subject_scores.nil? ||
+         subject_scores.length > 1
         unless high_year.nil? || low_year.nil?
           year_difference = high_year - low_year
           growth = (subject_scores.max[1] - subject_scores.min[1]) / year_difference
@@ -208,6 +221,5 @@ class HeadcountAnalyst
     else
       ordered_scores[0]
     end
-    
   end
 end
