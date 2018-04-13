@@ -9,6 +9,8 @@ class HeadcountAnalyst
   def initialize(dr)
     @dr = dr
     district_correlations
+    @third_growth = {}
+    @eighth_growth = {}
   end
 
   def average_kindergarten_participation(district_name)
@@ -122,17 +124,17 @@ class HeadcountAnalyst
     available_grades = [3, 8]
     raise InsufficientInformationError if !params.include?(:grade)
     raise UnknownDataError if !available_grades.include?(params[:grade])
-    if params[:grade] == 3
+    if params[:weighting].nil? && params[:subject].nil?
+      load_top_district_average(params)
+    elsif params[:grade] == 3
       load_top_third_grade_growth(params)
     elsif params[:grade] == 8
       load_top_eight_grade_growth(params)
-    elsif params[:weighting] && params[:subject] == nil
-      load_top_district_average
+
     end
   end
 
   def load_top_third_grade_growth(params)
-    @third_growth = {}
     @dr.districts.each do |district|
       raw_scores = district.statewide_test.third_grade.to_a
       subject_scores = []
@@ -144,7 +146,6 @@ class HeadcountAnalyst
   end
 
   def load_top_eight_grade_growth(params)
-    @eighth_growth = {}
     @dr.districts.each do |district|
       raw_scores = district.statewide_test.eighth_grade.to_a
       subject_scores = []
@@ -155,12 +156,22 @@ class HeadcountAnalyst
     rank_district_growth(params)
   end
 
-  def load_top_district_average(params)
+  def load_top_third_grade(params)
+    districts_growth = []
+    @dr.districts.each do |district|
+      year_data = district.statewide_test.third_grade.to_a
+      top_statewide_test_year_growth_all_subjects_weighted(params, year_data,
+        district, districts_growth)
+    end
+    select_top_district_or_districts(params, districts_growth)
+  end
     if params[:grade] == 3
-      load_top_third_grade_growth(subject: math)
-      load_top_third_grade_growth(subject: reading)
-      load_top_third_grade_growth(subject: writing)
+
+      load_top_third_grade_growth(:grade => 3, subject: :math)
       require 'pry'; binding.pry
+      load_top_third_grade_growth(:grade => 3, subject: :reading)
+      load_top_third_grade_growth(:grade => 3, subject: :writing)
+
 
     end
   end
@@ -215,6 +226,7 @@ class HeadcountAnalyst
       pairs = @eighth_growth.to_a
     end
     pairs.each {|pair| growth << [pair[0], pair[1][params[:subject]]]}
+    binding.pry
     ordered_scores = growth.sort_by {|district, growth| growth}.reverse
     if params[:top]
       ordered_scores[0..(params[:top] - 1)]
