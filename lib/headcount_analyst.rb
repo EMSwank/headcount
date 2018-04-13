@@ -127,34 +127,27 @@ class HeadcountAnalyst
 
   def load_top_third_grade_growth
     @third_growth = {}
+    @eighth_growth = {}
     @dr.districts.each do |district|
       raw_scores = district.statewide_test.third_grade.to_a
       subjects = [:math, :reading, :writing]
       subject_scores = []
       scores = get_subject_scores(:math, raw_scores, subject_scores, district)
-      # scores = raw_scores.each do |score|
-      #   subject_scores << [district.name, score[1][subjects]]
-        # read_scores << [district.name, score[1][:reading]]
-        # write_scores << [district.name, score[1][:writing]]
-      # end
-      # scores.delete_if {|score| score[1][:math].is_a?(String)}
-      # scores.delete_if {|score| score[1][:math] == 0.0}
-      # math_scores.delete_if {|score| score[1].is_a?(String)}
-      # math_scores.delete_if {|score| score[1] == 0.0}
       normalize_scores(scores, subject_scores)
-      if !scores.empty? || scores.length > 1
-        high_year = scores.max[0]
-        low_year = scores.min[0]
-      end
-      if !subject_scores.empty? || !subject_scores.nil? || subject_scores.length > 1
-        unless high_year.nil? || low_year.nil?
-          year_difference = high_year - low_year
-          math_growth = (subject_scores.max[1] - subject_scores.min[1]) / year_difference
-          unless year_difference == 0
-            @third_growth[district.name] = {:math => truncate_to_three_decimals(math_growth)}
-          end
-        end
-      end
+      get_year_difference(scores, subject_scores, district)
+      # if !scores.empty? || scores.length > 1
+      #   high_year = scores.max[0]
+      #   low_year = scores.min[0]
+      # end
+      # if !subject_scores.empty? || !subject_scores.nil? || subject_scores.length > 1
+      #   unless @high_year.nil? || @low_year.nil?
+      #     year_difference = @high_year - @low_year
+      #     math_growth = (subject_scores.max[1] - subject_scores.min[1]) / year_difference
+      #     unless year_difference == 0
+      #       @third_growth[district.name] = {:math => truncate_to_three_decimals(math_growth)}
+      #     end
+      #   end
+      # end
     end
     math_growth = []
     pairs = @third_growth.to_a
@@ -175,6 +168,23 @@ class HeadcountAnalyst
   def get_subject_scores(subjects, raw_scores, subject_scores, district)
     raw_scores.each do |score|
       subject_scores << [district.name, score[1][subjects]]
+    end
+  end
+
+  def get_year_difference(scores, subject_scores, district)
+    if !scores.empty? || scores.length > 1
+      high_year = scores.max[0]
+      low_year = scores.min[0]
+      if !subject_scores.empty? || !subject_scores.nil? || subject_scores.length > 1
+        unless high_year.nil? || low_year.nil?
+          year_difference = high_year - low_year
+          growth = (subject_scores.max[1] - subject_scores.min[1]) / year_difference
+        end
+        unless year_difference == 0
+          @third_growth[district.name] = {:math => truncate_to_three_decimals(growth)}
+        end
+      end
+
     end
   end
 end
