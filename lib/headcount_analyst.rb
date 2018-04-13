@@ -60,8 +60,8 @@ class HeadcountAnalyst
 
   def kindergarten_participation_against_high_school_graduation(district)
     num = kindergarten_participation_rate_variation(district,
-                                                    :against => 'COLORADO')/
-          graduation_rate_variation(district, :against => 'COLORADO')
+                                                        :against => 'COLORADO')/
+                     graduation_rate_variation(district, :against => 'COLORADO')
     num.round(3)
   end
 
@@ -167,7 +167,7 @@ class HeadcountAnalyst
     all_scores.each {|district, score| score.merge!(@third_growth[district])}
 
 
-    # require 'pry'; binding.pry
+    require 'pry'; binding.pry
 
 
     # load_top_third_grade_growth(:grade => 3, :subject => :writing)
@@ -242,9 +242,6 @@ class HeadcountAnalyst
   end
 
   def get_subject_scores(params, raw_scores, subject_scores, district)
-    # if params[:subject].nil?
-    #   params = (:math, :reading, :writing)
-    # end
     raw_scores.each do |score|
       subject_scores << [district.name, score[1][params[:subject]]]
     end

@@ -1,7 +1,6 @@
 require 'CSV'
 
 module GeneralCalculations
-
   def get_data(file_path)
     CSV.open(file_path, {headers: true, header_converters: :symbol})
   end
