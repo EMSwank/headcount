@@ -122,11 +122,26 @@ class HeadcountAnalyst
     available_grades = [3, 8]
     raise InsufficientInformationError if !params.include?(:grade)
     raise UnknownDataError if !available_grades.include?(params[:grade])
-    if params[:grade] == 3
-      load_top_third_grade_growth(params)
-    elsif params[:grade] == 8
-      load_top_eight_grade_growth(params)
+
+    @third_growth = {}
+    @dr.districts.each do |district|
+      raw_scores = district.statewide_test.third_grade
+      high_year = raw_scores.keys.max if raw_scores.keys.max.is_a?(Integer)
+      low_year = raw_scores.keys.min if raw_scores.keys.min.is_a?(Integer)
+      high_year_score = raw_scores.fetch(high_year)[params[:subject]]
+      low_year_score = raw_scores.fetch(low_year)[params[:subject]]
+      denomonator = high_year - low_year
+      unless denomonator = 0
+      if high_year_score.is_a?(Float) && low_year_score.is_a?(Float)
+        growth = (high_year_score - low_year_score) / (high_year - low_year)
+          @third_growth[district.name] = {params[:subject] => truncate_to_three_decimals(growth)}
+      end
+    # if params[:grade] == 3
+    #   load_top_third_grade_growth(params)
+    # elsif params[:grade] == 8
+    #   load_top_eight_grade_growth(params)
     end
+    require 'pry'; binding.pry
   end
 
   def load_top_third_grade_growth(params)
@@ -154,6 +169,7 @@ class HeadcountAnalyst
   end
 
   def normalize_scores(params, scores, subject_scores)
+
     scores.delete_if {|score| score[1][params[:subject]].is_a?(String)}
     scores.delete_if {|score| score[1][params[:subject]] == 0.0}
     subject_scores.delete_if {|score| score[1].is_a?(String)}
@@ -171,7 +187,6 @@ class HeadcountAnalyst
       high_year = scores.max[0]
       low_year = scores.min[0]
 
-      require 'pry'; binding.pry
       if !subject_scores.empty? || !subject_scores.nil? || subject_scores.length > 1
         unless high_year.nil? || low_year.nil?
           year_difference = high_year - low_year
