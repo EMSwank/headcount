@@ -122,26 +122,11 @@ class HeadcountAnalyst
     available_grades = [3, 8]
     raise InsufficientInformationError if !params.include?(:grade)
     raise UnknownDataError if !available_grades.include?(params[:grade])
-
-    @third_growth = {}
-    @dr.districts.each do |district|
-      raw_scores = district.statewide_test.third_grade
-      high_year = raw_scores.keys.max if raw_scores.keys.max.is_a?(Integer)
-      low_year = raw_scores.keys.min if raw_scores.keys.min.is_a?(Integer)
-      high_year_score = raw_scores.fetch(high_year)[params[:subject]]
-      low_year_score = raw_scores.fetch(low_year)[params[:subject]]
-      denomonator = high_year - low_year
-      unless denomonator = 0
-      if high_year_score.is_a?(Float) && low_year_score.is_a?(Float)
-        growth = (high_year_score - low_year_score) / (high_year - low_year)
-          @third_growth[district.name] = {params[:subject] => truncate_to_three_decimals(growth)}
-      end
-    # if params[:grade] == 3
-    #   load_top_third_grade_growth(params)
-    # elsif params[:grade] == 8
-    #   load_top_eight_grade_growth(params)
+    if params[:grade] == 3
+      load_top_third_grade_growth(params)
+    elsif params[:grade] == 8
+      load_top_eight_grade_growth(params)
     end
-    require 'pry'; binding.pry
   end
 
   def load_top_third_grade_growth(params)
@@ -169,7 +154,6 @@ class HeadcountAnalyst
   end
 
   def normalize_scores(params, scores, subject_scores)
-
     scores.delete_if {|score| score[1][params[:subject]].is_a?(String)}
     scores.delete_if {|score| score[1][params[:subject]] == 0.0}
     subject_scores.delete_if {|score| score[1].is_a?(String)}
@@ -178,7 +162,7 @@ class HeadcountAnalyst
 
   def get_subject_scores(params, raw_scores, subject_scores, district)
     raw_scores.each do |score|
-      subject_scores << [score[0], district.name, score[1][params[:subject]]]
+      subject_scores << [district.name, score[1][params[:subject]]]
     end
   end
 
@@ -186,7 +170,6 @@ class HeadcountAnalyst
     if !scores.empty? || scores.length > 1
       high_year = scores.max[0]
       low_year = scores.min[0]
-
       if !subject_scores.empty? || !subject_scores.nil? || subject_scores.length > 1
         unless high_year.nil? || low_year.nil?
           year_difference = high_year - low_year
@@ -195,7 +178,6 @@ class HeadcountAnalyst
         add_growth(params, year_difference, district, growth)
       end
     end
-
   end
 
   def add_growth(params, year_difference, district, growth)
@@ -206,8 +188,7 @@ class HeadcountAnalyst
       end
     elsif params[:grade] == 8
       unless year_difference == 0
-        @eighth_growth[district.name] = {params[:subject] =>
-                                        truncate_to_three_decimals(growth)}
+      @eighth_growth[district.name] = {params[:subject] => truncate_to_three_decimals(growth)}
       end
     end
 
@@ -222,10 +203,11 @@ class HeadcountAnalyst
     end
     pairs.each {|pair| growth << [pair[0], pair[1][params[:subject]]]}
     ordered_scores = growth.sort_by {|district, growth| growth}.reverse
-    if params[:top] != nil
+    if params[:top]
       ordered_scores[0..(params[:top] - 1)]
     else
       ordered_scores[0]
     end
+    
   end
 end
