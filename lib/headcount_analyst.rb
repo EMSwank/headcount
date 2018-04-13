@@ -165,73 +165,14 @@ class HeadcountAnalyst
     all_scores.each {|district, score| score.merge!(@third_growth[district])}
     load_top_third_grade_growth(:grade => 3, :subject => :writing)
     all_scores.each {|district, score| score.merge!(@third_growth[district])}
-
-
-    require 'pry'; binding.pry
-
-
-    # load_top_third_grade_growth(:grade => 3, :subject => :writing)
-
-
-  #   @dr.districts.each do |district|
-  #     subject_scores = []
-  #     raw_scores = district.statewide_test.third_grade
-  #     raw_scores.each do |key, val|
-  #       val.delete_if {|key, val| val.is_a?(String) || val == 0.0}
-  #     end
-  #     raw_scores.delete_if {|key, val| val.empty?}
-  #     unless raw_scores.empty? || raw_scores.length == 1
-  #       max_year = raw_scores.keys.max
-  #       min_year = raw_scores.keys.min
-  #     end
-  #     unless max_year.nil? || min_year.nil?
-  #       year_difference = max_year - min_year
-  #     end
-  #     high_scores = raw_scores.fetch(max_year).to_a
-  #     low_scores = raw_scores.fetch(min_year).to_a
-  #     subject_scores << high_scores.assoc(:math)
-  #     subject_scores << low_scores.assoc(:math)
-  #     subject_scores.compact!
-  #     require 'pry'; binding.pry
-  #     if !subject_scores.empty? || !year_difference == nil
-  #       avg = (subject_scores[0][1] - subject_scores[1][1]) / year_difference
-  #       if avg.is_a?(Float)
-  #         @overall_top_third_grade[district.name] = truncate_to_three_decimals(avg)
-  #       end
-  #     end
-  #     subject_scores.clear
-  #     subject_scores << high_scores.assoc(:reading)
-  #     subject_scores << low_scores.assoc(:reading)
-  #     subject_scores.compact!
-  #     if !subject_scores.empty? || !year_difference == nil
-  #       avg = (subject_scores[0][1] - subject_scores[1][1]) / year_difference
-  #       if avg.is_a?(Float)
-  #         @overall_top_third_grade[district.name] = truncate_to_three_decimals(avg)
-  #       end
-  #     end
-  #
-  #     subject_scores.clear
-  #     subject_scores << high_scores.assoc(:writing)
-  #     subject_scores << low_scores.assoc(:writing)
-  #     subject_scores.compact!
-  #     if !subject_scores.empty? || !year_difference == nil
-  #       avg = (subject_scores[0][1] - subject_scores[1][1]) / year_difference
-  #       if avg.is_a?(Float)
-  #         @overall_top_third_grade[district.name] = truncate_to_three_decimals(avg)
-  #       end
-  #     end
-  #
-  #
-  #   end
-  # # end
-  # #   if params[:grade] == 3
-  # #
-  # #     load_top_third_grade_growth(:grade => 3, subject: :math)
-  # #     load_top_third_grade_growth(:grade => 3, subject: :reading)
-  # #     load_top_third_grade_growth(:grade => 3, subject: :writing)
-  # #
-  # #
-  # #   end
+    parsed_scores = all_scores.to_a
+     parsed_scores.each do |scores|
+      avg_scores = scores[1].values.reduce(:+)
+      total_avg = avg_scores / scores[1].count
+      if scores[1].include?(:math && :reading && :writing)
+        scores[1] = truncate_to_three_decimals(total_avg)
+      end
+    end
   end
 
   def normalize_scores(params, scores, subject_scores)
