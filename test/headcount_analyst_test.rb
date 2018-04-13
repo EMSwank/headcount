@@ -188,5 +188,6 @@ class HeadcountAnalystTest < Minitest::Test
       ha.top_statewide_test_year_over_year_growth(grade: 9, subject: :math)
     end
     assert_equal "WILEY RE-13 JT", ha.top_statewide_test_year_over_year_growth(grade: 3, subject: :math).first
+    assert_equal "COTOPAXI RE-3", ha.top_statewide_test_year_over_year_growth(grade: 8, subject: :reading).first
   end
 end

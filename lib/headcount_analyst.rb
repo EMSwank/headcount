@@ -136,20 +136,21 @@ class HeadcountAnalyst
       subject_scores = []
       scores = get_subject_scores(params, raw_scores, subject_scores, district)
       normalize_scores(params, scores, subject_scores)
-      get_year_difference(scores, subject_scores, district)
+      get_year_difference(params, scores, subject_scores, district)
     end
     rank_district_growth(params)
   end
 
-  def load_top_eight_grade_growth
+  def load_top_eight_grade_growth(params)
     @eighth_growth = {}
     @dr.districts.each do |district|
       raw_scores = district.statewide_test.eighth_grade.to_a
       subject_scores = []
       scores = get_subject_scores(params, raw_scores, subject_scores, district)
       normalize_scores(params, scores, subject_scores)
-      get_year_difference(scores, subject_scores, district)
+      get_year_difference(params, scores, subject_scores, district)
     end
+    rank_district_growth(params)
   end
 
   def normalize_scores(params, scores, subject_scores)
@@ -165,7 +166,7 @@ class HeadcountAnalyst
     end
   end
 
-  def get_year_difference(scores, subject_scores, district)
+  def get_year_difference(params, scores, subject_scores, district)
     if !scores.empty? || scores.length > 1
       high_year = scores.max[0]
       low_year = scores.min[0]
@@ -174,9 +175,15 @@ class HeadcountAnalyst
           year_difference = high_year - low_year
           growth = (subject_scores.max[1] - subject_scores.min[1]) / year_difference
         end
-        unless year_difference == 0
-          @third_growth[district.name] = {:math =>
+        if params[:grade] == 3
+          unless year_difference == 0
+          @third_growth[district.name] = {params[:subject] =>
                                           truncate_to_three_decimals(growth)}
+          end
+        elsif params[:grade] == 8
+          unless year_difference == 0
+          @eighth_growth[district.name] = {params[:subject] => truncate_to_three_decimals(growth)}
+          end
         end
       end
     end
