@@ -124,6 +124,8 @@ class HeadcountAnalyst
     raise UnknownDataError if !available_grades.include?(params[:grade])
     if params[:grade] == 3
       load_top_third_grade_growth(params)
+    elsif params[:grade] == 8
+      load_top_eight_grade_growth(params)
     end
   end
 
@@ -137,6 +139,17 @@ class HeadcountAnalyst
       get_year_difference(scores, subject_scores, district)
     end
     rank_district_growth(params)
+  end
+
+  def load_top_eight_grade_growth
+    @eighth_growth = {}
+    @dr.districts.each do |district|
+      raw_scores = district.statewide_test.eighth_grade.to_a
+      subject_scores = []
+      scores = get_subject_scores(params, raw_scores, subject_scores, district)
+      normalize_scores(params, scores, subject_scores)
+      get_year_difference(scores, subject_scores, district)
+    end
   end
 
   def normalize_scores(params, scores, subject_scores)
@@ -166,19 +179,22 @@ class HeadcountAnalyst
                                           truncate_to_three_decimals(growth)}
         end
       end
-
     end
   end
 
   def rank_district_growth(params)
     growth = []
-    pairs = @third_growth.to_a
+    if params[:grade] == 3
+      pairs = @third_growth.to_a
+    elsif params[:grade] == 8
+      pairs = @eighth_growth.to_a
+    end
     pairs.each {|pair| growth << [pair[0], pair[1][params[:subject]]]}
-    ordered_math_scores = growth.sort_by {|district, growth| growth}.reverse
+    ordered_scores = growth.sort_by {|district, growth| growth}.reverse
     if params[:top]
-      ordered_math_scores[0..(params[:top] - 1)]
+      ordered_scores[0..(params[:top] - 1)]
     else
-      ordered_math_scores[0]
+      ordered_scores[0]
     end
   end
 end
