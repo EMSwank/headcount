@@ -124,25 +124,6 @@ class HeadcountAnalyst
     raise UnknownDataError if !available_grades.include?(params[:grade])
     load_top_third_grade_growth
   end
-  #
-  #
-  # end
-  # def normalize_data
-  #   @third_growth.each_value do |scores|
-  #     scores.each do |key, val|
-  #       val.delete("N/A") if val.is_a?(Array)
-  #       # if val.empty? && val.length != 1
-  #       # if val.is_a?(Float)
-  #       #   avg = val
-  #       # elsif val.empty?
-  #       #   avg = 0
-  #       # else
-  #       #   avg = val.reduce(:+) / val.length
-  #       # end
-  #       # scores[key] = truncate_to_three_decimals(avg)
-  #     end
-  #   end
-  # end
 
   def load_top_third_grade_growth
     @third_growth = {}
@@ -152,40 +133,31 @@ class HeadcountAnalyst
       read_scores = []
       write_scores = []
       scores = raw_scores.each do |score|
-        require 'pry'; binding.pry
-        if score[1][:math].class == String || score[1][:math] == 0.0 || score[1][:math].nil?
-          math_scores << [district.name, score[1][:math]]
-        end
-        if score[1][:reading].class == String || score[1][:reading] == 0.0 || score[1][:reading].nil?
-          read_scores << [district.name, score[1][:reading]]
-        end
-        if score[1][:writing].class == String || score[1][:writing] == 0.0 || score[1][:writing].nil?
-          write_scores << [district.name. score[1][:writing]]
-        end
+        math_scores << [district.name, score[1][:math]]
+        read_scores << [district.name, score[1][:reading]]
+        write_scores << [district.name, score[1][:writing]]
       end
+      scores.delete_if {|score| score[1][:math].is_a?(String)}
+      scores.delete_if {|score| score[1][:math] == 0.0}
+      math_scores.delete_if {|score| score[1].is_a?(String)}
+      math_scores.delete_if {|score| score[1] == 0.0}
 
-      high_year = scores.max[0]
-      low_year = scores.min[0]
-      year_difference = high_year - low_year
-      # num_of_years = year_difference - (year_difference - math_scores.length)
-      if !math_scores.empty? || math_scores.length == 1
-        math_growth = (math_scores.max - math_scores.min) / (year_difference)
+      if !scores.empty? || scores.length > 1
+        high_year = scores.max[0]
+        low_year = scores.min[0]
       end
-      if !read_scores.empty? || read_scores.length == 1
-        read_growth = (read_scores.max - read_scores.min) / (year_difference)
+      # growth = math_scores.max[1] - math_scores.min[1]
+      if !math_scores.empty? || !math_scores.nil? || math_scores.length > 1
+        unless high_year.nil? || low_year.nil?
+          year_difference = high_year - low_year
+          math_growth = (math_scores.max[1] - math_scores.min[1]) / year_difference
+          unless year_difference == 0
+            @third_growth[district.name] = {:math => truncate_to_three_decimals(math_growth)}
+          end
+        end
       end
-      if !write_scores.empty? || write_scores.length == 1
-        write_growth = (write_scores.max - write_scores.min) / (year_difference)
-      end
-      unless math_growth.nil? || read_growth.nil? || write_growth.nil?
-        @third_growth[district.name] = {
-                                :math => truncate_to_three_decimals(math_growth),
-                              :reading => truncate_to_three_decimals(read_growth),
-                              :writing => truncate_to_three_decimals(write_growth)
-                            }
-      end
-  end
-
+    end
+    # require 'pry'; binding.pry
     math_growth = []
     pairs = @third_growth.to_a
     pairs.each {|pair| math_growth << [pair[0], pair[1][:math]]}
@@ -193,27 +165,5 @@ class HeadcountAnalyst
       growth
     end.reverse
     ordered_math_scores[0]
-  end
-  #   # get_third_math_scores
-end
-
-  def get_third_math_scores
-    @third_math = {}
-    @third_growth.each do |k,v|
-      @third_math[k] = v[:math]
-    end
-  end
-
-  def build_growth_tables(scores, table_name, district)
-    scores.each_pair do |year|
-      name = district.name
-      if table_name.has_key?(name)
-        value = table_name[name].merge(year[1]) do |key, oldval, newval|
-          newval = [oldval, newval].flatten
-        end
-        table_name[name] = value
-      else
-        table_name[name] = year[1]
-      end
   end
 end
