@@ -162,7 +162,7 @@ class HeadcountAnalyst
 
   def get_subject_scores(params, raw_scores, subject_scores, district)
     raw_scores.each do |score|
-      subject_scores << [district.name, score[1][params[:subject]]]
+      subject_scores << [score[0], district.name, score[1][params[:subject]]]
     end
   end
 
@@ -170,23 +170,32 @@ class HeadcountAnalyst
     if !scores.empty? || scores.length > 1
       high_year = scores.max[0]
       low_year = scores.min[0]
+
+      require 'pry'; binding.pry
       if !subject_scores.empty? || !subject_scores.nil? || subject_scores.length > 1
         unless high_year.nil? || low_year.nil?
           year_difference = high_year - low_year
           growth = (subject_scores.max[1] - subject_scores.min[1]) / year_difference
         end
-        if params[:grade] == 3
-          unless year_difference == 0
-          @third_growth[district.name] = {params[:subject] =>
-                                          truncate_to_three_decimals(growth)}
-          end
-        elsif params[:grade] == 8
-          unless year_difference == 0
-          @eighth_growth[district.name] = {params[:subject] => truncate_to_three_decimals(growth)}
-          end
-        end
+        add_growth(params, year_difference, district, growth)
       end
     end
+
+  end
+
+  def add_growth(params, year_difference, district, growth)
+    if params[:grade] == 3
+      unless year_difference == 0
+      @third_growth[district.name] = {params[:subject] =>
+                                      truncate_to_three_decimals(growth)}
+      end
+    elsif params[:grade] == 8
+      unless year_difference == 0
+        @eighth_growth[district.name] = {params[:subject] =>
+                                        truncate_to_three_decimals(growth)}
+      end
+    end
+
   end
 
   def rank_district_growth(params)
@@ -198,7 +207,7 @@ class HeadcountAnalyst
     end
     pairs.each {|pair| growth << [pair[0], pair[1][params[:subject]]]}
     ordered_scores = growth.sort_by {|district, growth| growth}.reverse
-    if params[:top]
+    if params[:top] != nil
       ordered_scores[0..(params[:top] - 1)]
     else
       ordered_scores[0]
